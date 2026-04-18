@@ -28,37 +28,33 @@ const pillars = [
 ];
 ---
 
-<section id="nosotros" class="why-us-section section-pad" style="background: var(--color-gray-900)">
+<section id="nosotros" class="why-us-section section-pad" style="background: #F5F5F5">
   <div class="container-site">
 
-    <!-- Section header -->
     <div class="section-header mb-16 max-w-2xl">
       <span class="tag mb-4 gsap-fade-up">Por qué elegirnos</span>
-      <h2 class="text-display gsap-fade-up" style="font-size: clamp(2.5rem, 6vw, 5rem)">
+      <h2 class="text-display gsap-fade-up" style="font-size: clamp(2.5rem, 6vw, 5rem); color: #0a0a0a">
         La elección inteligente para tu
         <span style="color: var(--color-red)"> infraestructura eléctrica</span>
       </h2>
-      <p class="mt-4 text-base leading-relaxed gsap-fade-up" style="color: var(--color-gray-400)">
+      <p class="mt-4 text-base leading-relaxed gsap-fade-up" style="color: #666666">
         Cinco razones que nos posicionan como la empresa de referencia en servicios
         eléctricos de media tensión en Nuevo León.
       </p>
     </div>
 
-    <!-- Pillars grid -->
     <div class="pillars-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       {pillars.map((pillar, i) => (
         <article
-          class="pillar-card gsap-fade-up group relative p-8 border transition-all duration-300 cursor-default"
-          style="background: var(--color-gray-800); border-color: rgba(255,255,255,0.06)"
+          class="pillar-card gsap-fade-up group relative p-8 border bg-white transition-all duration-300 cursor-default hover:shadow-lg"
+          style="border-color: rgba(0,0,0,0.08)"
           data-index={i}
         >
-          <!-- Red accent top bar (hover) -->
           <div class="absolute top-0 left-0 right-0 h-0.5 origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100"
                style="background: var(--color-red)" aria-hidden="true"></div>
 
-          <!-- Icon -->
           <div class="icon-wrap mb-6 w-12 h-12 flex items-center justify-center"
-               style="background: rgba(204,0,0,0.12); border: 1px solid rgba(204,0,0,0.3)">
+               style="background: rgba(204,0,0,0.08); border: 1px solid rgba(204,0,0,0.25)">
             {pillar.icon === 'shield' && (
               <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
                 <path d="M11 2L3 5.5V10c0 4.42 3.36 8.56 8 9.56 4.64-1 8-5.14 8-9.56V5.5L11 2z" stroke="var(--color-red)" stroke-width="1.5" stroke-linejoin="round"/>
@@ -90,16 +86,14 @@ const pillars = [
             )}
           </div>
 
-          <!-- Content -->
-          <h3 class="text-lg font-bold uppercase tracking-wide mb-3" style="font-family: var(--font-display); color: white">
+          <h3 class="text-lg font-bold uppercase tracking-wide mb-3" style="font-family: var(--font-display); color: #0a0a0a">
             {pillar.title}
           </h3>
-          <p class="text-sm leading-relaxed" style="color: var(--color-gray-400)">
+          <p class="text-sm leading-relaxed" style="color: #666666">
             {pillar.description}
           </p>
 
-          <!-- Corner accent -->
-          <div class="absolute bottom-3 right-4 text-6xl font-black opacity-5" style="font-family: var(--font-display); color: var(--color-red)" aria-hidden="true">
+          <div class="absolute bottom-3 right-4 text-6xl font-black" style="font-family: var(--font-display); color: var(--color-red); opacity: 0.04" aria-hidden="true">
             {String(i + 1).padStart(2, '0')}
           </div>
         </article>
@@ -115,14 +109,10 @@ const pillars = [
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (!prefersReducedMotion) {
     gsap.registerPlugin(ScrollTrigger);
-
-    // Section header reveal
     gsap.to('.why-us-section .section-header .gsap-fade-up', {
       opacity: 1, y: 0, duration: 0.7, stagger: 0.15, ease: 'power3.out',
       scrollTrigger: { trigger: '.why-us-section', start: 'top 75%' },
     });
-
-    // Cards stagger reveal
     gsap.to('.pillar-card', {
       opacity: 1, y: 0, duration: 0.6, stagger: 0.1, ease: 'power3.out',
       scrollTrigger: { trigger: '.pillars-grid', start: 'top 80%' },

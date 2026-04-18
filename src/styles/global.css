@@ -47,8 +47,8 @@ html {
 
 body {
   font-family: var(--font-body);
-  background-color: var(--color-black);
-  color: var(--color-white);
+  background-color: var(--color-white);
+  color: var(--color-black);
   overflow-x: hidden;
   line-height: 1.6;
 }
@@ -175,6 +175,13 @@ h1, h2, h3, h4 {
 ::-webkit-scrollbar-thumb { background: var(--color-red); border-radius: 3px; }
 
 /* ── Selection ───────────────────────────────────────────── */
+/* ── Logo SA outlined ────────────────────────────────────── */
+.logo-sa {
+  color: white;
+  -webkit-text-stroke: 1.2px #1a1a1a;
+  text-stroke: 1.2px #1a1a1a;
+}
+
 ::selection { background: var(--color-red); color: var(--color-white); }
 
 /* ── Reduced Motion ──────────────────────────────────────── */

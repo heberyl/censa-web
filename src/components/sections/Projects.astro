@@ -2,100 +2,87 @@
 import { projects } from '../../data/projects';
 ---
 
-<section id="proyectos" class="projects-section section-pad" style="background: var(--color-black)">
+<section id="proyectos" class="projects-section section-pad" style="background: #ffffff">
   <div class="container-site">
 
-    <!-- Section header -->
     <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-16">
       <div>
         <span class="tag mb-4 gsap-fade-up">Proyectos Realizados</span>
-        <h2 class="text-display gsap-fade-up" style="font-size: clamp(2.5rem, 6vw, 5rem)">
+        <h2 class="text-display gsap-fade-up" style="font-size: clamp(2.5rem, 6vw, 5rem); color: #0a0a0a">
           Resultados reales.
           <span style="color: var(--color-red)"> Impacto real.</span>
         </h2>
       </div>
-      <p class="max-w-sm text-sm leading-relaxed gsap-fade-up" style="color: var(--color-gray-400)">
+      <p class="max-w-sm text-sm leading-relaxed gsap-fade-up" style="color: #666666">
         Cada proyecto en nuestro portafolio refleja nuestro compromiso con
         la calidad técnica y la puntualidad en la entrega.
       </p>
     </div>
 
-    <!-- Projects grid -->
     <div class="projects-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {projects.map((project, i) => (
         <article
-          class="project-card gsap-fade-up group relative overflow-hidden border cursor-default"
-          style="background: var(--color-gray-900); border-color: rgba(255,255,255,0.06)"
+          class="project-card gsap-fade-up group relative overflow-hidden border bg-white cursor-default hover:shadow-xl transition-shadow duration-300"
+          style="border-color: rgba(0,0,0,0.08)"
           data-index={i}
         >
-          <!-- Image -->
-          <div class="aspect-[16/10] overflow-hidden relative"
-               style="background: var(--color-gray-800)">
+          <div class="aspect-[16/10] overflow-hidden relative" style="background: #e8e8e8">
             <img
               src={project.image}
               alt={`${project.title} — CENSA Proyecto`}
-              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-75"
-              width="640"
-              height="400"
-              loading="lazy"
+              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              width="640" height="400" loading="lazy"
             />
             <div class="absolute inset-0 transition-opacity duration-300"
-                 style="background: linear-gradient(to top, rgba(10,10,10,0.8) 0%, transparent 60%)" aria-hidden="true"></div>
-            <!-- Category badge -->
+                 style="background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 55%)" aria-hidden="true"></div>
             <div class="absolute top-4 left-4 tag text-xs" style="border-color: rgba(204,0,0,0.5)">
               {project.category}
             </div>
           </div>
 
-          <!-- Content -->
           <div class="p-6">
-            <!-- Meta row -->
-            <div class="flex items-center gap-4 mb-3 text-xs" style="color: var(--color-gray-400)">
+            <div class="flex items-center gap-4 mb-3 text-xs" style="color: #999999">
               <span class="flex items-center gap-1.5">
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-                  <path d="M6 1C3.79 1 2 2.79 2 5c0 3.25 4 6 4 6s4-2.75 4-6c0-2.21-1.79-4-4-4zm0 5.5a1.5 1.5 0 110-3 1.5 1.5 0 010 3z" fill="var(--color-gray-400)"/>
+                  <path d="M6 1C3.79 1 2 2.79 2 5c0 3.25 4 6 4 6s4-2.75 4-6c0-2.21-1.79-4-4-4zm0 5.5a1.5 1.5 0 110-3 1.5 1.5 0 010 3z" fill="#999"/>
                 </svg>
                 {project.location}
               </span>
               <span class="ml-auto font-mono text-xs" style="color: var(--color-red)">{project.year}</span>
             </div>
 
-            <h3 class="text-lg font-bold uppercase tracking-wide mb-2" style="font-family: var(--font-display); color: white">
+            <h3 class="text-lg font-bold uppercase tracking-wide mb-2" style="font-family: var(--font-display); color: #0a0a0a">
               {project.title}
             </h3>
-            <p class="text-sm leading-relaxed mb-5" style="color: var(--color-gray-400)">
+            <p class="text-sm leading-relaxed mb-5" style="color: #666666">
               {project.description}
             </p>
 
-            <!-- Technical specs -->
-            <div class="grid grid-cols-2 gap-3 pt-4 border-t" style="border-color: rgba(255,255,255,0.06)">
+            <div class="grid grid-cols-2 gap-3 pt-4 border-t" style="border-color: rgba(0,0,0,0.08)">
               <div>
-                <div class="text-xs uppercase tracking-wider mb-0.5" style="color: var(--color-gray-400)">Voltaje</div>
+                <div class="text-xs uppercase tracking-wider mb-0.5" style="color: #999999">Voltaje</div>
                 <div class="font-bold text-sm font-mono" style="color: var(--color-red)">{project.voltage}</div>
               </div>
               <div>
-                <div class="text-xs uppercase tracking-wider mb-0.5" style="color: var(--color-gray-400)">Capacidad</div>
+                <div class="text-xs uppercase tracking-wider mb-0.5" style="color: #999999">Capacidad</div>
                 <div class="font-bold text-sm font-mono" style="color: var(--color-red)">{project.capacity}</div>
               </div>
             </div>
 
-            <!-- Tags -->
             <div class="flex flex-wrap gap-2 mt-4">
               {project.tags.map((tag) => (
-                <span class="text-xs px-2 py-1" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); color: var(--color-gray-400)">
+                <span class="text-xs px-2 py-1" style="background: #f5f5f5; border: 1px solid rgba(0,0,0,0.08); color: #666666">
                   {tag}
                 </span>
               ))}
             </div>
           </div>
 
-          <!-- Bottom red line on hover -->
           <div class="absolute bottom-0 left-0 right-0 h-0.5 origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100"
                style="background: var(--color-red)" aria-hidden="true"></div>
         </article>
       ))}
     </div>
-
   </div>
 </section>
 
@@ -106,12 +93,10 @@ import { projects } from '../../data/projects';
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (!prefersReducedMotion) {
     gsap.registerPlugin(ScrollTrigger);
-
     gsap.to('.projects-section .gsap-fade-up', {
       opacity: 1, y: 0, duration: 0.7, stagger: 0.12, ease: 'power3.out',
       scrollTrigger: { trigger: '.projects-section', start: 'top 75%' },
     });
-
     gsap.to('.project-card', {
       opacity: 1, y: 0, duration: 0.6, stagger: 0.12, ease: 'power3.out',
       scrollTrigger: { trigger: '.projects-grid', start: 'top 80%' },

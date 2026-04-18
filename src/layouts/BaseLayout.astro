@@ -1,5 +1,4 @@
 ---
-import { SEO } from 'astro-seo';
 import '../styles/global.css';
 
 interface Props {
@@ -17,6 +16,7 @@ const {
 } = Astro.props;
 
 const siteUrl = 'https://censa-web.pages.dev';
+const ogImage = `${siteUrl}${image}`;
 
 const jsonLdOrganization = {
   '@context': 'https://schema.org',
@@ -39,32 +39,24 @@ const jsonLdOrganization = {
     postalCode: '66478',
     addressCountry: 'MX',
   },
-  sameAs: ['#', '#'],
 };
 
 const jsonLdLocalBusiness = {
   '@context': 'https://schema.org',
   '@type': 'LocalBusiness',
-  '@id': `${siteUrl}/#business`,
   name: 'CENSA',
-  image: `${siteUrl}${image}`,
   description,
   telephone: '+52-812-235-8545',
   email: 'admon@censa.mx',
   url: siteUrl,
   address: jsonLdOrganization.address,
-  geo: {
-    '@type': 'GeoCoordinates',
-    latitude: 25.7473,
-    longitude: -100.2747,
-  },
+  geo: { '@type': 'GeoCoordinates', latitude: 25.7473, longitude: -100.2747 },
   openingHoursSpecification: {
     '@type': 'OpeningHoursSpecification',
-    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+    dayOfWeek: ['Monday','Tuesday','Wednesday','Thursday','Friday'],
     opens: '08:00',
     closes: '18:00',
   },
-  priceRange: '$$',
 };
 ---
 
@@ -75,59 +67,44 @@ const jsonLdLocalBusiness = {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
 
-    <SEO
-      title={title}
-      description={description}
-      canonical={canonical}
-      openGraph={{
-        basic: {
-          title,
-          type: 'website',
-          image: `${siteUrl}${image}`,
-          url: canonical,
-        },
-        optional: {
-          description,
-          locale: 'es_MX',
-          siteName: 'CENSA',
-        },
-        image: {
-          alt: 'CENSA — Especialistas en Media Tensión',
-          width: 1200,
-          height: 630,
-        },
-      }}
-      twitter={{
-        card: 'summary_large_image',
-        site: '@censa_mx',
-        creator: '@censa_mx',
-        title,
-        description,
-        image: `${siteUrl}${image}`,
-        imageAlt: 'CENSA — Especialistas en Media Tensión',
-      }}
-      extend={{
-        link: [
-          { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
-          { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
-        ],
-        meta: [
-          { name: 'theme-color', content: '#CC0000' },
-          { name: 'robots', content: 'index, follow' },
-          { name: 'author', content: 'CENSA' },
-          { name: 'keywords', content: 'empresa eléctrica media tensión Monterrey, mantenimiento subestaciones Nuevo León, instalación líneas media tensión, servicios eléctricos industriales CFE, CENSA electricidad' },
-        ],
-      }}
-    />
+    <!-- Primary -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content="CENSA" />
+    <meta name="keywords" content="empresa eléctrica media tensión Monterrey, mantenimiento subestaciones Nuevo León, instalación líneas media tensión, servicios eléctricos industriales CFE" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={canonical} />
 
-    <!-- JSON-LD Structured Data -->
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="CENSA — Especialistas en Media Tensión" />
+    <meta property="og:locale" content="es_MX" />
+    <meta property="og:site_name" content="CENSA" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Icons & Theme -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="theme-color" content="#CC0000" />
+
+    <!-- JSON-LD -->
     <script type="application/ld+json" set:html={JSON.stringify(jsonLdOrganization)} />
     <script type="application/ld+json" set:html={JSON.stringify(jsonLdLocalBusiness)} />
   </head>
   <body>
     <slot />
 
-    <!-- Lenis Smooth Scroll + GSAP Init -->
+    <!-- Lenis Smooth Scroll + GSAP global init -->
     <script>
       import Lenis from 'lenis';
       import gsap from 'gsap';
@@ -142,7 +119,6 @@ const jsonLdLocalBusiness = {
           lerp: 0.08,
           wheelMultiplier: 1.1,
           touchMultiplier: 1.5,
-          infinite: false,
         });
 
         lenis.on('scroll', ScrollTrigger.update);
@@ -153,7 +129,6 @@ const jsonLdLocalBusiness = {
 
         gsap.ticker.lagSmoothing(0);
 
-        // Store on window for use by other scripts
         (window as any).lenis = lenis;
       }
     </script>

@@ -1,0 +1,105 @@
+<!-- Page Loader — full screen white curtain, single panel slide up -->
+<div id="page-loader" aria-hidden="true" role="presentation">
+
+  <!-- Single panel for clean upward exit -->
+  <div class="loader-panel"></div>
+
+  <!-- CENSA centered text -->
+  <div class="loader-brand">
+    <div class="loader-word">
+      <span class="loader-cen">CEN</span><span class="loader-sa">SA</span>
+    </div>
+  </div>
+
+</div>
+
+<style>
+  #page-loader {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .loader-panel {
+    position: absolute;
+    inset: 0;
+    background: #ffffff;
+    will-change: transform;
+  }
+
+  .loader-brand {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    pointer-events: none;
+  }
+
+  .loader-word {
+    font-family: 'Barlow Condensed', system-ui, sans-serif;
+    font-weight: 900;
+    font-size: clamp(3rem, 10vw, 7rem);
+    line-height: 1;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    opacity: 0;
+    transform: scale(0.6);
+    transform-origin: center center;
+    will-change: transform, opacity;
+  }
+
+  .loader-cen { color: #CC0000; }
+  .loader-sa  {
+    color: white;
+    -webkit-text-stroke: 1.2px #222222;
+    text-stroke: 1.2px #222222;
+  }
+
+</style>
+
+<script>
+  import gsap from 'gsap';
+
+  document.documentElement.style.overflow = 'hidden';
+
+  const loader = document.getElementById('page-loader')!;
+  const panel  = loader.querySelector<HTMLElement>('.loader-panel')!;
+  const word   = loader.querySelector<HTMLElement>('.loader-word')!;
+
+  const tl = gsap.timeline({
+    onComplete: () => {
+      loader.remove();
+      document.documentElement.style.overflow = '';
+    },
+  });
+
+  // 1. Zoom-in CENSA
+  tl.to(word, {
+    opacity: 1,
+    scale: 1,
+    duration: 0.9,
+    ease: 'power3.out',
+  })
+
+  // 2. Pausa
+  .to({}, { duration: 0.8 })
+
+  // 3. Texto desaparece
+  .to(word, {
+    opacity: 0,
+    duration: 0.45,
+    ease: 'power2.in',
+  })
+
+  // 4. Panel sube — lento, arranque suave, sin corte abrupto
+  .to(panel, {
+    yPercent: -100,
+    duration: 1.6,
+    ease: 'power2.inOut',
+  }, '-=0.15');
+</script>

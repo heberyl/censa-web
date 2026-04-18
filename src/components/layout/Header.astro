@@ -8,55 +8,93 @@ const navLinks = [
 ];
 ---
 
-<header id="site-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
-  <div class="container-site">
-    <nav class="flex items-center justify-between py-5">
+<header id="site-header" class="fixed top-0 left-0 right-0 z-50">
+  <div class="header-inner">
+    <nav class="flex items-center justify-between">
 
       <!-- Logo -->
-      <a href="#inicio" class="flex items-center gap-3 group" aria-label="CENSA - Inicio">
-        <div class="logo-mark">
-          <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <!-- Simplified CENSA logo mark: worker silhouette + voltage bolt -->
+      <a href="#inicio" class="logo-link flex items-center gap-3" aria-label="CENSA - Inicio">
+        <!-- Logo mark: solo visible en estado scrolled -->
+        <div class="logo-mark-wrap" aria-hidden="true">
+          <svg width="36" height="36" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect width="44" height="44" rx="6" fill="#111111"/>
-            <!-- Bolt / lightning -->
             <path d="M26 6L14 24H22L18 38L30 20H22L26 6Z" fill="#CC0000"/>
-            <!-- Worker silhouette (simple) -->
             <circle cx="32" cy="10" r="3" fill="white" opacity="0.9"/>
             <path d="M29 13h6l-1 6h-4l-1-6z" fill="white" opacity="0.9"/>
           </svg>
         </div>
-        <div class="logo-text flex flex-col leading-none">
-          <span class="font-display font-black text-2xl tracking-wider">
-            <span style="color: var(--color-red)">CEN</span><span style="color: white">SA</span>
-          </span>
-          <span class="text-[9px] tracking-[0.25em] uppercase" style="color: var(--color-gray-400)">Media Tensión</span>
-        </div>
+        <!-- Texto CENSA -->
+        <span class="logo-text font-black tracking-wider" style="font-family: var(--font-display)">
+          <span style="color: var(--color-red)">CEN</span><span class="logo-sa">SA</span>
+        </span>
       </a>
 
-      <!-- Desktop Nav -->
-      <ul class="hidden lg:flex items-center gap-8" role="list">
-        {navLinks.map((link) => (
-          <li>
-            <a
-              href={link.href}
-              class="nav-link relative text-sm font-medium tracking-wide uppercase py-1 text-gray-300 hover:text-white transition-colors duration-200"
-            >
-              {link.label}
-            </a>
-          </li>
-        ))}
-      </ul>
+      <!-- Derecha: botones hero / nav scrolled -->
+      <div class="flex items-center gap-3">
 
-      <!-- CTA + Mobile Toggle -->
-      <div class="flex items-center gap-4">
-        <a href="#contacto" class="btn-primary hidden sm:inline-flex text-sm py-3 px-5">
+        <!-- Nav links: solo en estado scrolled (desktop) -->
+        <ul class="nav-links-scrolled hidden lg:flex items-center gap-8 mr-4" role="list">
+          {navLinks.map((link) => (
+            <li>
+              <a href={link.href} class="nav-link relative text-sm font-medium tracking-wide uppercase py-1 transition-colors duration-200">
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+
+        <!-- Botón MENÚ + Panel flotante (posicionado relativo al botón) -->
+        <div class="menu-hero-wrap relative hidden lg:block">
+          <button
+            id="menu-toggle-btn"
+            class="menu-hero-btn flex items-center gap-2 font-bold uppercase tracking-widest"
+            aria-label="Abrir menú de navegación"
+            aria-expanded="false"
+            style="font-family: var(--font-display)"
+          >
+            <span class="menu-btn-label">Menú</span>
+            <span class="menu-btn-icon flex flex-col gap-1 justify-center">
+              <span class="mline block w-5 h-0.5 bg-white transition-all duration-300"></span>
+              <span class="mline block w-3 h-0.5 bg-white transition-all duration-300 self-end"></span>
+            </span>
+          </button>
+
+          <!-- Panel flotante anclado al botón -->
+          <div
+            id="float-menu"
+            class="float-menu hidden"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Menú de navegación"
+          >
+            <div class="float-panel absolute right-0 top-full z-50 mt-8 min-w-64 overflow-hidden">
+              <ul class="float-links py-6" role="list">
+                {navLinks.map((link, i) => (
+                  <li>
+                    <a
+                      href={link.href}
+                      class="float-link flex items-center pl-14 pr-16 py-4 uppercase tracking-widest font-bold group"
+                      style={`font-family: var(--font-display); --i: ${i}`}
+                      data-float-link
+                    >
+                      <span class="float-link-label text-2xl">{link.label}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- CTA Solicitar Servicio -->
+        <a href="#contacto" class="cta-btn inline-flex items-center gap-2 font-bold uppercase tracking-wide transition-all duration-300" style="font-family: var(--font-display)">
           Solicitar Servicio
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <svg class="cta-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
             <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </a>
 
-        <!-- Mobile menu button -->
+        <!-- Mobile hamburger -->
         <button
           id="mobile-menu-btn"
           class="lg:hidden flex flex-col gap-1.5 p-2"
@@ -64,9 +102,9 @@ const navLinks = [
           aria-expanded="false"
           aria-controls="mobile-menu"
         >
-          <span class="hamburger-line block w-6 h-0.5 bg-white transition-all duration-300"></span>
-          <span class="hamburger-line block w-6 h-0.5 bg-white transition-all duration-300"></span>
-          <span class="hamburger-line block w-4 h-0.5 bg-white transition-all duration-300 self-end"></span>
+          <span class="hamburger-line block w-6 h-0.5 transition-all duration-300"></span>
+          <span class="hamburger-line block w-6 h-0.5 transition-all duration-300"></span>
+          <span class="hamburger-line block w-4 h-0.5 transition-all duration-300 self-end"></span>
         </button>
       </div>
     </nav>
@@ -83,8 +121,8 @@ const navLinks = [
       {navLinks.map((link) => (
         <a
           href={link.href}
-          class="mobile-nav-link text-base font-medium uppercase tracking-wide py-2 border-b text-gray-300 hover:text-white transition-colors"
-          style="border-color: rgba(255,255,255,0.06)"
+          class="mobile-nav-link text-base font-medium uppercase tracking-wide py-2 border-b transition-colors"
+          style="border-color: rgba(255,255,255,0.06); color: #cccccc"
         >
           {link.label}
         </a>
@@ -97,48 +135,217 @@ const navLinks = [
 </header>
 
 <style>
+  /* ─── Base ─── */
   #site-header {
+    transition: all 1.1s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .header-inner {
+    padding: 1.25rem 2.5rem;
+    /* margin: 0 auto siempre activo — nunca cambia para evitar saltos por 'auto' */
+    margin: 0 auto;
+    margin-top: 0;
+    /* max-width en px en ambos estados para que CSS pueda interpolar */
+    max-width: 3000px;
     background: transparent;
+    border-radius: 0;
+    box-shadow: none;
+    transition:
+      padding       1.1s cubic-bezier(0.4, 0, 0.2, 1),
+      max-width     1.1s cubic-bezier(0.4, 0, 0.2, 1),
+      margin-top    1.1s cubic-bezier(0.4, 0, 0.2, 1),
+      background    1.1s cubic-bezier(0.4, 0, 0.2, 1),
+      border-radius 1.1s cubic-bezier(0.4, 0, 0.2, 1),
+      box-shadow    1.1s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  #site-header.scrolled {
-    background: rgba(10, 10, 10, 0.92);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+  /* ─── HERO STATE ─── */
+  .logo-text {
+    font-size: 2.75rem;
+    line-height: 1;
+    transition: font-size 1.1s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .font-display {
-    font-family: var(--font-display);
+  .logo-mark-wrap {
+    opacity: 0;
+    width: 0;
+    overflow: hidden;
+    transition: opacity 0.9s ease, width 1.1s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
+  .hamburger-line {
+    background: white;
+    transition: background 0.9s ease, transform 0.3s ease, opacity 0.3s ease, width 0.3s ease;
+  }
+
+  /* Botón MENÚ hero */
+  .menu-hero-btn {
+    color: white;
+    font-size: 1rem;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid rgba(255,255,255,0.25);
+    /* Fade en lugar de display: none */
+    opacity: 1;
+    visibility: visible;
+    max-width: 160px;
+    transition:
+      opacity 0.9s ease,
+      visibility 0.9s ease,
+      max-width 0.9s ease,
+      color 0.9s ease,
+      border-color 0.9s ease,
+      background 0.2s ease;
+  }
+  .menu-hero-btn:hover {
+    border-color: rgba(255,255,255,0.55);
+    background: rgba(255,255,255,0.06);
+  }
+
+  /* CTA btn — todos los cambios explícitos para que sean suaves */
+  .cta-btn {
+    background: var(--color-red);
+    color: white;
+    padding: 0.8rem 1.4rem;
+    font-size: 1rem;
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+    transition:
+      padding 1.1s cubic-bezier(0.4, 0, 0.2, 1),
+      font-size 1.1s cubic-bezier(0.4, 0, 0.2, 1),
+      clip-path 1.1s cubic-bezier(0.4, 0, 0.2, 1),
+      background 0.2s ease;
+  }
+  .cta-btn:hover { background: #aa0000; }
+
+  /* Nav links scrolled (ocultos en hero) */
+  .nav-links-scrolled {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.9s ease 0.1s;
+  }
+
+  /* Nav underline */
+  .nav-link { color: #555555; }
   .nav-link::after {
     content: '';
     position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 0;
-    height: 2px;
+    bottom: -2px; left: 0;
+    width: 0; height: 2px;
     background: var(--color-red);
     transition: width 250ms ease;
   }
-  .nav-link:hover::after,
-  .nav-link.active::after {
-    width: 100%;
+  .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+  .nav-link:hover { color: #0a0a0a; }
+  .nav-link.active { color: var(--color-red); }
+
+  /* ─── SCROLLED STATE ─── */
+  #site-header.scrolled .header-inner {
+    margin-top: 0.625rem;
+    max-width: 1160px;
+    padding: 0.55rem 1.5rem;
+    background: #EFEFEF;
+    border-radius: 6px;
+    box-shadow: 0 4px 20px rgba(204, 0, 0, 0.08), 0 1px 4px rgba(0,0,0,0.06);
   }
-  .nav-link.active {
+
+  #site-header.scrolled .logo-text { font-size: 1.75rem; }
+  #site-header.scrolled .logo-mark-wrap { opacity: 1; width: 36px; }
+  #site-header.scrolled .logo-sa {
     color: white;
+    -webkit-text-stroke: 1.2px #1a1a1a;
+  }
+  #site-header.scrolled .hamburger-line { background: #333333; }
+
+  /* Nav links visibles en scrolled */
+  #site-header.scrolled .nav-links-scrolled {
+    opacity: 1;
+    pointer-events: auto;
+    transition: opacity 0.9s ease 0.2s;
+  }
+
+  /* Botón Menú: desaparece suavemente en scrolled */
+  #site-header.scrolled .menu-hero-btn {
+    opacity: 0;
+    visibility: hidden;
+    max-width: 0;
+    padding-left: 0;
+    padding-right: 0;
+    overflow: hidden;
+    border-width: 0;
+  }
+
+  /* CTA scrolled: más pequeño, transición lenta */
+  #site-header.scrolled .cta-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+    clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+  }
+
+  /* ─── FLOATING MENU PANEL ─── */
+  .float-menu {
+    /* Se posiciona relativo al .menu-hero-wrap (position: relative) */
+    position: absolute;
+    right: 0;
+    top: 100%;
+  }
+
+  .float-panel {
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.09);
+    border-radius: 10px;
+    box-shadow:
+      0 20px 60px rgba(0, 0, 0, 0.14),
+      0 4px 16px rgba(0, 0, 0, 0.08);
+  }
+
+  .float-link {
+    color: #1a1a1a;
+  }
+  .float-link:hover {
+    color: var(--color-red);
+    background: rgba(204, 0, 0, 0.04);
+    padding-left: 2rem;
+  }
+
+  /* Entrada animada stagger */
+  .float-link {
+    opacity: 0;
+    transform: translateY(6px);
+    transition:
+      color      0.2s ease,
+      background 0.2s ease,
+      padding-left 0.2s ease,
+      opacity   0.28s ease calc(var(--i) * 55ms),
+      transform 0.28s ease calc(var(--i) * 55ms);
+  }
+
+  /* Panel entrada/salida */
+  .float-panel {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.97);
+    transform-origin: top right;
+    transition: opacity 0.22s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .float-menu.open .float-panel {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  .float-menu.open .float-link {
+    opacity: 1;
+    transform: translateY(0);
   }
 </style>
 
 <script>
-  // Scroll behavior: transparent → dark on scroll
+  // ── Scroll: hero → scrolled ──
   const header = document.getElementById('site-header')!;
 
   const handleScroll = () => {
-    if (window.scrollY > 60) {
+    if (window.scrollY > 80) {
       header.classList.add('scrolled');
+      // Cierra el float menu si estaba abierto
+      closeFloatMenu();
     } else {
       header.classList.remove('scrolled');
     }
@@ -146,11 +353,66 @@ const navLinks = [
   window.addEventListener('scroll', handleScroll, { passive: true });
   handleScroll();
 
-  // Active nav link on scroll
+  // ── Float Menu ──
+  const menuBtn   = document.getElementById('menu-toggle-btn')!;
+  const floatMenu = document.getElementById('float-menu')!;
+  const mlines    = menuBtn.querySelectorAll<HTMLElement>('.mline');
+
+  const openFloatMenu = () => {
+    floatMenu.classList.remove('hidden');
+    // Forzar reflow para que la transición arranque
+    floatMenu.getBoundingClientRect();
+    floatMenu.classList.add('open');
+    menuBtn.setAttribute('aria-expanded', 'true');
+    // Ícono: dos líneas → X
+    mlines[0].style.transform = 'translateY(4px) rotate(45deg)';
+    mlines[0].style.width = '20px';
+    mlines[1].style.transform = 'translateY(-4px) rotate(-45deg)';
+    mlines[1].style.width = '20px';
+  };
+
+  const closeFloatMenu = () => {
+    floatMenu.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded', 'false');
+    mlines[0].style.transform = '';
+    mlines[0].style.width = '';
+    mlines[1].style.transform = '';
+    mlines[1].style.width = '';
+    // Espera la transición para ocultar
+    const onEnd = () => {
+      floatMenu.classList.add('hidden');
+      floatMenu.removeEventListener('transitionend', onEnd);
+    };
+    floatMenu.addEventListener('transitionend', onEnd);
+  };
+
+  menuBtn.addEventListener('click', () => {
+    const isOpen = floatMenu.classList.contains('open');
+    isOpen ? closeFloatMenu() : openFloatMenu();
+  });
+
+
+  // Click fuera del panel cierra el menú
+  document.addEventListener('click', (e) => {
+    const wrap = document.querySelector('.menu-hero-wrap');
+    if (wrap && !wrap.contains(e.target as Node)) closeFloatMenu();
+  });
+
+  // Cierra al hacer click en cualquier link del panel
+  floatMenu.querySelectorAll('[data-float-link]').forEach((link) => {
+    link.addEventListener('click', closeFloatMenu);
+  });
+
+  // Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeFloatMenu();
+  });
+
+  // ── Active nav link ──
   const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('.nav-link');
 
-  const observer = new IntersectionObserver(
+  const sectionObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -165,41 +427,39 @@ const navLinks = [
     },
     { rootMargin: '-40% 0px -40% 0px' }
   );
-  sections.forEach((s) => observer.observe(s));
+  sections.forEach((s) => sectionObserver.observe(s));
 
-  // Mobile menu toggle
-  const btn = document.getElementById('mobile-menu-btn')!;
-  const menu = document.getElementById('mobile-menu')!;
-  const lines = btn.querySelectorAll<HTMLElement>('.hamburger-line');
+  // ── Mobile menu ──
+  const mobileBtn  = document.getElementById('mobile-menu-btn')!;
+  const mobileMenu = document.getElementById('mobile-menu')!;
+  const hlines     = mobileBtn.querySelectorAll<HTMLElement>('.hamburger-line');
 
-  btn.addEventListener('click', () => {
-    const isOpen = menu.classList.toggle('hidden') === false;
-    btn.setAttribute('aria-expanded', String(isOpen));
-    menu.setAttribute('aria-hidden', String(!isOpen));
-    // Animate hamburger → X
+  mobileBtn.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.toggle('hidden') === false;
+    mobileBtn.setAttribute('aria-expanded', String(isOpen));
+    mobileMenu.setAttribute('aria-hidden', String(!isOpen));
     if (isOpen) {
-      lines[0].style.transform = 'translateY(8px) rotate(45deg)';
-      lines[1].style.opacity = '0';
-      lines[2].style.transform = 'translateY(-8px) rotate(-45deg)';
-      lines[2].style.width = '24px';
+      hlines[0].style.transform = 'translateY(8px) rotate(45deg)';
+      hlines[1].style.opacity = '0';
+      hlines[2].style.transform = 'translateY(-8px) rotate(-45deg)';
+      hlines[2].style.width = '24px';
     } else {
-      lines[0].style.transform = '';
-      lines[1].style.opacity = '1';
-      lines[2].style.transform = '';
-      lines[2].style.width = '';
+      hlines[0].style.transform = '';
+      hlines[1].style.opacity = '1';
+      hlines[2].style.transform = '';
+      hlines[2].style.width = '';
     }
   });
 
-  // Close menu on link click
-  menu.querySelectorAll('.mobile-nav-link').forEach((link) => {
+  mobileMenu.querySelectorAll('.mobile-nav-link').forEach((link) => {
     link.addEventListener('click', () => {
-      menu.classList.add('hidden');
-      btn.setAttribute('aria-expanded', 'false');
-      menu.setAttribute('aria-hidden', 'true');
-      lines[0].style.transform = '';
-      lines[1].style.opacity = '1';
-      lines[2].style.transform = '';
-      lines[2].style.width = '';
+      mobileMenu.classList.add('hidden');
+      mobileBtn.setAttribute('aria-expanded', 'false');
+      mobileMenu.setAttribute('aria-hidden', 'true');
+      hlines[0].style.transform = '';
+      hlines[1].style.opacity = '1';
+      hlines[2].style.transform = '';
+      hlines[2].style.width = '';
     });
   });
 </script>

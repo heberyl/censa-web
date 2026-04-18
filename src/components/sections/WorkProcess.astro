@@ -3,97 +3,82 @@ const steps = [
   {
     number: '01',
     title: 'Evaluación y Diagnóstico',
-    description:
-      'Visitamos el sitio, analizamos las condiciones eléctricas actuales, los requerimientos de carga y las normativas aplicables. Emitimos un diagnóstico técnico detallado.',
-    icon: 'search',
+    description: 'Visitamos el sitio, analizamos las condiciones eléctricas actuales, los requerimientos de carga y las normativas aplicables. Emitimos un diagnóstico técnico detallado.',
   },
   {
     number: '02',
     title: 'Ingeniería y Planeación',
-    description:
-      'Nuestros ingenieros diseñan la solución óptima: planos constructivos, memoria de cálculo, gestión de permisos CFE y planeación de recursos para ejecución sin contratiempos.',
-    icon: 'blueprint',
+    description: 'Nuestros ingenieros diseñan la solución óptima: planos constructivos, memoria de cálculo, gestión de permisos CFE y planeación de recursos para ejecución sin contratiempos.',
   },
   {
     number: '03',
     title: 'Ejecución Certificada',
-    description:
-      'Personal certificado ejecuta los trabajos con protocolos de seguridad de clase mundial, equipamiento especializado y supervisión técnica en cada etapa del proceso.',
-    icon: 'bolt',
+    description: 'Personal certificado ejecuta los trabajos con protocolos de seguridad de clase mundial, equipamiento especializado y supervisión técnica en cada etapa del proceso.',
   },
   {
     number: '04',
     title: 'Entrega y Garantía',
-    description:
-      'Realizamos pruebas de puesta en servicio, entregamos toda la documentación técnica, planos as-built y garantía de trabajo. Tu infraestructura queda lista y certificada.',
-    icon: 'check',
+    description: 'Realizamos pruebas de puesta en servicio, entregamos toda la documentación técnica, planos as-built y garantía de trabajo. Tu infraestructura queda lista y certificada.',
   },
 ];
 ---
 
-<section id="proceso" class="process-section section-pad" style="background: var(--color-gray-900)">
+<section id="proceso" class="process-section section-pad" style="background: #F5F5F5">
   <div class="container-site">
 
-    <!-- Section header -->
     <div class="text-center mb-20 max-w-2xl mx-auto">
       <span class="tag mb-4 gsap-fade-up">Cómo trabajamos</span>
-      <h2 class="text-display gsap-fade-up" style="font-size: clamp(2.5rem, 6vw, 5rem)">
+      <h2 class="text-display gsap-fade-up" style="font-size: clamp(2.5rem, 6vw, 5rem); color: #0a0a0a">
         Proceso de trabajo
         <span style="color: var(--color-red)"> probado</span>
       </h2>
-      <p class="mt-4 text-base gsap-fade-up" style="color: var(--color-gray-400)">
+      <p class="mt-4 text-base gsap-fade-up" style="color: #666666">
         Cada proyecto sigue nuestra metodología de cuatro pasos para garantizar
         calidad, seguridad y cumplimiento normativo.
       </p>
     </div>
 
-    <!-- Steps -->
     <div class="process-steps relative">
 
       <!-- Connecting line (desktop) -->
-      <div class="progress-track hidden lg:block absolute top-16 left-0 right-0 h-px" style="background: rgba(255,255,255,0.08)" aria-hidden="true">
+      <div class="progress-track hidden lg:block absolute top-16 left-0 right-0 h-px" style="background: rgba(0,0,0,0.1)" aria-hidden="true">
         <div class="progress-fill h-full origin-left" style="background: var(--color-red); transform: scaleX(0); width: 100%;"></div>
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6">
         {steps.map((step, i) => (
           <article class="step-card gsap-fade-up relative" data-step={i}>
-
-            <!-- Number bubble -->
-            <div class="step-number relative mb-8 w-12 h-12 flex items-center justify-center border-2 z-10"
-                 style="border-color: var(--color-red); background: var(--color-gray-900)">
+            <div class="step-number relative mb-8 w-12 h-12 flex items-center justify-center border-2 z-10 bg-white"
+                 style="border-color: var(--color-red)">
               <span class="font-black text-sm" style="font-family: var(--font-display); color: var(--color-red)">
                 {step.number}
               </span>
-              <!-- Active glow -->
-              <div class="absolute inset-0 opacity-0 step-glow" style="box-shadow: 0 0 20px rgba(204,0,0,0.5)" aria-hidden="true"></div>
+              <div class="absolute inset-0 opacity-0 step-glow" style="box-shadow: 0 0 20px rgba(204,0,0,0.4)" aria-hidden="true"></div>
             </div>
 
-            <!-- Content -->
-            <h3 class="text-xl font-bold uppercase tracking-wide mb-3" style="font-family: var(--font-display); color: white">
+            <h3 class="text-xl font-bold uppercase tracking-wide mb-3" style="font-family: var(--font-display); color: #0a0a0a">
               {step.title}
             </h3>
-            <p class="text-sm leading-relaxed" style="color: var(--color-gray-400)">
+            <p class="text-sm leading-relaxed" style="color: #666666">
               {step.description}
             </p>
 
-            <!-- Vertical connector (mobile) -->
             {i < steps.length - 1 && (
-              <div class="lg:hidden absolute left-6 top-full w-px h-8 mt-0" style="background: rgba(204,0,0,0.3)" aria-hidden="true"></div>
+              <div class="lg:hidden absolute left-6 top-full w-px h-8" style="background: rgba(204,0,0,0.25)" aria-hidden="true"></div>
             )}
           </article>
         ))}
       </div>
     </div>
 
-    <!-- Bottom CTA strip -->
-    <div class="mt-20 p-8 flex flex-col sm:flex-row items-center justify-between gap-6 border gsap-fade-up"
-         style="background: var(--color-gray-800); border-color: rgba(204,0,0,0.2)">
+    <!-- CTA strip -->
+    <div class="mt-20 p-8 flex flex-col sm:flex-row items-center justify-between gap-6 border gsap-fade-up bg-white"
+         style="border-color: rgba(204,0,0,0.15)">
       <div>
-        <p class="font-bold text-lg uppercase tracking-wide" style="font-family: var(--font-display); color: white">
+        <p class="font-bold text-lg uppercase tracking-wide" style="font-family: var(--font-display); color: #0a0a0a">
           ¿Listo para iniciar tu proyecto?
         </p>
-        <p class="text-sm mt-1" style="color: var(--color-gray-400)">
+        <p class="text-sm mt-1" style="color: #666666">
           Contáctanos hoy y recibe tu diagnóstico sin costo.
         </p>
       </div>
@@ -112,38 +97,27 @@ const steps = [
   if (!prefersReducedMotion) {
     gsap.registerPlugin(ScrollTrigger);
 
-    // Header reveal
     gsap.to('.process-section .gsap-fade-up', {
       opacity: 1, y: 0, duration: 0.7, stagger: 0.12, ease: 'power3.out',
       scrollTrigger: { trigger: '.process-section', start: 'top 75%' },
     });
 
-    // Progress line scroll-driven
     const progressFill = document.querySelector<HTMLElement>('.progress-fill');
     if (progressFill) {
       gsap.to(progressFill, {
-        scaleX: 1,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: '.process-steps',
-          start: 'top 70%',
-          end: 'bottom 70%',
-          scrub: 0.8,
-        },
+        scaleX: 1, ease: 'none',
+        scrollTrigger: { trigger: '.process-steps', start: 'top 70%', end: 'bottom 70%', scrub: 0.8 },
       });
     }
 
-    // Step cards stagger
     gsap.to('.step-card', {
       opacity: 1, y: 0, duration: 0.6, stagger: 0.15, ease: 'power3.out',
       scrollTrigger: { trigger: '.process-steps', start: 'top 75%' },
     });
 
-    // Glow effect on each step as it enters
-    document.querySelectorAll('.step-card').forEach((card, i) => {
+    document.querySelectorAll('.step-card').forEach((card) => {
       ScrollTrigger.create({
-        trigger: card,
-        start: 'top 60%',
+        trigger: card, start: 'top 60%',
         onEnter: () => {
           const glow = card.querySelector<HTMLElement>('.step-glow');
           if (glow) gsap.to(glow, { opacity: 1, duration: 0.4 });

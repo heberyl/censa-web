@@ -2,7 +2,7 @@
 import { company } from '../../data/company';
 ---
 
-<section id="contacto" class="contact-section section-pad" style="background: var(--color-gray-900)">
+<section id="contacto" class="contact-section section-pad" style="background: #F5F5F5">
   <div class="container-site">
 
     <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
@@ -10,12 +10,12 @@ import { company } from '../../data/company';
       <!-- Left: CTA text + contact info -->
       <div>
         <span class="tag mb-4 gsap-fade-up">Contacto</span>
-        <h2 class="text-display mb-6 gsap-fade-up" style="font-size: clamp(2.5rem, 6vw, 5rem)">
+        <h2 class="text-display mb-6 gsap-fade-up" style="font-size: clamp(2.5rem, 6vw, 5rem); color: #0a0a0a">
           ¿Tienes un proyecto de
           <span style="color: var(--color-red)"> media tensión?</span>
           Hablemos.
         </h2>
-        <p class="text-base leading-relaxed mb-10 gsap-fade-up" style="color: var(--color-gray-400)">
+        <p class="text-base leading-relaxed mb-10 gsap-fade-up" style="color: #666666">
           Cuéntanos sobre tu proyecto y nuestro equipo de ingeniería te
           contactará en menos de 24 horas con una evaluación inicial sin costo.
         </p>
@@ -33,7 +33,7 @@ import { company } from '../../data/company';
               </svg>
             </div>
             <div>
-              <div class="text-xs uppercase tracking-widest mb-0.5" style="color: var(--color-gray-400)">Teléfono</div>
+              <div class="text-xs uppercase tracking-widest mb-0.5" style="color: #666666">Teléfono</div>
               <div class="font-bold text-base transition-colors group-hover:text-red-400" style="color: white; font-family: var(--font-display); letter-spacing: 0.05em">
                 {company.contact.phone}
               </div>
@@ -52,7 +52,7 @@ import { company } from '../../data/company';
               </svg>
             </div>
             <div>
-              <div class="text-xs uppercase tracking-widest mb-0.5" style="color: var(--color-gray-400)">Correo</div>
+              <div class="text-xs uppercase tracking-widest mb-0.5" style="color: #666666">Correo</div>
               <div class="font-bold text-base transition-colors group-hover:text-red-400" style="color: white">
                 {company.contact.email}
               </div>
@@ -67,7 +67,7 @@ import { company } from '../../data/company';
               </svg>
             </div>
             <div>
-              <div class="text-xs uppercase tracking-widest mb-0.5" style="color: var(--color-gray-400)">Dirección</div>
+              <div class="text-xs uppercase tracking-widest mb-0.5" style="color: #666666">Dirección</div>
               <address class="not-italic text-sm leading-relaxed" style="color: var(--color-gray-200)">
                 {company.address.street},<br />
                 {company.address.colony},<br />
@@ -106,11 +106,11 @@ import { company } from '../../data/company';
 
       <!-- Right: Contact form -->
       <div class="contact-form-wrap gsap-slide-right">
-        <div class="p-8 lg:p-10 border" style="background: var(--color-gray-800); border-color: rgba(255,255,255,0.08)">
-          <h3 class="text-xl font-bold uppercase tracking-wide mb-2" style="font-family: var(--font-display); color: white">
+        <div class="p-8 lg:p-10 border bg-white" style="border-color: rgba(0,0,0,0.08)">
+          <h3 class="text-xl font-bold uppercase tracking-wide mb-2" style="font-family: var(--font-display); color: #0a0a0a">
             Solicitar cotización
           </h3>
-          <p class="text-sm mb-8" style="color: var(--color-gray-400)">
+          <p class="text-sm mb-8" style="color: #666666">
             Respuesta garantizada en menos de 24 horas hábiles.
           </p>
 
@@ -127,7 +127,7 @@ import { company } from '../../data/company';
 
             <div class="grid sm:grid-cols-2 gap-5">
               <div>
-                <label for="contact-name" class="block text-xs uppercase tracking-widest mb-2" style="color: var(--color-gray-400)">
+                <label for="contact-name" class="block text-xs uppercase tracking-widest mb-2" style="color: #666666">
                   Nombre *
                 </label>
                 <input
@@ -137,11 +137,11 @@ import { company } from '../../data/company';
                   required
                   placeholder="Juan Rodríguez"
                   class="form-input w-full px-4 py-3 text-sm border outline-none transition-all duration-200"
-                  style="background: var(--color-gray-900); border-color: rgba(255,255,255,0.1); color: white"
+                  style="background: white; border-color: rgba(0,0,0,0.12); color: #0a0a0a"
                 />
               </div>
               <div>
-                <label for="contact-company" class="block text-xs uppercase tracking-widest mb-2" style="color: var(--color-gray-400)">
+                <label for="contact-company" class="block text-xs uppercase tracking-widest mb-2" style="color: #666666">
                   Empresa
                 </label>
                 <input
@@ -150,14 +150,14 @@ import { company } from '../../data/company';
                   name="company"
                   placeholder="Mi Empresa S.A."
                   class="form-input w-full px-4 py-3 text-sm border outline-none transition-all duration-200"
-                  style="background: var(--color-gray-900); border-color: rgba(255,255,255,0.1); color: white"
+                  style="background: white; border-color: rgba(0,0,0,0.12); color: #0a0a0a"
                 />
               </div>
             </div>
 
             <div class="grid sm:grid-cols-2 gap-5">
               <div>
-                <label for="contact-email" class="block text-xs uppercase tracking-widest mb-2" style="color: var(--color-gray-400)">
+                <label for="contact-email" class="block text-xs uppercase tracking-widest mb-2" style="color: #666666">
                   Correo electrónico *
                 </label>
                 <input
@@ -167,11 +167,11 @@ import { company } from '../../data/company';
                   required
                   placeholder="correo@empresa.com"
                   class="form-input w-full px-4 py-3 text-sm border outline-none transition-all duration-200"
-                  style="background: var(--color-gray-900); border-color: rgba(255,255,255,0.1); color: white"
+                  style="background: white; border-color: rgba(0,0,0,0.12); color: #0a0a0a"
                 />
               </div>
               <div>
-                <label for="contact-phone" class="block text-xs uppercase tracking-widest mb-2" style="color: var(--color-gray-400)">
+                <label for="contact-phone" class="block text-xs uppercase tracking-widest mb-2" style="color: #666666">
                   Teléfono
                 </label>
                 <input
@@ -180,20 +180,20 @@ import { company } from '../../data/company';
                   name="phone"
                   placeholder="81 1234 5678"
                   class="form-input w-full px-4 py-3 text-sm border outline-none transition-all duration-200"
-                  style="background: var(--color-gray-900); border-color: rgba(255,255,255,0.1); color: white"
+                  style="background: white; border-color: rgba(0,0,0,0.12); color: #0a0a0a"
                 />
               </div>
             </div>
 
             <div>
-              <label for="contact-service" class="block text-xs uppercase tracking-widest mb-2" style="color: var(--color-gray-400)">
+              <label for="contact-service" class="block text-xs uppercase tracking-widest mb-2" style="color: #666666">
                 Servicio requerido
               </label>
               <select
                 id="contact-service"
                 name="service"
                 class="form-input w-full px-4 py-3 text-sm border outline-none transition-all duration-200 appearance-none cursor-pointer"
-                style="background: var(--color-gray-900); border-color: rgba(255,255,255,0.1); color: white"
+                style="background: white; border-color: rgba(0,0,0,0.12); color: #0a0a0a"
               >
                 <option value="">Seleccionar servicio...</option>
                 <option>Instalación de Líneas de Media Tensión</option>
@@ -207,7 +207,7 @@ import { company } from '../../data/company';
             </div>
 
             <div>
-              <label for="contact-message" class="block text-xs uppercase tracking-widest mb-2" style="color: var(--color-gray-400)">
+              <label for="contact-message" class="block text-xs uppercase tracking-widest mb-2" style="color: #666666">
                 Descripción del proyecto *
               </label>
               <textarea
@@ -217,7 +217,7 @@ import { company } from '../../data/company';
                 rows="4"
                 placeholder="Describe brevemente tu proyecto o necesidad eléctrica..."
                 class="form-input w-full px-4 py-3 text-sm border outline-none transition-all duration-200 resize-none"
-                style="background: var(--color-gray-900); border-color: rgba(255,255,255,0.1); color: white"
+                style="background: white; border-color: rgba(0,0,0,0.12); color: #0a0a0a"
               ></textarea>
             </div>
 
@@ -248,7 +248,7 @@ import { company } from '../../data/company';
 </section>
 
 <style>
-  .form-input::placeholder { color: var(--color-gray-700); }
+  .form-input::placeholder { color: #bbbbbb; }
   .form-input:focus {
     border-color: rgba(204, 0, 0, 0.6) !important;
     box-shadow: 0 0 0 3px rgba(204, 0, 0, 0.1);

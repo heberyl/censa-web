@@ -2,26 +2,35 @@
 import { company } from '../../data/company';
 ---
 
-<section id="inicio" class="hero relative min-h-screen flex items-center overflow-hidden">
+<section id="inicio" class="hero relative min-h-screen flex items-center overflow-hidden" style="background: #0a0a0a">
 
-  <!-- Video Background -->
+  <!-- Image/Video Background -->
   <div class="hero-video-wrap absolute inset-0 z-0">
+
+    <!-- Imagen siempre visible como fondo base -->
+    <div
+      class="absolute inset-0 bg-center bg-cover bg-no-repeat"
+      style="background-image: url('/assets/images/hero-poster.webp');"
+      aria-hidden="true"
+    ></div>
+
+    <!-- Video encima de la imagen cuando cargue -->
     <video
       autoplay
       muted
       loop
       playsinline
-      preload="none"
+      preload="metadata"
       class="absolute inset-0 w-full h-full object-cover"
       aria-hidden="true"
-      poster="/assets/images/hero-poster.webp"
     >
       <source src="/assets/videos/hero-bg.mp4" type="video/mp4" />
     </video>
-    <!-- Multi-layer overlay -->
-    <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(10,10,10,0.88) 0%, rgba(10,10,10,0.70) 50%, rgba(10,10,10,0.82) 100%);"></div>
-    <!-- Red glow accent bottom-left -->
-    <div class="absolute bottom-0 left-0 w-96 h-96 rounded-full" style="background: radial-gradient(circle, rgba(204,0,0,0.15) 0%, transparent 70%); filter: blur(60px);"></div>
+
+    <!-- Overlay oscuro -->
+    <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(5,5,5,0.82) 0%, rgba(5,5,5,0.60) 50%, rgba(5,5,5,0.75) 100%);"></div>
+    <!-- Acento rojo inferior izquierdo -->
+    <div class="absolute bottom-0 left-0 w-96 h-96 rounded-full" style="background: radial-gradient(circle, rgba(204,0,0,0.12) 0%, transparent 70%); filter: blur(60px);"></div>
   </div>
 
   <!-- Decorative grid lines -->
@@ -108,14 +117,18 @@ import { company } from '../../data/company';
   if (!prefersReducedMotion) {
     gsap.registerPlugin(ScrollTrigger);
 
-    // Staggered entry animation on load
-    const tl = gsap.timeline({ delay: 0.3 });
-    tl.to('.hero-badge',    { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' })
-      .to('.hero-headline', { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, '-=0.4')
-      .to('.hero-desc',     { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' }, '-=0.5')
-      .to('.hero-ctas',     { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.4')
-      .to('.hero-stats',    { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.3')
-      .to('.hero-scroll',   { opacity: 1, duration: 0.5, ease: 'power2.out' }, '-=0.2');
+    // Wait for loader to finish before animating hero
+    // Loader total duration: ~0.65+0.35+0.55+0.3+0.75 ≈ 2.25s — delay matches
+    // 0.9 + 0.8 + 0.45 + 1.6 ≈ 3.6s total loader
+    const loaderDuration = 3.5;
+
+    const tl = gsap.timeline({ delay: loaderDuration });
+    tl.to('.hero-badge',    { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' })
+      .to('.hero-headline', { opacity: 1, y: 0, duration: 0.75, ease: 'power3.out' }, '-=0.35')
+      .to('.hero-desc',     { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.45')
+      .to('.hero-ctas',     { opacity: 1, y: 0, duration: 0.55, ease: 'power3.out' }, '-=0.35')
+      .to('.hero-stats',    { opacity: 1, y: 0, duration: 0.55, ease: 'power3.out' }, '-=0.3')
+      .to('.hero-scroll',   { opacity: 1, duration: 0.4, ease: 'power2.out' }, '-=0.2');
 
     // Parallax on hero video
     ScrollTrigger.create({
