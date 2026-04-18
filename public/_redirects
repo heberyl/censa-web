@@ -1,0 +1,5 @@
+# www → non-www (uncomment when custom domain is set)
+# https://www.censa.mx/* https://censa.mx/:splat 301
+
+# Fallback
+/* /index.html 200

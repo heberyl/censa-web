@@ -1,0 +1,154 @@
+---
+import { services } from '../../data/services';
+---
+
+<section id="servicios" class="services-section section-pad" style="background: var(--color-black)">
+  <div class="container-site">
+
+    <!-- Section header -->
+    <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-16">
+      <div class="max-w-xl">
+        <span class="tag mb-4 gsap-fade-up">Nuestros Servicios</span>
+        <h2 class="text-display gsap-fade-up" style="font-size: clamp(2.5rem, 6vw, 5rem)">
+          Soluciones eléctricas
+          <span style="color: var(--color-red)"> de alto voltaje</span>
+        </h2>
+      </div>
+      <p class="max-w-sm text-sm leading-relaxed gsap-fade-up" style="color: var(--color-gray-400)">
+        Cada servicio está respaldado por ingenieros certificados y
+        más de 15 años de experiencia en el sector de media tensión.
+      </p>
+    </div>
+
+    <!-- Tabs navigation -->
+    <div class="services-tabs-nav flex flex-wrap gap-2 mb-10 border-b gsap-fade-up" style="border-color: rgba(255,255,255,0.1)">
+      {services.map((service, i) => (
+        <button
+          class="service-tab-btn px-4 py-3 text-sm font-semibold uppercase tracking-wide transition-all duration-200 relative"
+          data-tab={service.id}
+          style={i === 0
+            ? 'color: white; border-bottom: 2px solid var(--color-red); margin-bottom: -1px;'
+            : 'color: var(--color-gray-400); border-bottom: 2px solid transparent; margin-bottom: -1px;'}
+          aria-selected={i === 0 ? 'true' : 'false'}
+        >
+          {service.shortTitle}
+        </button>
+      ))}
+    </div>
+
+    <!-- Tab panels -->
+    <div class="services-panels">
+      {services.map((service, i) => (
+        <div
+          id={`panel-${service.id}`}
+          class="service-panel grid lg:grid-cols-2 gap-12 lg:gap-20 items-center"
+          style={i !== 0 ? 'display: none;' : ''}
+          role="tabpanel"
+          aria-labelledby={`tab-${service.id}`}
+        >
+          <!-- Content side -->
+          <div>
+            <div class="text-6xl font-black mb-4 leading-none" style="font-family: var(--font-display); color: rgba(204,0,0,0.12);" aria-hidden="true">
+              {String(i + 1).padStart(2, '0')}
+            </div>
+            <h3 class="text-display mb-4" style="font-size: clamp(1.75rem, 4vw, 3rem); color: white">
+              {service.title}
+            </h3>
+            <p class="text-base leading-relaxed mb-8" style="color: var(--color-gray-400)">
+              {service.description}
+            </p>
+
+            <!-- Feature list -->
+            <ul class="space-y-3" role="list">
+              {service.features.map((feat) => (
+                <li class="flex items-center gap-3 text-sm" style="color: var(--color-gray-200)">
+                  <span class="flex-shrink-0 w-5 h-5 flex items-center justify-center" style="background: rgba(204,0,0,0.15); border: 1px solid rgba(204,0,0,0.4)">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                      <path d="M2 6l3 3 5-5" stroke="var(--color-red)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </span>
+                  {feat}
+                </li>
+              ))}
+            </ul>
+
+            <a href="#contacto" class="btn-primary mt-8">
+              Solicitar este servicio
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+
+          <!-- Image side -->
+          <div class="service-image-wrap relative aspect-[4/3] overflow-hidden"
+               style="background: var(--color-gray-800); border: 1px solid rgba(255,255,255,0.06)">
+            <img
+              src={`/assets/images/service-${service.id}.webp`}
+              alt={`Servicio de ${service.title} — CENSA`}
+              class="w-full h-full object-cover opacity-80"
+              width="640"
+              height="480"
+              loading="lazy"
+            />
+            <!-- Overlay gradient -->
+            <div class="absolute inset-0" style="background: linear-gradient(45deg, rgba(10,10,10,0.5) 0%, transparent 60%)" aria-hidden="true"></div>
+            <!-- Red corner accent -->
+            <div class="absolute top-4 right-4 w-16 h-16 border-t-2 border-r-2" style="border-color: var(--color-red)" aria-hidden="true"></div>
+            <div class="absolute bottom-4 left-4 w-16 h-16 border-b-2 border-l-2" style="border-color: var(--color-red)" aria-hidden="true"></div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!prefersReducedMotion) {
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.to('.services-section .gsap-fade-up', {
+      opacity: 1, y: 0, duration: 0.7, stagger: 0.15, ease: 'power3.out',
+      scrollTrigger: { trigger: '.services-section', start: 'top 75%' },
+    });
+  }
+
+  // Tab switching logic
+  const tabBtns = document.querySelectorAll<HTMLButtonElement>('.service-tab-btn');
+  const panels  = document.querySelectorAll<HTMLElement>('.service-panel');
+
+  tabBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const targetId = btn.dataset.tab!;
+
+      // Update button styles
+      tabBtns.forEach((b) => {
+        b.style.color = 'var(--color-gray-400)';
+        b.style.borderBottomColor = 'transparent';
+        b.setAttribute('aria-selected', 'false');
+      });
+      btn.style.color = 'white';
+      btn.style.borderBottomColor = 'var(--color-red)';
+      btn.setAttribute('aria-selected', 'true');
+
+      // Switch panel
+      panels.forEach((panel) => {
+        panel.style.display = 'none';
+      });
+      const target = document.getElementById(`panel-${targetId}`)!;
+      target.style.display = 'grid';
+
+      // Animate in
+      if (!prefersReducedMotion) {
+        gsap.fromTo(
+          target,
+          { opacity: 0, y: 20 },
+          { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' }
+        );
+      }
+    });
+  });
+</script>

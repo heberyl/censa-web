@@ -1,0 +1,161 @@
+---
+import { SEO } from 'astro-seo';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  canonical?: string;
+}
+
+const {
+  title = 'CENSA — Especialistas en Media Tensión | Nuevo León, México',
+  description = 'Empresa líder en servicios eléctricos de media tensión en Nuevo León. Instalación, mantenimiento, subestaciones y respuesta de emergencias. Certificados NOM y CFE. Tel: 812 2358545',
+  image = '/assets/images/og-censa.webp',
+  canonical = Astro.url.href,
+} = Astro.props;
+
+const siteUrl = 'https://censa-web.pages.dev';
+
+const jsonLdOrganization = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'CENSA',
+  legalName: 'Construcciones Eléctricas del Noreste S.A.',
+  url: siteUrl,
+  logo: `${siteUrl}/assets/logo/censa-logo.svg`,
+  contactPoint: {
+    '@type': 'ContactPoint',
+    telephone: '+52-812-235-8545',
+    contactType: 'customer service',
+    availableLanguage: 'Spanish',
+  },
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'San Isaac 1201, Residencial San Cristobal 3er Sector',
+    addressLocality: 'San Nicolás de los Garza',
+    addressRegion: 'Nuevo León',
+    postalCode: '66478',
+    addressCountry: 'MX',
+  },
+  sameAs: ['#', '#'],
+};
+
+const jsonLdLocalBusiness = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  '@id': `${siteUrl}/#business`,
+  name: 'CENSA',
+  image: `${siteUrl}${image}`,
+  description,
+  telephone: '+52-812-235-8545',
+  email: 'admon@censa.mx',
+  url: siteUrl,
+  address: jsonLdOrganization.address,
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 25.7473,
+    longitude: -100.2747,
+  },
+  openingHoursSpecification: {
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+    opens: '08:00',
+    closes: '18:00',
+  },
+  priceRange: '$$',
+};
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+
+    <SEO
+      title={title}
+      description={description}
+      canonical={canonical}
+      openGraph={{
+        basic: {
+          title,
+          type: 'website',
+          image: `${siteUrl}${image}`,
+          url: canonical,
+        },
+        optional: {
+          description,
+          locale: 'es_MX',
+          siteName: 'CENSA',
+        },
+        image: {
+          alt: 'CENSA — Especialistas en Media Tensión',
+          width: 1200,
+          height: 630,
+        },
+      }}
+      twitter={{
+        card: 'summary_large_image',
+        site: '@censa_mx',
+        creator: '@censa_mx',
+        title,
+        description,
+        image: `${siteUrl}${image}`,
+        imageAlt: 'CENSA — Especialistas en Media Tensión',
+      }}
+      extend={{
+        link: [
+          { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
+          { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+        ],
+        meta: [
+          { name: 'theme-color', content: '#CC0000' },
+          { name: 'robots', content: 'index, follow' },
+          { name: 'author', content: 'CENSA' },
+          { name: 'keywords', content: 'empresa eléctrica media tensión Monterrey, mantenimiento subestaciones Nuevo León, instalación líneas media tensión, servicios eléctricos industriales CFE, CENSA electricidad' },
+        ],
+      }}
+    />
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLdOrganization)} />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLdLocalBusiness)} />
+  </head>
+  <body>
+    <slot />
+
+    <!-- Lenis Smooth Scroll + GSAP Init -->
+    <script>
+      import Lenis from 'lenis';
+      import gsap from 'gsap';
+      import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+      gsap.registerPlugin(ScrollTrigger);
+
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (!prefersReducedMotion) {
+        const lenis = new Lenis({
+          lerp: 0.08,
+          wheelMultiplier: 1.1,
+          touchMultiplier: 1.5,
+          infinite: false,
+        });
+
+        lenis.on('scroll', ScrollTrigger.update);
+
+        gsap.ticker.add((time) => {
+          lenis.raf(time * 1000);
+        });
+
+        gsap.ticker.lagSmoothing(0);
+
+        // Store on window for use by other scripts
+        (window as any).lenis = lenis;
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,205 @@
+---
+const navLinks = [
+  { href: '#inicio',        label: 'Inicio' },
+  { href: '#servicios',     label: 'Servicios' },
+  { href: '#proyectos',     label: 'Proyectos' },
+  { href: '#nosotros',      label: 'Nosotros' },
+  { href: '#contacto',      label: 'Contacto' },
+];
+---
+
+<header id="site-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+  <div class="container-site">
+    <nav class="flex items-center justify-between py-5">
+
+      <!-- Logo -->
+      <a href="#inicio" class="flex items-center gap-3 group" aria-label="CENSA - Inicio">
+        <div class="logo-mark">
+          <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <!-- Simplified CENSA logo mark: worker silhouette + voltage bolt -->
+            <rect width="44" height="44" rx="6" fill="#111111"/>
+            <!-- Bolt / lightning -->
+            <path d="M26 6L14 24H22L18 38L30 20H22L26 6Z" fill="#CC0000"/>
+            <!-- Worker silhouette (simple) -->
+            <circle cx="32" cy="10" r="3" fill="white" opacity="0.9"/>
+            <path d="M29 13h6l-1 6h-4l-1-6z" fill="white" opacity="0.9"/>
+          </svg>
+        </div>
+        <div class="logo-text flex flex-col leading-none">
+          <span class="font-display font-black text-2xl tracking-wider">
+            <span style="color: var(--color-red)">CEN</span><span style="color: white">SA</span>
+          </span>
+          <span class="text-[9px] tracking-[0.25em] uppercase" style="color: var(--color-gray-400)">Media Tensión</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <ul class="hidden lg:flex items-center gap-8" role="list">
+        {navLinks.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              class="nav-link relative text-sm font-medium tracking-wide uppercase py-1 text-gray-300 hover:text-white transition-colors duration-200"
+            >
+              {link.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <!-- CTA + Mobile Toggle -->
+      <div class="flex items-center gap-4">
+        <a href="#contacto" class="btn-primary hidden sm:inline-flex text-sm py-3 px-5">
+          Solicitar Servicio
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+
+        <!-- Mobile menu button -->
+        <button
+          id="mobile-menu-btn"
+          class="lg:hidden flex flex-col gap-1.5 p-2"
+          aria-label="Abrir menú"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+        >
+          <span class="hamburger-line block w-6 h-0.5 bg-white transition-all duration-300"></span>
+          <span class="hamburger-line block w-6 h-0.5 bg-white transition-all duration-300"></span>
+          <span class="hamburger-line block w-4 h-0.5 bg-white transition-all duration-300 self-end"></span>
+        </button>
+      </div>
+    </nav>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div
+    id="mobile-menu"
+    class="lg:hidden hidden border-t"
+    style="border-color: rgba(255,255,255,0.08); background: rgba(10,10,10,0.98); backdrop-filter: blur(20px);"
+    aria-hidden="true"
+  >
+    <div class="container-site py-6 flex flex-col gap-4">
+      {navLinks.map((link) => (
+        <a
+          href={link.href}
+          class="mobile-nav-link text-base font-medium uppercase tracking-wide py-2 border-b text-gray-300 hover:text-white transition-colors"
+          style="border-color: rgba(255,255,255,0.06)"
+        >
+          {link.label}
+        </a>
+      ))}
+      <a href="#contacto" class="btn-primary mt-2 justify-center">
+        Solicitar Servicio
+      </a>
+    </div>
+  </div>
+</header>
+
+<style>
+  #site-header {
+    background: transparent;
+  }
+
+  #site-header.scrolled {
+    background: rgba(10, 10, 10, 0.92);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+  }
+
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--color-red);
+    transition: width 250ms ease;
+  }
+  .nav-link:hover::after,
+  .nav-link.active::after {
+    width: 100%;
+  }
+  .nav-link.active {
+    color: white;
+  }
+</style>
+
+<script>
+  // Scroll behavior: transparent → dark on scroll
+  const header = document.getElementById('site-header')!;
+
+  const handleScroll = () => {
+    if (window.scrollY > 60) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+  };
+  window.addEventListener('scroll', handleScroll, { passive: true });
+  handleScroll();
+
+  // Active nav link on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-link');
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          navLinks.forEach((link) => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${entry.target.id}`) {
+              link.classList.add('active');
+            }
+          });
+        }
+      });
+    },
+    { rootMargin: '-40% 0px -40% 0px' }
+  );
+  sections.forEach((s) => observer.observe(s));
+
+  // Mobile menu toggle
+  const btn = document.getElementById('mobile-menu-btn')!;
+  const menu = document.getElementById('mobile-menu')!;
+  const lines = btn.querySelectorAll<HTMLElement>('.hamburger-line');
+
+  btn.addEventListener('click', () => {
+    const isOpen = menu.classList.toggle('hidden') === false;
+    btn.setAttribute('aria-expanded', String(isOpen));
+    menu.setAttribute('aria-hidden', String(!isOpen));
+    // Animate hamburger → X
+    if (isOpen) {
+      lines[0].style.transform = 'translateY(8px) rotate(45deg)';
+      lines[1].style.opacity = '0';
+      lines[2].style.transform = 'translateY(-8px) rotate(-45deg)';
+      lines[2].style.width = '24px';
+    } else {
+      lines[0].style.transform = '';
+      lines[1].style.opacity = '1';
+      lines[2].style.transform = '';
+      lines[2].style.width = '';
+    }
+  });
+
+  // Close menu on link click
+  menu.querySelectorAll('.mobile-nav-link').forEach((link) => {
+    link.addEventListener('click', () => {
+      menu.classList.add('hidden');
+      btn.setAttribute('aria-expanded', 'false');
+      menu.setAttribute('aria-hidden', 'true');
+      lines[0].style.transform = '';
+      lines[1].style.opacity = '1';
+      lines[2].style.transform = '';
+      lines[2].style.width = '';
+    });
+  });
+</script>

@@ -1,0 +1,153 @@
+---
+const testimonials = [
+  {
+    quote:
+      'CENSA realizó la instalación completa de nuestra red de distribución interna en menos tiempo del estimado, sin interrupciones en nuestra operación. La coordinación con CFE fue impecable.',
+    author: 'Ing. Roberto Garza',
+    role: 'Gerente de Mantenimiento',
+    company: 'Industrias del Noreste S.A. de C.V.',
+    initial: 'R',
+  },
+  {
+    quote:
+      'Contratamos a CENSA para el mantenimiento anual de nuestras subestaciones y el servicio superó nuestras expectativas. Entregaron reportes técnicos detallados y atendieron observaciones en tiempo récord.',
+    author: 'Arq. Laura Martínez',
+    role: 'Directora de Operaciones',
+    company: 'Desarrolladora Plaza Norte',
+    initial: 'L',
+  },
+  {
+    quote:
+      'Tuvimos una falla de media tensión un domingo por la noche y CENSA respondió en menos de 90 minutos. Restauraron el servicio antes de que llegara el turno del lunes. Profesionales de verdad.',
+    author: 'Lic. Carlos Hernández',
+    role: 'Director General',
+    company: 'Logística Express Monterrey',
+    initial: 'C',
+  },
+];
+---
+
+<section class="testimonials-section section-pad" style="background: var(--color-black)">
+  <div class="container-site">
+
+    <!-- Section header -->
+    <div class="text-center mb-16 max-w-2xl mx-auto">
+      <span class="tag mb-4 gsap-fade-up">Testimonios</span>
+      <h2 class="text-display gsap-fade-up" style="font-size: clamp(2.5rem, 6vw, 5rem)">
+        Lo que dicen nuestros
+        <span style="color: var(--color-red)"> clientes</span>
+      </h2>
+    </div>
+
+    <!-- Testimonials carousel wrapper -->
+    <div class="testimonials-container relative overflow-hidden">
+      <div class="testimonials-track flex gap-6 transition-transform duration-500 ease-out" id="testimonials-track">
+        {testimonials.map((t, i) => (
+          <article
+            class="testimonial-card flex-shrink-0 w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] p-8 border"
+            style="background: var(--color-gray-900); border-color: rgba(255,255,255,0.06)"
+            aria-label={`Testimonio de ${t.author}`}
+          >
+            <!-- Quote mark -->
+            <div class="text-6xl leading-none font-black mb-4" style="color: var(--color-red); font-family: var(--font-display); opacity: 0.6" aria-hidden="true">"</div>
+
+            <blockquote class="text-sm leading-relaxed mb-6" style="color: var(--color-gray-200)">
+              {t.quote}
+            </blockquote>
+
+            <!-- Author -->
+            <footer class="flex items-center gap-4 pt-4 border-t" style="border-color: rgba(255,255,255,0.08)">
+              <div class="w-10 h-10 flex items-center justify-center font-bold text-sm flex-shrink-0"
+                   style="background: var(--color-red); color: white; font-family: var(--font-display)">
+                {t.initial}
+              </div>
+              <div>
+                <div class="font-semibold text-sm" style="color: white">{t.author}</div>
+                <div class="text-xs" style="color: var(--color-gray-400)">{t.role}</div>
+                <div class="text-xs font-medium" style="color: var(--color-red-light)">{t.company}</div>
+              </div>
+            </footer>
+          </article>
+        ))}
+      </div>
+    </div>
+
+    <!-- Dots navigation -->
+    <div class="flex justify-center gap-3 mt-10" role="tablist" aria-label="Testimonios">
+      {testimonials.map((_, i) => (
+        <button
+          class="testimonial-dot w-2 h-2 rounded-full transition-all duration-300"
+          style={i === 0
+            ? 'background: var(--color-red); width: 24px; border-radius: 4px;'
+            : 'background: rgba(255,255,255,0.2)'}
+          data-dot={i}
+          aria-label={`Testimonio ${i + 1}`}
+          role="tab"
+          aria-selected={i === 0 ? 'true' : 'false'}
+        ></button>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!prefersReducedMotion) {
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.to('.testimonials-section .gsap-fade-up', {
+      opacity: 1, y: 0, duration: 0.7, stagger: 0.15, ease: 'power3.out',
+      scrollTrigger: { trigger: '.testimonials-section', start: 'top 75%' },
+    });
+    gsap.to('.testimonial-card', {
+      opacity: 1, y: 0, duration: 0.6, stagger: 0.1, ease: 'power3.out',
+      scrollTrigger: { trigger: '.testimonials-container', start: 'top 80%' },
+    });
+  }
+
+  // Simple carousel logic
+  const track = document.getElementById('testimonials-track')!;
+  const dots  = document.querySelectorAll<HTMLButtonElement>('.testimonial-dot');
+  const cards = document.querySelectorAll<HTMLElement>('.testimonial-card');
+  let current = 0;
+  let autoTimer: ReturnType<typeof setInterval>;
+
+  const goTo = (index: number) => {
+    current = index;
+    const cardWidth = cards[0]?.offsetWidth ?? 0;
+    const gap = 24;
+    const offset = -(index * (cardWidth + gap));
+    track.style.transform = `translateX(${offset}px)`;
+
+    dots.forEach((dot, i) => {
+      if (i === index) {
+        dot.style.background = 'var(--color-red)';
+        dot.style.width = '24px';
+        dot.style.borderRadius = '4px';
+        dot.setAttribute('aria-selected', 'true');
+      } else {
+        dot.style.background = 'rgba(255,255,255,0.2)';
+        dot.style.width = '8px';
+        dot.style.borderRadius = '50%';
+        dot.setAttribute('aria-selected', 'false');
+      }
+    });
+  };
+
+  dots.forEach((dot, i) => {
+    dot.addEventListener('click', () => {
+      clearInterval(autoTimer);
+      goTo(i);
+    });
+  });
+
+  // Auto-play every 5s
+  autoTimer = setInterval(() => {
+    goTo((current + 1) % testimonials.length);
+  }, 5000);
+
+  // Expose testimonials length to the script
+  const testimonials = { length: dots.length };
+</script>

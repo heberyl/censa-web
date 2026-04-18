@@ -1,0 +1,56 @@
+---
+const certs = [
+  { name: 'NOM-001-SEDE', desc: 'Instalaciones eléctricas', abbr: 'NOM' },
+  { name: 'CFE Proveedor', desc: 'Comisión Federal de Electricidad', abbr: 'CFE' },
+  { name: 'STPS', desc: 'Seguridad y Salud en el Trabajo', abbr: 'STPS' },
+  { name: 'ANCE', desc: 'Verificación de Instalaciones', abbr: 'ANCE' },
+  { name: 'ISO 9001', desc: 'Sistema de Gestión de Calidad', abbr: 'ISO' },
+];
+---
+
+<section class="certs-section py-16" style="background: var(--color-gray-900); border-top: 1px solid rgba(255,255,255,0.06); border-bottom: 1px solid rgba(255,255,255,0.06)">
+  <div class="container-site">
+
+    <div class="flex flex-col lg:flex-row items-center gap-10">
+      <!-- Label -->
+      <div class="flex-shrink-0 text-center lg:text-left">
+        <p class="text-xs uppercase tracking-widest mb-1" style="color: var(--color-gray-400)">Certificaciones</p>
+        <p class="text-sm font-semibold" style="color: var(--color-gray-200)">y Normas Aplicadas</p>
+      </div>
+
+      <!-- Divider -->
+      <div class="hidden lg:block w-px h-12" style="background: rgba(255,255,255,0.1)" aria-hidden="true"></div>
+
+      <!-- Certs row -->
+      <div class="certs-row flex flex-wrap justify-center lg:justify-start items-center gap-6 flex-1">
+        {certs.map((cert) => (
+          <div class="cert-badge gsap-fade-in group flex items-center gap-3 px-5 py-3 border transition-all duration-300 hover:border-red-800"
+               style="border-color: rgba(255,255,255,0.08); background: rgba(255,255,255,0.02)">
+            <div class="w-10 h-10 flex items-center justify-center font-black text-xs"
+                 style="font-family: var(--font-display); background: rgba(204,0,0,0.12); color: var(--color-red); border: 1px solid rgba(204,0,0,0.3)">
+              {cert.abbr.length > 4 ? cert.abbr.slice(0, 3) : cert.abbr}
+            </div>
+            <div>
+              <div class="text-sm font-bold" style="color: white">{cert.name}</div>
+              <div class="text-xs" style="color: var(--color-gray-400)">{cert.desc}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!prefersReducedMotion) {
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.to('.cert-badge', {
+      opacity: 1, duration: 0.5, stagger: 0.08, ease: 'power2.out',
+      scrollTrigger: { trigger: '.certs-section', start: 'top 85%' },
+    });
+  }
+</script>

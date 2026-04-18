@@ -1,0 +1,131 @@
+---
+const pillars = [
+  {
+    icon: 'shield',
+    title: 'Certificación NOM y CFE',
+    description: 'Todos nuestros trabajos cumplen con la NOM-001-SEDE y los estándares técnicos de CFE. Instalaciones que pasan cualquier verificación.',
+  },
+  {
+    icon: 'clock',
+    title: 'Respuesta 24 / 7',
+    description: 'Cuadrillas disponibles las 24 horas del día, los 365 días del año para atención de emergencias eléctricas. Tiempo de respuesta menor a 2 horas.',
+  },
+  {
+    icon: 'star',
+    title: '+15 Años de Experiencia',
+    description: 'Más de una década y media ejecutando proyectos de media tensión en el área metropolitana de Monterrey y el noreste de México.',
+  },
+  {
+    icon: 'map',
+    title: 'Cobertura Regional',
+    description: 'Operamos en todo Nuevo León y estados del noreste. Conocemos la infraestructura local y los requerimientos específicos de cada municipio.',
+  },
+  {
+    icon: 'check',
+    title: 'Cero Accidentes',
+    description: 'Historial impecable de seguridad en todas nuestras operaciones. Personal certificado y protocolos de seguridad de clase mundial.',
+  },
+];
+---
+
+<section id="nosotros" class="why-us-section section-pad" style="background: var(--color-gray-900)">
+  <div class="container-site">
+
+    <!-- Section header -->
+    <div class="section-header mb-16 max-w-2xl">
+      <span class="tag mb-4 gsap-fade-up">Por qué elegirnos</span>
+      <h2 class="text-display gsap-fade-up" style="font-size: clamp(2.5rem, 6vw, 5rem)">
+        La elección inteligente para tu
+        <span style="color: var(--color-red)"> infraestructura eléctrica</span>
+      </h2>
+      <p class="mt-4 text-base leading-relaxed gsap-fade-up" style="color: var(--color-gray-400)">
+        Cinco razones que nos posicionan como la empresa de referencia en servicios
+        eléctricos de media tensión en Nuevo León.
+      </p>
+    </div>
+
+    <!-- Pillars grid -->
+    <div class="pillars-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {pillars.map((pillar, i) => (
+        <article
+          class="pillar-card gsap-fade-up group relative p-8 border transition-all duration-300 cursor-default"
+          style="background: var(--color-gray-800); border-color: rgba(255,255,255,0.06)"
+          data-index={i}
+        >
+          <!-- Red accent top bar (hover) -->
+          <div class="absolute top-0 left-0 right-0 h-0.5 origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100"
+               style="background: var(--color-red)" aria-hidden="true"></div>
+
+          <!-- Icon -->
+          <div class="icon-wrap mb-6 w-12 h-12 flex items-center justify-center"
+               style="background: rgba(204,0,0,0.12); border: 1px solid rgba(204,0,0,0.3)">
+            {pillar.icon === 'shield' && (
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+                <path d="M11 2L3 5.5V10c0 4.42 3.36 8.56 8 9.56 4.64-1 8-5.14 8-9.56V5.5L11 2z" stroke="var(--color-red)" stroke-width="1.5" stroke-linejoin="round"/>
+                <path d="M7.5 11l2.5 2.5 4.5-4.5" stroke="var(--color-red)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            )}
+            {pillar.icon === 'clock' && (
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+                <circle cx="11" cy="11" r="8.5" stroke="var(--color-red)" stroke-width="1.5"/>
+                <path d="M11 6v5l3 3" stroke="var(--color-red)" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            )}
+            {pillar.icon === 'star' && (
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+                <path d="M11 2l2.7 5.6L20 8.7l-4.5 4.3 1.1 6.1L11 16l-5.6 3.1 1.1-6.1L2 8.7l6.3-.9L11 2z" stroke="var(--color-red)" stroke-width="1.5" stroke-linejoin="round"/>
+              </svg>
+            )}
+            {pillar.icon === 'map' && (
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+                <path d="M11 12a3 3 0 100-6 3 3 0 000 6z" stroke="var(--color-red)" stroke-width="1.5"/>
+                <path d="M11 2C7.13 2 4 5.13 4 9c0 5.25 7 11 7 11s7-5.75 7-11c0-3.87-3.13-7-7-7z" stroke="var(--color-red)" stroke-width="1.5"/>
+              </svg>
+            )}
+            {pillar.icon === 'check' && (
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+                <circle cx="11" cy="11" r="8.5" stroke="var(--color-red)" stroke-width="1.5"/>
+                <path d="M7 11l3 3 5-5" stroke="var(--color-red)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            )}
+          </div>
+
+          <!-- Content -->
+          <h3 class="text-lg font-bold uppercase tracking-wide mb-3" style="font-family: var(--font-display); color: white">
+            {pillar.title}
+          </h3>
+          <p class="text-sm leading-relaxed" style="color: var(--color-gray-400)">
+            {pillar.description}
+          </p>
+
+          <!-- Corner accent -->
+          <div class="absolute bottom-3 right-4 text-6xl font-black opacity-5" style="font-family: var(--font-display); color: var(--color-red)" aria-hidden="true">
+            {String(i + 1).padStart(2, '0')}
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!prefersReducedMotion) {
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Section header reveal
+    gsap.to('.why-us-section .section-header .gsap-fade-up', {
+      opacity: 1, y: 0, duration: 0.7, stagger: 0.15, ease: 'power3.out',
+      scrollTrigger: { trigger: '.why-us-section', start: 'top 75%' },
+    });
+
+    // Cards stagger reveal
+    gsap.to('.pillar-card', {
+      opacity: 1, y: 0, duration: 0.6, stagger: 0.1, ease: 'power3.out',
+      scrollTrigger: { trigger: '.pillars-grid', start: 'top 80%' },
+    });
+  }
+</script>
