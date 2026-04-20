@@ -19,6 +19,23 @@ pnpm-debug.log*
 
 # macOS-specific files
 .DS_Store
+Thumbs.db
 
 # jetbrains setting folder
 .idea/
+
+# Editor
+.vscode/settings.json
+
+# Design mockups (solo referencia local)
+mockup/
+
+# Documentos internos de planificación
+PLAN-MAESTRO.md
+
+# Documentos privados del cliente
+*.pdf
+
+# Imágenes temporales
+public/assets/images/hero-temp.png
+public/right-small-down.svg
