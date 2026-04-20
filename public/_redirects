@@ -1,5 +1,2 @@
-# www → non-www (uncomment when custom domain is set)
+# www → non-www (descomentar cuando se configure el dominio personalizado)
 # https://www.censa.mx/* https://censa.mx/:splat 301
-
-# Fallback
-/* /index.html 200
