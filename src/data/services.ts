@@ -5,6 +5,7 @@ export interface Service {
   description: string;
   features: string[];
   icon: string;
+  specs: { l: string; v: string }[];
 }
 
 export const services: Service[] = [
@@ -21,6 +22,11 @@ export const services: Service[] = [
       'Pruebas de puesta en servicio',
     ],
     icon: 'cable',
+    specs: [
+      { l: 'Voltaje', v: '34.5 kV' },
+      { l: 'Tipo', v: 'Aérea/Subt.' },
+      { l: 'Norma', v: 'NOM-001' },
+    ],
   },
   {
     id: 'mantenimiento',
@@ -35,6 +41,11 @@ export const services: Service[] = [
       'Reportes técnicos detallados',
     ],
     icon: 'wrench',
+    specs: [
+      { l: 'Ciclo', v: '6-12 m' },
+      { l: 'Técnicas', v: '14+' },
+      { l: 'Reporte', v: '48h' },
+    ],
   },
   {
     id: 'subestaciones',
@@ -49,6 +60,11 @@ export const services: Service[] = [
       'Puesta en servicio certificada',
     ],
     icon: 'substation',
+    specs: [
+      { l: 'Capacidad', v: '5 MVA' },
+      { l: 'Tipos', v: '3' },
+      { l: 'Puesta', v: 'Cert.' },
+    ],
   },
   {
     id: 'emergencias',
@@ -63,6 +79,11 @@ export const services: Service[] = [
       'Coordinación con CFE y protección civil',
     ],
     icon: 'bolt',
+    specs: [
+      { l: 'Respuesta', v: '< 2h' },
+      { l: 'Disp.', v: '24/7' },
+      { l: 'Cobertura', v: 'N.L.' },
+    ],
   },
   {
     id: 'ingenieria',
@@ -77,6 +98,11 @@ export const services: Service[] = [
       'Supervisión de obras',
     ],
     icon: 'blueprint',
+    specs: [
+      { l: 'Permisos', v: 'CFE+STPS' },
+      { l: 'Proyectos', v: '200+' },
+      { l: 'As-built', v: 'Incl.' },
+    ],
   },
   {
     id: 'inspeccion',
@@ -91,5 +117,10 @@ export const services: Service[] = [
       'Dictámenes para STPS y ANCE',
     ],
     icon: 'inspect',
+    specs: [
+      { l: 'Pruebas', v: '18+' },
+      { l: 'Norma', v: 'NOM-001' },
+      { l: 'Dictamen', v: '48h' },
+    ],
   },
 ];

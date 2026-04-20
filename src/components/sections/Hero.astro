@@ -2,7 +2,7 @@
 import { company } from '../../data/company';
 ---
 
-<section id="inicio" class="hero relative min-h-screen flex items-center overflow-hidden" style="background: #0a0a0a">
+<section id="inicio" class="hero relative min-h-screen flex items-end overflow-hidden" style="background: #0a0a0a; padding-bottom: 28vh;">
 
   <!-- Image/Video Background -->
   <div class="hero-video-wrap absolute inset-0 z-0">
@@ -14,21 +14,22 @@ import { company } from '../../data/company';
       aria-hidden="true"
     ></div>
 
-    <!-- Video encima de la imagen cuando cargue -->
+    <!-- Video encima de la imagen cuando cargue (requiere /assets/videos/hero-bg.mp4) -->
     <video
       autoplay
       muted
       loop
       playsinline
-      preload="metadata"
+      preload="none"
       class="absolute inset-0 w-full h-full object-cover"
       aria-hidden="true"
+      onerror="this.style.display='none'"
     >
       <source src="/assets/videos/hero-bg.mp4" type="video/mp4" />
     </video>
 
     <!-- Overlay oscuro -->
-    <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(5,5,5,0.82) 0%, rgba(5,5,5,0.60) 50%, rgba(5,5,5,0.75) 100%);"></div>
+    <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(5,5,5,0.52) 0%, rgba(5,5,5,0.28) 50%, rgba(5,5,5,0.45) 100%);"></div>
     <!-- Acento rojo inferior izquierdo -->
     <div class="absolute bottom-0 left-0 w-96 h-96 rounded-full" style="background: radial-gradient(circle, rgba(204,0,0,0.12) 0%, transparent 70%); filter: blur(60px);"></div>
   </div>
@@ -37,8 +38,8 @@ import { company } from '../../data/company';
   <div class="absolute inset-0 z-0 opacity-5" style="background-image: linear-gradient(rgba(255,255,255,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.3) 1px, transparent 1px); background-size: 60px 60px;" aria-hidden="true"></div>
 
   <!-- Content -->
-  <div class="container-site relative z-10 py-32 lg:py-0">
-    <div class="max-w-4xl">
+  <div class="relative z-10 w-full" style="padding-left: clamp(1.25rem, 2vw, 2.5rem); padding-right: clamp(1.25rem, 2vw, 2.5rem);">
+    <div class="w-full">
 
       <!-- Badge -->
       <div class="hero-badge tag mb-6 gsap-fade-up">
@@ -47,12 +48,9 @@ import { company } from '../../data/company';
       </div>
 
       <!-- Headline -->
-      <h1 class="hero-headline text-display gsap-fade-up" style="font-size: clamp(3.5rem, 10vw, 8rem); color: white;">
-        {company.tagline.split(' ').map((word, i) => (
-          <span class="block" style={i === 2 ? 'color: var(--color-red)' : ''}>
-            {word}
-          </span>
-        ))}
+      <h1 class="hero-headline text-display gsap-fade-up" style="font-size: clamp(2.6rem, 5.5vw, 5rem); color: white; line-height: 1.05;">
+        <span class="block">Infraestructura eléctrica</span>
+        <span class="block">que no <span style="color: var(--color-red)">falla</span></span>
       </h1>
 
       <!-- Sub description -->
@@ -74,38 +72,28 @@ import { company } from '../../data/company';
         </a>
       </div>
 
-      <!-- Stats bar -->
-      <div class="hero-stats mt-16 pt-8 border-t grid grid-cols-2 sm:grid-cols-4 gap-6 gsap-fade-up" style="border-color: rgba(255,255,255,0.1)">
-        {company.stats.map((stat) => (
-          <div class="text-center sm:text-left">
-            <div class="text-display text-3xl lg:text-4xl" style="color: var(--color-red); font-family: var(--font-display)">
-              {stat.value}
-            </div>
-            <div class="text-xs mt-1 uppercase tracking-widest" style="color: var(--color-gray-400)">
-              {stat.label}
-            </div>
-          </div>
-        ))}
-      </div>
     </div>
   </div>
 
   <!-- Scroll indicator -->
   <div class="hero-scroll absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 gsap-fade-in" aria-hidden="true">
-    <span class="text-xs tracking-widest uppercase" style="color: var(--color-gray-400)">Scroll</span>
-    <div class="w-px h-12 relative overflow-hidden" style="background: rgba(255,255,255,0.15)">
-      <div class="scroll-line absolute top-0 left-0 w-full bg-red-600" style="background: var(--color-red); height: 100%; animation: scrollLine 1.8s ease-in-out infinite;"></div>
-    </div>
+    <span class="text-xs tracking-widest uppercase" style="color: rgba(255,255,255,0.35)">Scroll</span>
+    <svg class="scroll-arrow" width="14" height="9" viewBox="0 0 14 9" fill="none">
+      <path d="M1 1.5l6 6 6-6" stroke="var(--color-red)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
   </div>
 </section>
 
 <style>
-  @keyframes scrollLine {
-    0%   { transform: translateY(-100%); }
-    100% { transform: translateY(200%); }
+  .scroll-arrow {
+    animation: arrowBounce 1.5s ease-in-out infinite;
+  }
+  @keyframes arrowBounce {
+    0%, 100% { transform: translateY(0);   opacity: 1; }
+    50%       { transform: translateY(6px); opacity: 0.5; }
   }
   @media (prefers-reduced-motion: reduce) {
-    .scroll-line { animation: none; }
+    .scroll-arrow { animation: none; }
   }
 </style>
 
@@ -127,7 +115,6 @@ import { company } from '../../data/company';
       .to('.hero-headline', { opacity: 1, y: 0, duration: 0.75, ease: 'power3.out' }, '-=0.35')
       .to('.hero-desc',     { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.45')
       .to('.hero-ctas',     { opacity: 1, y: 0, duration: 0.55, ease: 'power3.out' }, '-=0.35')
-      .to('.hero-stats',    { opacity: 1, y: 0, duration: 0.55, ease: 'power3.out' }, '-=0.3')
       .to('.hero-scroll',   { opacity: 1, duration: 0.4, ease: 'power2.out' }, '-=0.2');
 
     // Parallax on hero video

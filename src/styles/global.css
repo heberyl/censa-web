@@ -5,6 +5,8 @@
 @import '@fontsource/inter/500.css';
 @import '@fontsource/inter/600.css';
 @import '@fontsource/inter/700.css';
+@import '@fontsource/jetbrains-mono/400.css';
+@import '@fontsource/jetbrains-mono/500.css';
 
 /* ── Design Tokens ─────────────────────────────────────────── */
 :root {
@@ -23,6 +25,7 @@
 
   --font-display: 'Barlow Condensed', system-ui, sans-serif;
   --font-body:    'Inter', system-ui, sans-serif;
+  --font-mono:    'JetBrains Mono', ui-monospace, monospace;
 
   --transition-fast:   150ms ease;
   --transition-normal: 250ms ease;
@@ -103,9 +106,9 @@ h1, h2, h3, h4 {
   text-transform: uppercase;
   text-decoration: none;
   border: 2px solid var(--color-red);
+  border-radius: 8px;
   cursor: pointer;
   transition: background var(--transition-normal), transform var(--transition-fast), box-shadow var(--transition-normal);
-  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
 }
 .btn-primary:hover {
   background: var(--color-red-dark);
@@ -127,6 +130,7 @@ h1, h2, h3, h4 {
   text-transform: uppercase;
   text-decoration: none;
   border: 2px solid rgba(255,255,255,0.4);
+  border-radius: 8px;
   cursor: pointer;
   transition: border-color var(--transition-normal), transform var(--transition-fast);
 }
@@ -142,6 +146,7 @@ h1, h2, h3, h4 {
   padding: 0.375rem 0.875rem;
   background: rgba(204, 0, 0, 0.15);
   border: 1px solid rgba(204, 0, 0, 0.4);
+  border-radius: 999px;
   color: var(--color-red-light);
   font-size: 0.8125rem;
   font-weight: 600;

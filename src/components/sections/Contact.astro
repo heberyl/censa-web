@@ -2,199 +2,173 @@
 import { company } from '../../data/company';
 ---
 
-<section id="contacto" class="contact-section section-pad" style="background: #F5F5F5">
+<section id="contacto" class="ct-section">
   <div class="container-site">
 
-    <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
-
-      <!-- Left: CTA text + contact info -->
+    <!-- Encabezado: ancho completo, encima del grid -->
+    <div class="ct-header">
       <div>
-        <span class="tag mb-4 gsap-fade-up">Contacto</span>
-        <h2 class="text-display mb-6 gsap-fade-up" style="font-size: clamp(2.5rem, 6vw, 5rem); color: #0a0a0a">
-          ¿Tienes un proyecto de
-          <span style="color: var(--color-red)"> media tensión?</span>
+        <p class="ct-kicker">Contacto</p>
+        <h2 class="ct-h2">
+          ¿Tienes un proyecto de <em>media tensión</em>?<br/>
           Hablemos.
         </h2>
-        <p class="text-base leading-relaxed mb-10 gsap-fade-up" style="color: #666666">
-          Cuéntanos sobre tu proyecto y nuestro equipo de ingeniería te
-          contactará en menos de 24 horas con una evaluación inicial sin costo.
-        </p>
+      </div>
+      <p class="ct-intro">
+        Cuéntanos sobre tu proyecto y nuestro equipo de ingeniería te
+        contactará en menos de 24 horas con una evaluación inicial sin costo.
+      </p>
+    </div>
 
-        <!-- Contact details -->
-        <div class="space-y-6 gsap-fade-up">
-          <a
-            href={`tel:+52${company.contact.phone.replace(/\s/g,'')}`}
-            class="flex items-center gap-4 group"
-          >
-            <div class="w-12 h-12 flex-shrink-0 flex items-center justify-center"
-                 style="background: rgba(204,0,0,0.12); border: 1px solid rgba(204,0,0,0.3)">
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+    <!-- Grid: info izquierda | form derecha -->
+    <div class="ct-grid">
+
+      <!-- Columna izquierda: datos + emergencia + mapa -->
+      <div class="ct-left">
+
+        <!-- Datos de contacto -->
+        <div class="ct-details">
+          <a href={`tel:+52${company.contact.phone.replace(/\s/g,'')}`} class="ct-item ct-item-link">
+            <div class="ct-icon">
+              <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
                 <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" stroke="var(--color-red)" stroke-width="1.5" stroke-linejoin="round"/>
               </svg>
             </div>
             <div>
-              <div class="text-xs uppercase tracking-widest mb-0.5" style="color: #666666">Teléfono</div>
-              <div class="font-bold text-base transition-colors group-hover:text-red-400" style="color: white; font-family: var(--font-display); letter-spacing: 0.05em">
-                {company.contact.phone}
-              </div>
+              <div class="ct-item-label">Teléfono</div>
+              <div class="ct-item-value">{company.contact.phone}</div>
             </div>
           </a>
 
-          <a
-            href={`mailto:${company.contact.email}`}
-            class="flex items-center gap-4 group"
-          >
-            <div class="w-12 h-12 flex-shrink-0 flex items-center justify-center"
-                 style="background: rgba(204,0,0,0.12); border: 1px solid rgba(204,0,0,0.3)">
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <a href={`mailto:${company.contact.email}`} class="ct-item ct-item-link">
+            <div class="ct-icon">
+              <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
                 <path d="M2.94 4h14.12A1.94 1.94 0 0119 5.94v8.12A1.94 1.94 0 0117.06 16H2.94A1.94 1.94 0 011 14.06V5.94A1.94 1.94 0 012.94 4z" stroke="var(--color-red)" stroke-width="1.5"/>
                 <path d="M1 5.5l9 6 9-6" stroke="var(--color-red)" stroke-width="1.5"/>
               </svg>
             </div>
             <div>
-              <div class="text-xs uppercase tracking-widest mb-0.5" style="color: #666666">Correo</div>
-              <div class="font-bold text-base transition-colors group-hover:text-red-400" style="color: white">
-                {company.contact.email}
-              </div>
+              <div class="ct-item-label">Correo</div>
+              <div class="ct-item-value">{company.contact.email}</div>
             </div>
           </a>
 
-          <div class="flex items-start gap-4">
-            <div class="w-12 h-12 flex-shrink-0 flex items-center justify-center"
-                 style="background: rgba(204,0,0,0.12); border: 1px solid rgba(204,0,0,0.3)">
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <div class="ct-item">
+            <div class="ct-icon">
+              <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
                 <path d="M10 2C6.686 2 4 4.686 4 8c0 4.875 6 10 6 10s6-5.125 6-10c0-3.314-2.686-6-6-6zm0 8a2 2 0 110-4 2 2 0 010 4z" stroke="var(--color-red)" stroke-width="1.5"/>
               </svg>
             </div>
             <div>
-              <div class="text-xs uppercase tracking-widest mb-0.5" style="color: #666666">Dirección</div>
-              <address class="not-italic text-sm leading-relaxed" style="color: var(--color-gray-200)">
-                {company.address.street},<br />
-                {company.address.colony},<br />
-                C.P. {company.address.zip} {company.address.city},<br />
-                {company.address.state}, {company.address.country}
+              <div class="ct-item-label">Dirección</div>
+              <address class="ct-item-value ct-address">
+                {company.address.street},<br/>
+                {company.address.colony},<br/>
+                C.P. {company.address.zip} {company.address.city}, {company.address.state}
               </address>
             </div>
           </div>
         </div>
 
-        <!-- Social links -->
-        <div class="flex gap-4 mt-10 gsap-fade-up">
-          <a href={company.social.facebook} aria-label="Facebook de CENSA" target="_blank" rel="noopener noreferrer"
-             class="w-10 h-10 flex items-center justify-center border transition-all duration-200 hover:border-red-600"
-             style="border-color: rgba(255,255,255,0.12); color: var(--color-gray-400)">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-            </svg>
-          </a>
-          <a href={company.social.linkedin} aria-label="LinkedIn de CENSA" target="_blank" rel="noopener noreferrer"
-             class="w-10 h-10 flex items-center justify-center border transition-all duration-200 hover:border-red-600"
-             style="border-color: rgba(255,255,255,0.12); color: var(--color-gray-400)">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-            </svg>
-          </a>
-          <a href={company.social.youtube} aria-label="YouTube de CENSA" target="_blank" rel="noopener noreferrer"
-             class="w-10 h-10 flex items-center justify-center border transition-all duration-200 hover:border-red-600"
-             style="border-color: rgba(255,255,255,0.12); color: var(--color-gray-400)">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-            </svg>
-          </a>
+        <!-- Banda emergencia 24/7 -->
+        <div class="ct-emergency">
+          <div class="ct-emrg-left">
+            <div class="ct-emrg-label">
+              <span class="ct-emrg-dot" aria-hidden="true"></span>
+              Emergencia 24/7
+            </div>
+            <div class="ct-emrg-num">{company.contact.phone}</div>
+          </div>
+          <p class="ct-emrg-note">Respuesta &lt; 2h en el AMM</p>
         </div>
+
+        <!-- Mapa de cobertura -->
+        <div class="ct-map">
+          <div class="ct-map-hd">
+            <h4 class="ct-map-title">Zona de cobertura</h4>
+            <span class="ct-map-tag">Nuevo León · AMM</span>
+          </div>
+          <div class="ct-map-viz">
+            <svg viewBox="0 0 400 200" preserveAspectRatio="xMidYMid meet" aria-label="Mapa de cobertura del Área Metropolitana de Monterrey" role="img">
+              <defs>
+                <pattern id="cov-grid" width="20" height="20" patternUnits="userSpaceOnUse">
+                  <path d="M 20 0 L 0 0 0 20" fill="none" stroke="currentColor" stroke-width=".5" opacity=".1"/>
+                </pattern>
+              </defs>
+              <rect width="400" height="200" fill="url(#cov-grid)"/>
+              <path d="M55 55 Q95 25 155 38 Q215 18 275 48 Q338 58 355 108 Q335 175 275 185 Q198 196 138 175 Q65 163 55 115 Z"
+                    fill="var(--color-red)" opacity=".07" stroke="var(--color-red)" stroke-width="1" stroke-dasharray="3,3"/>
+              <!-- Monterrey HQ -->
+              <circle cx="197" cy="110" r="6" fill="var(--color-red)"/>
+              <circle cx="197" cy="110" r="6" fill="none" stroke="var(--color-red)" stroke-width="1.5" opacity=".5">
+                <animate attributeName="r" from="8" to="22" dur="2s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" from=".6" to="0" dur="2s" repeatCount="indefinite"/>
+              </circle>
+              <text x="197" y="100" text-anchor="middle" font-family="monospace" font-size="8" letter-spacing=".1em" fill="currentColor" opacity=".75">MONTERREY</text>
+              <!-- Municipios -->
+              <circle cx="232" cy="90" r="3" fill="var(--color-red)"/>
+              <text x="237" y="87" font-family="monospace" font-size="6.5" fill="currentColor" opacity=".6">SAN NICOLÁS</text>
+              <circle cx="268" cy="125" r="3" fill="var(--color-red)"/>
+              <text x="275" y="129" font-family="monospace" font-size="6.5" fill="currentColor" opacity=".6">APODACA</text>
+              <circle cx="232" cy="145" r="3" fill="var(--color-red)"/>
+              <text x="237" y="153" font-family="monospace" font-size="6.5" fill="currentColor" opacity=".6">GUADALUPE</text>
+              <circle cx="162" cy="140" r="3" fill="var(--color-red)"/>
+              <text x="157" y="155" text-anchor="end" font-family="monospace" font-size="6.5" fill="currentColor" opacity=".6">STA. CATARINA</text>
+              <circle cx="158" cy="90" r="3" fill="var(--color-red)"/>
+              <text x="153" y="86" text-anchor="end" font-family="monospace" font-size="6.5" fill="currentColor" opacity=".6">ESCOBEDO</text>
+              <!-- Líneas desde HQ -->
+              <g stroke="var(--color-red)" stroke-width=".8" opacity=".3" fill="none" stroke-dasharray="2,3">
+                <line x1="197" y1="110" x2="232" y2="90"/>
+                <line x1="197" y1="110" x2="268" y2="125"/>
+                <line x1="197" y1="110" x2="232" y2="145"/>
+                <line x1="197" y1="110" x2="162" y2="140"/>
+                <line x1="197" y1="110" x2="158" y2="90"/>
+              </g>
+            </svg>
+          </div>
+        </div>
+
       </div>
 
-      <!-- Right: Contact form -->
-      <div class="contact-form-wrap gsap-slide-right">
-        <div class="p-8 lg:p-10 border bg-white" style="border-color: rgba(0,0,0,0.08)">
-          <h3 class="text-xl font-bold uppercase tracking-wide mb-2" style="font-family: var(--font-display); color: #0a0a0a">
-            Solicitar cotización
-          </h3>
-          <p class="text-sm mb-8" style="color: #666666">
-            Respuesta garantizada en menos de 24 horas hábiles.
-          </p>
+      <!-- Columna derecha: formulario -->
+      <div class="ct-right">
+        <div class="ct-form-card">
+          <div class="ct-form-hd">
+            <h3 class="ct-form-title">Solicitar cotización</h3>
+            <span class="ct-form-sla">Respuesta &lt; 24h</span>
+          </div>
 
-          <form
-            id="contact-form"
-            class="space-y-5"
-            novalidate
-          >
-            <!-- Web3Forms hidden fields -->
+          <form id="contact-form" class="ct-form" novalidate>
             <input type="hidden" name="access_key" value={import.meta.env.PUBLIC_WEB3FORMS_KEY ?? 'YOUR_WEB3FORMS_KEY'} />
             <input type="hidden" name="subject" value="Nueva solicitud desde CENSA Web" />
             <input type="hidden" name="from_name" value="CENSA Website" />
             <input type="checkbox" name="botcheck" style="display:none" />
 
-            <div class="grid sm:grid-cols-2 gap-5">
-              <div>
-                <label for="contact-name" class="block text-xs uppercase tracking-widest mb-2" style="color: #666666">
-                  Nombre *
-                </label>
-                <input
-                  type="text"
-                  id="contact-name"
-                  name="name"
-                  required
-                  placeholder="Juan Rodríguez"
-                  class="form-input w-full px-4 py-3 text-sm border outline-none transition-all duration-200"
-                  style="background: white; border-color: rgba(0,0,0,0.12); color: #0a0a0a"
-                />
+            <div class="ct-form-row">
+              <div class="ct-field">
+                <label for="ct-name">Nombre *</label>
+                <input type="text" id="ct-name" name="name" required placeholder="Juan Rodríguez"/>
               </div>
-              <div>
-                <label for="contact-company" class="block text-xs uppercase tracking-widest mb-2" style="color: #666666">
-                  Empresa
-                </label>
-                <input
-                  type="text"
-                  id="contact-company"
-                  name="company"
-                  placeholder="Mi Empresa S.A."
-                  class="form-input w-full px-4 py-3 text-sm border outline-none transition-all duration-200"
-                  style="background: white; border-color: rgba(0,0,0,0.12); color: #0a0a0a"
-                />
+              <div class="ct-field">
+                <label for="ct-company">Empresa</label>
+                <input type="text" id="ct-company" name="company" placeholder="Mi Empresa S.A."/>
               </div>
             </div>
 
-            <div class="grid sm:grid-cols-2 gap-5">
-              <div>
-                <label for="contact-email" class="block text-xs uppercase tracking-widest mb-2" style="color: #666666">
-                  Correo electrónico *
-                </label>
-                <input
-                  type="email"
-                  id="contact-email"
-                  name="email"
-                  required
-                  placeholder="correo@empresa.com"
-                  class="form-input w-full px-4 py-3 text-sm border outline-none transition-all duration-200"
-                  style="background: white; border-color: rgba(0,0,0,0.12); color: #0a0a0a"
-                />
+            <div class="ct-form-row">
+              <div class="ct-field">
+                <label for="ct-email">Correo *</label>
+                <input type="email" id="ct-email" name="email" required placeholder="correo@empresa.com"/>
               </div>
-              <div>
-                <label for="contact-phone" class="block text-xs uppercase tracking-widest mb-2" style="color: #666666">
-                  Teléfono
-                </label>
-                <input
-                  type="tel"
-                  id="contact-phone"
-                  name="phone"
-                  placeholder="81 1234 5678"
-                  class="form-input w-full px-4 py-3 text-sm border outline-none transition-all duration-200"
-                  style="background: white; border-color: rgba(0,0,0,0.12); color: #0a0a0a"
-                />
+              <div class="ct-field">
+                <label for="ct-phone">Teléfono</label>
+                <input type="tel" id="ct-phone" name="phone" placeholder="81 1234 5678"/>
               </div>
             </div>
 
-            <div>
-              <label for="contact-service" class="block text-xs uppercase tracking-widest mb-2" style="color: #666666">
-                Servicio requerido
-              </label>
-              <select
-                id="contact-service"
-                name="service"
-                class="form-input w-full px-4 py-3 text-sm border outline-none transition-all duration-200 appearance-none cursor-pointer"
-                style="background: white; border-color: rgba(0,0,0,0.12); color: #0a0a0a"
-              >
+            <div class="ct-field">
+              <label for="ct-service">Servicio requerido</label>
+              <select id="ct-service" name="service">
                 <option value="">Seleccionar servicio...</option>
                 <option>Instalación de Líneas de Media Tensión</option>
                 <option>Mantenimiento Preventivo y Correctivo</option>
@@ -206,58 +180,376 @@ import { company } from '../../data/company';
               </select>
             </div>
 
-            <div>
-              <label for="contact-message" class="block text-xs uppercase tracking-widest mb-2" style="color: #666666">
-                Descripción del proyecto *
-              </label>
-              <textarea
-                id="contact-message"
-                name="message"
-                required
-                rows="4"
-                placeholder="Describe brevemente tu proyecto o necesidad eléctrica..."
-                class="form-input w-full px-4 py-3 text-sm border outline-none transition-all duration-200 resize-none"
-                style="background: white; border-color: rgba(0,0,0,0.12); color: #0a0a0a"
-              ></textarea>
+            <div class="ct-field">
+              <label for="ct-message">Descripción del proyecto *</label>
+              <textarea id="ct-message" name="message" required rows="4"
+                placeholder="Voltaje, capacidad, ubicación, plazos…"></textarea>
             </div>
 
-            <!-- Submit -->
-            <button type="submit" id="submit-btn" class="btn-primary w-full justify-center">
-              <span id="submit-text">Enviar solicitud</span>
-              <svg id="submit-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-              <!-- Loading spinner (hidden by default) -->
-              <svg id="submit-spinner" class="hidden animate-spin" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                <circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="2" stroke-dasharray="28" stroke-dashoffset="14" stroke-linecap="round"/>
-              </svg>
-            </button>
+            <div class="ct-submit-row">
+              <span class="ct-privacy">Al enviar aceptas nuestro aviso de privacidad.</span>
+              <button type="submit" id="submit-btn" class="btn-primary">
+                <span id="submit-text">Enviar solicitud</span>
+                <svg id="submit-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <svg id="submit-spinner" class="hidden animate-spin" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="2" stroke-dasharray="28" stroke-dashoffset="14" stroke-linecap="round"/>
+                </svg>
+              </button>
+            </div>
 
-            <!-- Messages -->
-            <div id="form-success" class="hidden p-4 text-sm text-center" style="background: rgba(0,160,0,0.12); border: 1px solid rgba(0,160,0,0.3); color: #4ade80" role="alert">
+            <div id="form-success" class="hidden ct-msg ct-msg-ok" role="alert">
               ¡Mensaje enviado! Te contactaremos en menos de 24 horas.
             </div>
-            <div id="form-error" class="hidden p-4 text-sm text-center" style="background: rgba(204,0,0,0.12); border: 1px solid rgba(204,0,0,0.3); color: var(--color-red-light)" role="alert">
+            <div id="form-error" class="hidden ct-msg ct-msg-err" role="alert">
               Hubo un error al enviar. Por favor llámanos directamente al 812 2358545.
             </div>
           </form>
         </div>
       </div>
+
     </div>
   </div>
 </section>
 
 <style>
-  .form-input::placeholder { color: #bbbbbb; }
-  .form-input:focus {
-    border-color: rgba(204, 0, 0, 0.6) !important;
-    box-shadow: 0 0 0 3px rgba(204, 0, 0, 0.1);
+  .ct-section {
+    padding-block: clamp(4rem, 8vw, 7rem);
+    background: #F5F5F5;
   }
+
+  /* ── Encabezado ancho completo ── */
+  .ct-header {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 3rem;
+    align-items: end;
+    margin-bottom: 3rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid rgba(0,0,0,.1);
+  }
+
+  .ct-kicker {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: #0a0a0a;
+    margin-bottom: .9rem;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+  }
+  .ct-kicker::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--color-red);
+    flex-shrink: 0;
+  }
+
+  .ct-h2 {
+    font-family: var(--font-display);
+    font-weight: 900;
+    text-transform: uppercase;
+    font-size: clamp(1.8rem, 3.5vw, 3.2rem);
+    line-height: .97;
+    color: #0a0a0a;
+  }
+  .ct-h2 em { font-style: normal; color: var(--color-red); }
+
+  .ct-intro {
+    color: #666;
+    font-size: .95rem;
+    line-height: 1.7;
+    max-width: 38ch;
+    align-self: end;
+  }
+
+  /* ── Grid principal ── */
+  .ct-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 2.5rem;
+    align-items: start;
+  }
+
+  /* ── Columna izquierda ── */
+  .ct-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border-top: 1px solid rgba(0,0,0,.1);
+    border-bottom: 1px solid rgba(0,0,0,.1);
+    margin-bottom: 1.5rem;
+  }
+
+  .ct-item {
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    gap: 1rem;
+    align-items: center;
+    padding: 1.1rem 0;
+    border-bottom: 1px solid rgba(0,0,0,.08);
+    text-decoration: none;
+    color: inherit;
+  }
+  .ct-item:last-child { border-bottom: 0; }
+
+  .ct-item-link { transition: color .2s; }
+  .ct-item-link:hover .ct-item-value { color: var(--color-red); }
+
+  .ct-icon {
+    width: 40px; height: 40px;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(204,0,0,.1);
+    border: 1px solid rgba(204,0,0,.25);
+    border-radius: 8px;
+    flex-shrink: 0;
+  }
+
+  .ct-item-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: #999;
+    margin-bottom: .2rem;
+  }
+
+  .ct-item-value {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: .02em;
+    color: #0a0a0a;
+    transition: color .2s;
+  }
+
+  .ct-address {
+    font-style: normal;
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: .875rem;
+    line-height: 1.6;
+    color: #555;
+    letter-spacing: 0;
+  }
+
+  /* Banda emergencia */
+  .ct-emergency {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 1.2rem;
+    border: 1px solid rgba(204,0,0,.3);
+    background: rgba(204,0,0,.06);
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .ct-emrg-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--color-red);
+    display: flex;
+    align-items: center;
+    gap: .4rem;
+    margin-bottom: .25rem;
+  }
+
+  .ct-emrg-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--color-red);
+    flex-shrink: 0;
+    animation: emrgPulse 1.6s infinite;
+  }
+  @keyframes emrgPulse { 0%, 100% { opacity: 1; } 50% { opacity: .3; } }
+
+  .ct-emrg-num {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 1.25rem;
+    color: #0a0a0a;
+    letter-spacing: .02em;
+  }
+
+  .ct-emrg-note {
+    font-size: .8rem;
+    color: #888;
+    text-align: right;
+  }
+
+  /* Mapa */
+  .ct-map {
+    background: #fff;
+    border: 1px solid rgba(0,0,0,.08);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .ct-map-hd {
+    padding: .85rem 1.1rem;
+    border-bottom: 1px solid rgba(0,0,0,.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .ct-map-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    font-size: .9rem;
+    color: #0a0a0a;
+  }
+
+  .ct-map-tag {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--color-red);
+  }
+
+  .ct-map-viz {
+    aspect-ratio: 16/7;
+    color: #0a0a0a;
+  }
+  .ct-map-viz svg { width: 100%; height: 100%; display: block; }
+
+  /* ── Columna derecha: formulario ── */
+  .ct-form-card {
+    background: #fff;
+    border: 1px solid rgba(0,0,0,.08);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .ct-form-hd {
+    padding: 1.3rem 1.6rem;
+    border-bottom: 1px solid rgba(0,0,0,.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .ct-form-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    font-size: 1.1rem;
+    color: #0a0a0a;
+  }
+
+  .ct-form-sla {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--color-red);
+  }
+
+  .ct-form {
+    padding: 1.4rem 1.6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .ct-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .ct-field {
+    display: flex;
+    flex-direction: column;
+    gap: .35rem;
+  }
+
+  .ct-field label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: #888;
+  }
+
+  .ct-field input,
+  .ct-field select,
+  .ct-field textarea {
+    width: 100%;
+    padding: .7rem .9rem;
+    background: #F9F9F9;
+    border: 1px solid rgba(0,0,0,.12);
+    border-radius: 6px;
+    font-family: var(--font-body);
+    font-size: .9rem;
+    color: #0a0a0a;
+    outline: none;
+    transition: border-color .2s, box-shadow .2s;
+    appearance: none;
+  }
+  .ct-field input::placeholder,
+  .ct-field textarea::placeholder { color: #bbb; }
+  .ct-field input:focus,
+  .ct-field select:focus,
+  .ct-field textarea:focus {
+    border-color: rgba(204,0,0,.5);
+    box-shadow: 0 0 0 3px rgba(204,0,0,.08);
+  }
+  .ct-field textarea { resize: vertical; min-height: 96px; }
+
+  .ct-submit-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    padding-top: .4rem;
+  }
+
+  .ct-privacy {
+    font-size: .78rem;
+    color: #aaa;
+  }
+
+  .ct-msg {
+    padding: .85rem 1rem;
+    font-size: .85rem;
+    text-align: center;
+    border-radius: 6px;
+    border: 1px solid;
+  }
+  .ct-msg-ok { background: rgba(0,160,0,.1); border-color: rgba(0,160,0,.3); color: #166534; }
+  .ct-msg-err { background: rgba(204,0,0,.1); border-color: rgba(204,0,0,.3); color: var(--color-red); }
+
+  /* ── Responsive ── */
+  @media (max-width: 900px) {
+    .ct-header { grid-template-columns: 1fr; gap: 1rem; }
+    .ct-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .ct-form-row { grid-template-columns: 1fr; }
+    .ct-submit-row { flex-direction: column; align-items: stretch; }
+    .ct-submit-row .btn-primary { justify-content: center; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ct-emrg-dot { animation: none; }
+  }
+
   .animate-spin { animation: spin 1s linear infinite; }
   @keyframes spin { to { transform: rotate(360deg); } }
-  @media (prefers-reduced-motion: reduce) {
-    .animate-spin { animation: none; }
-  }
+  @media (prefers-reduced-motion: reduce) { .animate-spin { animation: none; } }
 </style>
 
 <script>
@@ -267,29 +559,40 @@ import { company } from '../../data/company';
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (!prefersReducedMotion) {
     gsap.registerPlugin(ScrollTrigger);
-    gsap.to('.contact-section .gsap-fade-up', {
-      opacity: 1, y: 0, duration: 0.7, stagger: 0.12, ease: 'power3.out',
-      scrollTrigger: { trigger: '.contact-section', start: 'top 75%' },
-    });
-    gsap.to('.contact-form-wrap', {
-      opacity: 1, x: 0, duration: 0.8, ease: 'power3.out',
-      scrollTrigger: { trigger: '.contact-section', start: 'top 70%' },
-    });
+
+    gsap.fromTo(
+      '.ct-header',
+      { opacity: 0, y: 24 },
+      { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out',
+        scrollTrigger: { trigger: '.ct-section', start: 'top 78%' } },
+    );
+
+    gsap.fromTo(
+      '.ct-left',
+      { opacity: 0, x: -24 },
+      { opacity: 1, x: 0, duration: 0.7, ease: 'power3.out',
+        scrollTrigger: { trigger: '.ct-grid', start: 'top 80%' } },
+    );
+
+    gsap.fromTo(
+      '.ct-right',
+      { opacity: 0, x: 24 },
+      { opacity: 1, x: 0, duration: 0.7, ease: 'power3.out',
+        scrollTrigger: { trigger: '.ct-grid', start: 'top 80%' } },
+    );
   }
 
-  // Form submission via Web3Forms
-  const form = document.getElementById('contact-form') as HTMLFormElement;
-  const submitBtn  = document.getElementById('submit-btn') as HTMLButtonElement;
-  const submitText = document.getElementById('submit-text')!;
-  const submitIcon = document.getElementById('submit-icon')!;
+  /* ── Form submission via Web3Forms ── */
+  const form        = document.getElementById('contact-form') as HTMLFormElement;
+  const submitBtn   = document.getElementById('submit-btn') as HTMLButtonElement;
+  const submitText  = document.getElementById('submit-text')!;
+  const submitIcon  = document.getElementById('submit-icon')!;
   const submitSpinner = document.getElementById('submit-spinner')!;
-  const successMsg = document.getElementById('form-success')!;
-  const errorMsg   = document.getElementById('form-error')!;
+  const successMsg  = document.getElementById('form-success')!;
+  const errorMsg    = document.getElementById('form-error')!;
 
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
-
-    // Loading state
     submitBtn.disabled = true;
     submitText.textContent = 'Enviando...';
     submitIcon.classList.add('hidden');
@@ -298,13 +601,11 @@ import { company } from '../../data/company';
     errorMsg.classList.add('hidden');
 
     try {
-      const formData = new FormData(form);
       const res = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        body: formData,
+        body: new FormData(form),
       });
       const data = await res.json();
-
       if (data.success) {
         successMsg.classList.remove('hidden');
         form.reset();

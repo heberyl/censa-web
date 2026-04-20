@@ -1,42 +1,115 @@
 ---
 const certs = [
-  { name: 'NOM-001-SEDE', desc: 'Instalaciones eléctricas', abbr: 'NOM' },
-  { name: 'CFE Proveedor', desc: 'Comisión Federal de Electricidad', abbr: 'CFE' },
-  { name: 'STPS', desc: 'Seguridad y Salud en el Trabajo', abbr: 'STPS' },
-  { name: 'ANCE', desc: 'Verificación de Instalaciones', abbr: 'ANCE' },
-  { name: 'ISO 9001', desc: 'Sistema de Gestión de Calidad', abbr: 'ISO' },
+  { abbr: 'NOM', name: 'NOM-001-SEDE', desc: 'Instalaciones eléctricas' },
+  { abbr: 'CFE', name: 'CFE Proveedor', desc: 'Comisión Federal de Electricidad' },
+  { abbr: 'STPS', name: 'STPS', desc: 'Seguridad y salud en el trabajo' },
+  { abbr: 'ANCE', name: 'ANCE', desc: 'Verificación de instalaciones' },
+  { abbr: 'ISO', name: 'ISO 9001', desc: 'Gestión de calidad' },
 ];
 ---
 
-<section class="certs-section py-16" style="background: #F5F5F5; border-top: 1px solid rgba(0,0,0,0.06); border-bottom: 1px solid rgba(0,0,0,0.06)">
+<section class="cert-section">
   <div class="container-site">
-    <div class="flex flex-col lg:flex-row items-center gap-10">
+    <div class="cert-inner">
 
-      <div class="flex-shrink-0 text-center lg:text-left">
-        <p class="text-xs uppercase tracking-widest mb-1" style="color: #999999">Certificaciones</p>
-        <p class="text-sm font-semibold" style="color: #444444">y Normas Aplicadas</p>
-      </div>
+      <p class="cert-ttl">Certificaciones<br/>y normas<br/>aplicadas</p>
 
-      <div class="hidden lg:block w-px h-12" style="background: rgba(0,0,0,0.1)" aria-hidden="true"></div>
-
-      <div class="certs-row flex flex-wrap justify-center lg:justify-start items-center gap-6 flex-1">
-        {certs.map((cert) => (
-          <div class="cert-badge gsap-fade-in group flex items-center gap-3 px-5 py-3 border bg-white transition-all duration-300 hover:border-red-300 hover:shadow-sm"
-               style="border-color: rgba(0,0,0,0.08)">
-            <div class="w-10 h-10 flex items-center justify-center font-black text-xs"
-                 style="font-family: var(--font-display); background: rgba(204,0,0,0.08); color: var(--color-red); border: 1px solid rgba(204,0,0,0.25)">
-              {cert.abbr.length > 4 ? cert.abbr.slice(0, 3) : cert.abbr}
-            </div>
-            <div>
-              <div class="text-sm font-bold" style="color: #0a0a0a">{cert.name}</div>
-              <div class="text-xs" style="color: #888888">{cert.desc}</div>
-            </div>
+      <div class="cert-row">
+        {certs.map((c) => (
+          <div class="cert-cell">
+            <span class="cert-abbr">{c.abbr}</span>
+            <span class="cert-name">{c.name}</span>
+            <span class="cert-desc">{c.desc}</span>
           </div>
         ))}
       </div>
+
     </div>
   </div>
 </section>
+
+<style>
+  .cert-section {
+    padding-block: clamp(2rem, 4vw, 3.5rem);
+    background: #ffffff;
+    border-top: 1px solid rgba(0,0,0,.08);
+    border-bottom: 1px solid rgba(0,0,0,.08);
+  }
+
+  .cert-inner {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 2.4rem;
+    align-items: center;
+  }
+
+  .cert-ttl {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: #999;
+    line-height: 1.6;
+    max-width: 14ch;
+    flex-shrink: 0;
+  }
+
+  .cert-row {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    border-left: 1px solid rgba(0,0,0,.1);
+  }
+
+  .cert-cell {
+    padding: 1.1rem 1.4rem;
+    border-right: 1px solid rgba(0,0,0,.1);
+    display: flex;
+    flex-direction: column;
+    gap: .3rem;
+    cursor: default;
+    transition: background .2s ease;
+  }
+  .cert-cell:hover { background: #ECE8DF; }
+
+  .cert-abbr {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 1.15rem;
+    letter-spacing: .04em;
+    color: var(--color-red);
+    line-height: 1;
+  }
+
+  .cert-name {
+    font-family: var(--font-display);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    font-size: .9rem;
+    color: #0a0a0a;
+    line-height: 1.1;
+  }
+
+  .cert-desc {
+    font-size: .78rem;
+    color: #888;
+    line-height: 1.4;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 1024px) {
+    .cert-inner { grid-template-columns: 1fr; gap: 1.2rem; }
+    .cert-row { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  @media (max-width: 600px) {
+    .cert-row { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cert-cell { transition: none; }
+  }
+</style>
 
 <script>
   import gsap from 'gsap';
@@ -45,9 +118,11 @@ const certs = [
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (!prefersReducedMotion) {
     gsap.registerPlugin(ScrollTrigger);
-    gsap.to('.cert-badge', {
-      opacity: 1, duration: 0.5, stagger: 0.08, ease: 'power2.out',
-      scrollTrigger: { trigger: '.certs-section', start: 'top 85%' },
-    });
+    gsap.fromTo(
+      '.cert-inner',
+      { opacity: 0, y: 20 },
+      { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out',
+        scrollTrigger: { trigger: '.cert-section', start: 'top 88%' } },
+    );
   }
 </script>

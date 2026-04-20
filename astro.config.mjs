@@ -3,13 +3,16 @@ import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 
-// https://astro.build/config
 export default defineConfig({
+  output: 'static',
   site: 'https://censa-web.pages.dev',
   vite: {
-    plugins: [tailwindcss()]
+    plugins: [tailwindcss()],
+    build: {
+      assetsInlineLimit: 0,
+    },
   },
   integrations: [
-    sitemap()
-  ]
+    sitemap(),
+  ],
 });

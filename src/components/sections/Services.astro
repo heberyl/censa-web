@@ -1,133 +1,392 @@
 ---
 import { services } from '../../data/services';
+const first = services[0];
 ---
 
-<section id="servicios" class="services-section section-pad" style="background: #ffffff">
+<section id="servicios" class="srv-section">
   <div class="container-site">
 
-    <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-16">
-      <div class="max-w-xl">
-        <span class="tag mb-4 gsap-fade-up">Nuestros Servicios</span>
-        <h2 class="text-display gsap-fade-up" style="font-size: clamp(2.5rem, 6vw, 5rem); color: #0a0a0a">
-          Soluciones eléctricas
-          <span style="color: var(--color-red)"> de alto voltaje</span>
+    <!-- Encabezado -->
+    <div class="srv-head">
+      <div>
+        <p class="srv-kicker">Servicios</p>
+        <h2 class="srv-h2">
+          Todo el ciclo de <em>media tensión</em>,<br/>
+          bajo un mismo techo.
         </h2>
       </div>
-      <p class="max-w-sm text-sm leading-relaxed gsap-fade-up" style="color: #666666">
-        Cada servicio está respaldado por ingenieros certificados y
-        más de 15 años de experiencia en el sector de media tensión.
+      <p class="srv-mini">
+        Desde el diagnóstico hasta la puesta en servicio certificada.
+        Cada disciplina la ejecuta un especialista acreditado.
       </p>
     </div>
 
-    <!-- Tabs navigation -->
-    <div class="services-tabs-nav flex flex-wrap gap-2 mb-10 border-b gsap-fade-up" style="border-color: rgba(0,0,0,0.1)">
-      {services.map((service, i) => (
-        <button
-          class="service-tab-btn px-4 py-3 text-sm font-semibold uppercase tracking-wide transition-all duration-200"
-          data-tab={service.id}
-          style={i === 0
-            ? 'color: #0a0a0a; border-bottom: 2px solid var(--color-red); margin-bottom: -1px;'
-            : 'color: #999999; border-bottom: 2px solid transparent; margin-bottom: -1px;'}
-          aria-selected={i === 0 ? 'true' : 'false'}
-        >
-          {service.shortTitle}
-        </button>
-      ))}
-    </div>
+    <!-- Layout: lista lateral + panel -->
+    <div class="srv-layout">
 
-    <div class="services-panels">
-      {services.map((service, i) => (
-        <div
-          id={`panel-${service.id}`}
-          class="service-panel grid lg:grid-cols-2 gap-12 lg:gap-20 items-center"
-          style={i !== 0 ? 'display: none;' : ''}
-          role="tabpanel"
-        >
-          <div>
-            <div class="text-6xl font-black mb-4 leading-none" style="font-family: var(--font-display); color: rgba(204,0,0,0.1);" aria-hidden="true">
-              {String(i + 1).padStart(2, '0')}
-            </div>
-            <h3 class="text-display mb-4" style="font-size: clamp(1.75rem, 4vw, 3rem); color: #0a0a0a">
-              {service.title}
-            </h3>
-            <p class="text-base leading-relaxed mb-8" style="color: #666666">
-              {service.description}
-            </p>
+      <!-- Lista izquierda -->
+      <div class="srv-list">
+        {services.map((sv, i) => (
+          <button
+            class={`srv-item${i === 0 ? ' is-active' : ''}`}
+            data-idx={String(i)}
+            aria-label={`Ver servicio: ${sv.shortTitle}`}
+          >
+            <span class="srv-n">{String(i + 1).padStart(2, '0')}</span>
+            <span class="srv-t">{sv.shortTitle}</span>
+            <svg class="srv-chev" width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        ))}
+      </div>
 
-            <ul class="space-y-3" role="list">
-              {service.features.map((feat) => (
-                <li class="flex items-center gap-3 text-sm" style="color: #444444">
-                  <span class="flex-shrink-0 w-5 h-5 flex items-center justify-center" style="background: rgba(204,0,0,0.08); border: 1px solid rgba(204,0,0,0.3)">
-                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-                      <path d="M2 6l3 3 5-5" stroke="var(--color-red)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                  </span>
-                  {feat}
-                </li>
-              ))}
-            </ul>
+      <!-- Panel derecho -->
+      <div class="srv-panel">
 
-            <a href="#contacto" class="btn-primary mt-8">
-              Solicitar este servicio
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </a>
-          </div>
-
-          <div class="service-image-wrap relative aspect-[4/3] overflow-hidden"
-               style="background: #f0f0f0; border: 1px solid rgba(0,0,0,0.08)">
-            <img
-              src={`/assets/images/service-${service.id}.webp`}
-              alt={`Servicio de ${service.title} — CENSA`}
-              class="w-full h-full object-cover"
-              width="640" height="480" loading="lazy"
-            />
-            <div class="absolute top-4 right-4 w-16 h-16 border-t-2 border-r-2" style="border-color: var(--color-red)" aria-hidden="true"></div>
-            <div class="absolute bottom-4 left-4 w-16 h-16 border-b-2 border-l-2" style="border-color: var(--color-red)" aria-hidden="true"></div>
+        <!-- Placeholder imagen -->
+        <div class="srv-img-wrap">
+          <div class="srv-img-hud">
+            <span id="srv-hud-l">// {first.shortTitle.toUpperCase()}</span>
+            <span id="srv-hud-r">CENSA · 01</span>
           </div>
         </div>
-      ))}
+
+        <!-- Texto -->
+        <div class="srv-txt">
+          <h3 id="srv-title">{first.title}</h3>
+          <p id="srv-desc">{first.description}</p>
+
+          <ul id="srv-features" class="srv-features">
+            {first.features.map((f) => <li>{f}</li>)}
+          </ul>
+
+          <div id="srv-specs" class="srv-specs">
+            {first.specs.map((sp) => (
+              <div class="srv-spec">
+                <div class="srv-spec-l">{sp.l}</div>
+                <div class="srv-spec-v">{sp.v}</div>
+              </div>
+            ))}
+          </div>
+
+          <a href="#contacto" class="srv-more">
+            Solicitar cotización
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+
+      </div>
     </div>
+
   </div>
 </section>
+
+<style>
+  .srv-section {
+    padding-block: clamp(4rem, 8vw, 7rem);
+    background: #ECE8DF;
+  }
+
+  .srv-head {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+    align-items: end;
+  }
+
+  .srv-kicker {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: #0a0a0a;
+    margin-bottom: .9rem;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+  }
+  .srv-kicker::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--color-red);
+    flex-shrink: 0;
+  }
+
+  .srv-h2 {
+    font-family: var(--font-display);
+    font-weight: 900;
+    text-transform: uppercase;
+    font-size: clamp(1.8rem, 3.5vw, 3.2rem);
+    line-height: .97;
+    color: #0a0a0a;
+  }
+  .srv-h2 em { font-style: normal; color: var(--color-red); }
+
+  .srv-mini {
+    color: #6b6b6b;
+    max-width: 42ch;
+    font-size: .95rem;
+    line-height: 1.65;
+  }
+
+  /* ── Layout ── */
+  .srv-layout {
+    display: grid;
+    grid-template-columns: 290px 1fr;
+    border-top: 1px solid rgba(0,0,0,.1);
+    border-bottom: 1px solid rgba(0,0,0,.1);
+  }
+
+  /* ── Lista ── */
+  .srv-list {
+    border-right: 1px solid rgba(0,0,0,.1);
+  }
+
+  .srv-item {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: .9rem;
+    align-items: center;
+    width: 100%;
+    text-align: left;
+    padding: 1.15rem 1.2rem 1.15rem 0;
+    border: none;
+    border-bottom: 1px solid rgba(0,0,0,.08);
+    background: none;
+    cursor: pointer;
+    position: relative;
+    transition: padding-left .3s cubic-bezier(.2,.7,.2,1);
+  }
+  .srv-item:last-child { border-bottom: 0; }
+
+  .srv-item::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 10%; bottom: 10%;
+    width: 3px;
+    background: var(--color-red);
+    transform: scaleY(0);
+    transform-origin: center;
+    transition: transform .25s ease;
+    border-radius: 0 2px 2px 0;
+  }
+  .srv-item.is-active::before,
+  .srv-item:focus-visible::before { transform: scaleY(1); }
+
+  .srv-item:hover,
+  .srv-item.is-active { padding-left: .7rem; }
+
+  .srv-n {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: #aaa;
+    letter-spacing: .1em;
+  }
+
+  .srv-t {
+    font-family: var(--font-display);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    font-size: .95rem;
+    color: #0a0a0a;
+    transition: color .2s;
+  }
+  .srv-item.is-active .srv-t { color: var(--color-red); }
+
+  .srv-chev {
+    color: rgba(0,0,0,.2);
+    transition: color .2s, transform .3s cubic-bezier(.2,.7,.2,1);
+    flex-shrink: 0;
+  }
+  .srv-item:hover .srv-chev,
+  .srv-item.is-active .srv-chev { color: var(--color-red); transform: translateX(4px); }
+
+  /* ── Panel ── */
+  .srv-panel {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 1.6rem;
+    padding: 1.4rem;
+  }
+
+  .srv-img-wrap {
+    aspect-ratio: 4/3;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    background: repeating-linear-gradient(135deg, #d6d1c6 0 10px, #ccc7ba 10px 20px);
+  }
+
+  .srv-img-hud {
+    position: absolute;
+    inset: 0;
+    padding: .8rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.85);
+    background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,.5) 100%);
+    pointer-events: none;
+  }
+
+  .srv-txt h3 {
+    font-family: var(--font-display);
+    font-weight: 900;
+    text-transform: uppercase;
+    font-size: clamp(1.3rem, 2.4cqw, 2rem);
+    line-height: 1.02;
+    color: #0a0a0a;
+  }
+
+  .srv-txt p {
+    color: #6b6b6b;
+    margin-top: .7rem;
+    font-size: .9rem;
+    line-height: 1.65;
+  }
+
+  .srv-features {
+    margin-top: 1rem;
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: .45rem 1.2rem;
+  }
+  .srv-features li {
+    font-size: .84rem;
+    padding-left: 1.2rem;
+    position: relative;
+    color: #2a2a2a;
+    line-height: 1.45;
+  }
+  .srv-features li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: .55rem;
+    width: 8px; height: 1px;
+    background: var(--color-red);
+  }
+
+  .srv-specs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: .8rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(0,0,0,.1);
+  }
+  .srv-spec-l {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: #aaa;
+  }
+  .srv-spec-v {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 1.25rem;
+    color: var(--color-red);
+    line-height: 1;
+    margin-top: .25rem;
+  }
+
+  .srv-more {
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+    margin-top: 1.4rem;
+    color: var(--color-red);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: .85rem;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: gap .2s;
+  }
+  .srv-more:hover { gap: .7rem; }
+
+  /* ── Responsive ── */
+  @media (max-width: 1024px) {
+    .srv-panel { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 768px) {
+    .srv-head { grid-template-columns: 1fr; gap: 1rem; }
+    .srv-layout { grid-template-columns: 1fr; }
+    .srv-list { border-right: 0; border-bottom: 1px solid rgba(0,0,0,.1); max-height: 260px; overflow-y: auto; }
+    .srv-features { grid-template-columns: 1fr; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .srv-item, .srv-item::before, .srv-chev, .srv-img { transition: none; }
+  }
+</style>
 
 <script>
   import gsap from 'gsap';
   import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
+  /* ── Entry animation ── */
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (!prefersReducedMotion) {
     gsap.registerPlugin(ScrollTrigger);
-    gsap.to('.services-section .gsap-fade-up', {
-      opacity: 1, y: 0, duration: 0.7, stagger: 0.15, ease: 'power3.out',
-      scrollTrigger: { trigger: '.services-section', start: 'top 75%' },
-    });
+    gsap.fromTo(
+      '.srv-section .srv-head, .srv-section .srv-layout',
+      { opacity: 0, y: 28 },
+      { opacity: 1, y: 0, duration: 0.7, stagger: 0.15, ease: 'power3.out',
+        scrollTrigger: { trigger: '.srv-section', start: 'top 78%' } },
+    );
   }
 
-  const tabBtns = document.querySelectorAll<HTMLButtonElement>('.service-tab-btn');
-  const panels  = document.querySelectorAll<HTMLElement>('.service-panel');
+  /* ── Services data (inlined at build time) ── */
+  const SRV_DATA = JSON.parse(document.getElementById('srv-data')!.textContent!);
 
-  tabBtns.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const targetId = btn.dataset.tab!;
+  const items   = document.querySelectorAll<HTMLButtonElement>('.srv-item');
+  const hudL    = document.getElementById('srv-hud-l')!;
+  const hudR    = document.getElementById('srv-hud-r')!;
+  const titleEl = document.getElementById('srv-title')!;
+  const descEl  = document.getElementById('srv-desc')!;
+  const featEl  = document.getElementById('srv-features')!;
+  const specsEl = document.getElementById('srv-specs')!;
 
-      tabBtns.forEach((b) => {
-        b.style.color = '#999999';
-        b.style.borderBottomColor = 'transparent';
-        b.setAttribute('aria-selected', 'false');
-      });
-      btn.style.color = '#0a0a0a';
-      btn.style.borderBottomColor = 'var(--color-red)';
-      btn.setAttribute('aria-selected', 'true');
+  const goTo = (idx: number) => {
+    items.forEach((b, i) => b.classList.toggle('is-active', i === idx));
+    const sv = SRV_DATA[idx];
+    const n  = String(idx + 1).padStart(2, '0');
 
-      panels.forEach((panel) => { panel.style.display = 'none'; });
-      const target = document.getElementById(`panel-${targetId}`)!;
-      target.style.display = 'grid';
+    hudL.textContent = `// ${sv.shortTitle.toUpperCase()}`;
+    hudR.textContent = `CENSA · ${n}`;
+    titleEl.textContent = sv.title;
+    descEl.textContent  = sv.description;
+    featEl.innerHTML = sv.features.map((f: string) => `<li>${f}</li>`).join('');
+    specsEl.innerHTML = sv.specs.map((sp: { l: string; v: string }) =>
+      `<div class="srv-spec"><div class="srv-spec-l">${sp.l}</div><div class="srv-spec-v">${sp.v}</div></div>`
+    ).join('');
+  };
 
-      if (!prefersReducedMotion) {
-        gsap.fromTo(target, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' });
-      }
-    });
-  });
+  items.forEach((btn, i) => btn.addEventListener('click', () => goTo(i)));
 </script>
+
+<!-- Data serialized for client JS -->
+<div id="srv-data" hidden set:html={JSON.stringify(
+  services.map(sv => ({
+    id: sv.id,
+    title: sv.title,
+    shortTitle: sv.shortTitle,
+    description: sv.description,
+    features: sv.features,
+    specs: sv.specs,
+  }))
+)}></div>

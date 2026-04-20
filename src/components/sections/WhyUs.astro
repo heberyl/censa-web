@@ -1,106 +1,260 @@
 ---
 const pillars = [
   {
-    icon: 'shield',
     title: 'Certificación NOM y CFE',
-    description: 'Todos nuestros trabajos cumplen con la NOM-001-SEDE y los estándares técnicos de CFE. Instalaciones que pasan cualquier verificación.',
+    description: 'Todos nuestros trabajos cumplen con la NOM-001-SEDE y los estándares técnicos de CFE. Instalaciones que pasan cualquier verificación oficial.',
   },
   {
-    icon: 'clock',
     title: 'Respuesta 24 / 7',
-    description: 'Cuadrillas disponibles las 24 horas del día, los 365 días del año para atención de emergencias eléctricas. Tiempo de respuesta menor a 2 horas.',
+    description: 'Cuadrillas disponibles las 24 horas, los 365 días del año para emergencias eléctricas. Tiempo de respuesta menor a 2 horas en toda la zona metropolitana.',
   },
   {
-    icon: 'star',
     title: '+15 Años de Experiencia',
-    description: 'Más de una década y media ejecutando proyectos de media tensión en el área metropolitana de Monterrey y el noreste de México.',
+    description: 'Más de una década y media ejecutando proyectos de media tensión en Monterrey y el noreste de México. Conocimiento que se refleja en cada obra.',
   },
   {
-    icon: 'map',
     title: 'Cobertura Regional',
     description: 'Operamos en todo Nuevo León y estados del noreste. Conocemos la infraestructura local y los requerimientos específicos de cada municipio.',
   },
   {
-    icon: 'check',
     title: 'Cero Accidentes',
     description: 'Historial impecable de seguridad en todas nuestras operaciones. Personal certificado y protocolos de seguridad de clase mundial.',
   },
 ];
 ---
 
-<section id="nosotros" class="why-us-section section-pad" style="background: #F5F5F5">
+<section id="nosotros" class="why-section" style="background: #ECE8DF;">
   <div class="container-site">
 
-    <div class="section-header mb-16 max-w-2xl">
-      <span class="tag mb-4 gsap-fade-up">Por qué elegirnos</span>
-      <h2 class="text-display gsap-fade-up" style="font-size: clamp(2.5rem, 6vw, 5rem); color: #0a0a0a">
-        La elección inteligente para tu
-        <span style="color: var(--color-red)"> infraestructura eléctrica</span>
-      </h2>
-      <p class="mt-4 text-base leading-relaxed gsap-fade-up" style="color: #666666">
-        Cinco razones que nos posicionan como la empresa de referencia en servicios
-        eléctricos de media tensión en Nuevo León.
-      </p>
-    </div>
+    <div class="why-grid">
 
-    <div class="pillars-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      {pillars.map((pillar, i) => (
-        <article
-          class="pillar-card gsap-fade-up group relative p-8 border bg-white transition-all duration-300 cursor-default hover:shadow-lg"
-          style="border-color: rgba(0,0,0,0.08)"
-          data-index={i}
-        >
-          <div class="absolute top-0 left-0 right-0 h-0.5 origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100"
-               style="background: var(--color-red)" aria-hidden="true"></div>
+      <!-- Columna izquierda: heading -->
+      <div class="why-left">
+        <div class="why-left-inner">
+          <span class="tag why-tag">Por qué elegirnos</span>
 
-          <div class="icon-wrap mb-6 w-12 h-12 flex items-center justify-center"
-               style="background: rgba(204,0,0,0.08); border: 1px solid rgba(204,0,0,0.25)">
-            {pillar.icon === 'shield' && (
-              <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
-                <path d="M11 2L3 5.5V10c0 4.42 3.36 8.56 8 9.56 4.64-1 8-5.14 8-9.56V5.5L11 2z" stroke="var(--color-red)" stroke-width="1.5" stroke-linejoin="round"/>
-                <path d="M7.5 11l2.5 2.5 4.5-4.5" stroke="var(--color-red)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            )}
-            {pillar.icon === 'clock' && (
-              <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
-                <circle cx="11" cy="11" r="8.5" stroke="var(--color-red)" stroke-width="1.5"/>
-                <path d="M11 6v5l3 3" stroke="var(--color-red)" stroke-width="1.5" stroke-linecap="round"/>
-              </svg>
-            )}
-            {pillar.icon === 'star' && (
-              <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
-                <path d="M11 2l2.7 5.6L20 8.7l-4.5 4.3 1.1 6.1L11 16l-5.6 3.1 1.1-6.1L2 8.7l6.3-.9L11 2z" stroke="var(--color-red)" stroke-width="1.5" stroke-linejoin="round"/>
-              </svg>
-            )}
-            {pillar.icon === 'map' && (
-              <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
-                <path d="M11 12a3 3 0 100-6 3 3 0 000 6z" stroke="var(--color-red)" stroke-width="1.5"/>
-                <path d="M11 2C7.13 2 4 5.13 4 9c0 5.25 7 11 7 11s7-5.75 7-11c0-3.87-3.13-7-7-7z" stroke="var(--color-red)" stroke-width="1.5"/>
-              </svg>
-            )}
-            {pillar.icon === 'check' && (
-              <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
-                <circle cx="11" cy="11" r="8.5" stroke="var(--color-red)" stroke-width="1.5"/>
-                <path d="M7 11l3 3 5-5" stroke="var(--color-red)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            )}
-          </div>
+          <h2 class="why-heading text-display">
+            La elección<br/>
+            <span style="color: var(--color-red)">inteligente</span><br/>
+            para tu industria
+          </h2>
 
-          <h3 class="text-lg font-bold uppercase tracking-wide mb-3" style="font-family: var(--font-display); color: #0a0a0a">
-            {pillar.title}
-          </h3>
-          <p class="text-sm leading-relaxed" style="color: #666666">
-            {pillar.description}
+          <p class="why-desc">
+            Cinco razones que nos posicionan como la empresa de referencia en
+            servicios eléctricos de media tensión en Nuevo León.
           </p>
 
-          <div class="absolute bottom-3 right-4 text-6xl font-black" style="font-family: var(--font-display); color: var(--color-red); opacity: 0.04" aria-hidden="true">
-            {String(i + 1).padStart(2, '0')}
+          <div class="why-stat">
+            <div class="why-stat-value">+200</div>
+            <div class="why-stat-label">Proyectos completados<br/>en el noreste de México</div>
           </div>
-        </article>
-      ))}
+        </div>
+      </div>
+
+      <!-- Columna derecha: lista de pilares -->
+      <div class="why-right">
+        {pillars.map((pillar, i) => (
+          <div class="pillar-item" data-index={i}>
+            <div class="pillar-top-line" aria-hidden="true"></div>
+
+            <div class="pillar-inner">
+              <span class="pillar-number" aria-hidden="true">
+                {String(i + 1).padStart(2, '0')}
+              </span>
+
+              <div class="pillar-content">
+                <h3 class="pillar-title">{pillar.title}</h3>
+                <p class="pillar-desc">{pillar.description}</p>
+              </div>
+
+              <svg class="pillar-arrow" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                <path d="M4 10h12M11 5l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+
+            <!-- bottom line para el último item -->
+            {i === pillars.length - 1 && (
+              <div class="pillar-bottom-line" aria-hidden="true"></div>
+            )}
+          </div>
+        ))}
+      </div>
+
     </div>
   </div>
 </section>
+
+<style>
+  .why-section {
+    padding-block: clamp(5rem, 10vw, 9rem);
+  }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: start;
+  }
+
+  /* ── Left column ── */
+  .why-left-inner {
+    position: sticky;
+    top: 7rem;
+  }
+
+  .why-tag {
+    margin-bottom: 2rem;
+  }
+
+  .why-heading {
+    font-size: clamp(2.6rem, 4.5vw, 4.2rem);
+    line-height: 1.0;
+    color: #0a0a0a;
+    margin-bottom: 1.5rem;
+  }
+
+  .why-desc {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: #666666;
+    max-width: 30ch;
+    margin-bottom: 3rem;
+  }
+
+  .why-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(0,0,0,0.12);
+  }
+
+  .why-stat-value {
+    font-family: var(--font-display);
+    font-size: 3.5rem;
+    font-weight: 900;
+    line-height: 1;
+    color: var(--color-red);
+  }
+
+  .why-stat-label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(0,0,0,0.45);
+    line-height: 1.5;
+  }
+
+  /* ── Right column: pillar items ── */
+  .pillar-item {
+    position: relative;
+    cursor: default;
+  }
+
+  .pillar-top-line,
+  .pillar-bottom-line {
+    height: 1px;
+    background: rgba(0,0,0,0.1);
+    width: 100%;
+  }
+
+  /* Red sweep line on hover */
+  .pillar-top-line::after {
+    content: '';
+    display: block;
+    height: 1px;
+    background: var(--color-red);
+    width: 0;
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .pillar-item:hover .pillar-top-line::after {
+    width: 100%;
+  }
+
+  .pillar-inner {
+    display: grid;
+    grid-template-columns: 3.5rem 1fr auto;
+    gap: 1.5rem;
+    align-items: center;
+    padding-block: 2rem;
+    transition: padding-left 0.3s ease;
+  }
+  .pillar-item:hover .pillar-inner {
+    padding-left: 0.5rem;
+  }
+
+  .pillar-number {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 900;
+    color: rgba(0,0,0,0.1);
+    line-height: 1;
+    transition: color 0.3s ease;
+    user-select: none;
+  }
+  .pillar-item:hover .pillar-number {
+    color: var(--color-red);
+  }
+
+  .pillar-title {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #0a0a0a;
+    margin-bottom: 0.5rem;
+    transition: color 0.3s ease;
+  }
+  .pillar-item:hover .pillar-title {
+    color: var(--color-red);
+  }
+
+  .pillar-desc {
+    font-size: 0.85rem;
+    line-height: 1.65;
+    color: rgba(0,0,0,0.5);
+    max-width: 48ch;
+    transition: color 0.3s ease;
+  }
+  .pillar-item:hover .pillar-desc {
+    color: rgba(0,0,0,0.7);
+  }
+
+  .pillar-arrow {
+    color: rgba(0,0,0,0.2);
+    flex-shrink: 0;
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+  .pillar-item:hover .pillar-arrow {
+    color: var(--color-red);
+    transform: translateX(4px);
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 900px) {
+    .why-grid {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+    .why-left-inner {
+      position: static;
+    }
+    .why-heading {
+      font-size: clamp(2.2rem, 8vw, 3.5rem);
+    }
+  }
+
+  /* ── GSAP initial state ── */
+  .why-left-inner {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  .pillar-item {
+    opacity: 0;
+    transform: translateX(60px);
+  }
+</style>
 
 <script>
   import gsap from 'gsap';
@@ -109,13 +263,15 @@ const pillars = [
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (!prefersReducedMotion) {
     gsap.registerPlugin(ScrollTrigger);
-    gsap.to('.why-us-section .section-header .gsap-fade-up', {
-      opacity: 1, y: 0, duration: 0.7, stagger: 0.15, ease: 'power3.out',
-      scrollTrigger: { trigger: '.why-us-section', start: 'top 75%' },
+
+    gsap.to('.why-left-inner', {
+      opacity: 1, y: 0, duration: 0.8, ease: 'power3.out',
+      scrollTrigger: { trigger: '.why-section', start: 'top 70%' },
     });
-    gsap.to('.pillar-card', {
-      opacity: 1, y: 0, duration: 0.6, stagger: 0.1, ease: 'power3.out',
-      scrollTrigger: { trigger: '.pillars-grid', start: 'top 80%' },
+
+    gsap.to('.pillar-item', {
+      opacity: 1, x: 0, duration: 0.7, stagger: 0.12, ease: 'power3.out',
+      scrollTrigger: { trigger: '.why-right', start: 'top 78%' },
     });
   }
 </script>

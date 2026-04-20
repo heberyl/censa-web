@@ -6,6 +6,8 @@ const testimonials = [
     role: 'Gerente de Mantenimiento',
     company: 'Industrias del Noreste S.A. de C.V.',
     initial: 'R',
+    metric: '72h',
+    metricLabel: 'de instalación sin detener la planta de producción',
   },
   {
     quote: 'Contratamos a CENSA para el mantenimiento anual de nuestras subestaciones y el servicio superó nuestras expectativas. Entregaron reportes técnicos detallados y atendieron observaciones en tiempo récord.',
@@ -13,6 +15,8 @@ const testimonials = [
     role: 'Directora de Operaciones',
     company: 'Desarrolladora Plaza Norte',
     initial: 'L',
+    metric: null,
+    metricLabel: null,
   },
   {
     quote: 'Tuvimos una falla de media tensión un domingo por la noche y CENSA respondió en menos de 90 minutos. Restauraron el servicio antes de que llegara el turno del lunes. Profesionales de verdad.',
@@ -20,67 +24,254 @@ const testimonials = [
     role: 'Director General',
     company: 'Logística Express Monterrey',
     initial: 'C',
+    metric: null,
+    metricLabel: null,
   },
 ];
+
+const featured = testimonials[0];
+const rest = testimonials.slice(1);
 ---
 
-<section class="testimonials-section section-pad" style="background: #ffffff">
+<section class="tst-section">
   <div class="container-site">
 
-    <div class="text-center mb-16 max-w-2xl mx-auto">
-      <span class="tag mb-4 gsap-fade-up">Testimonios</span>
-      <h2 class="text-display gsap-fade-up" style="font-size: clamp(2.5rem, 6vw, 5rem); color: #0a0a0a">
-        Lo que dicen nuestros
-        <span style="color: var(--color-red)"> clientes</span>
-      </h2>
+    <!-- Encabezado -->
+    <div class="tst-lead">
+      <div>
+        <p class="tst-kicker">Testimonios</p>
+        <h2 class="tst-h2">
+          Lo que dicen nuestros <em>clientes</em>.
+        </h2>
+      </div>
+      <p class="tst-sub">
+        Operadores, directores y responsables de mantenimiento que
+        confían su continuidad operativa a CENSA.
+      </p>
     </div>
 
-    <div class="testimonials-container relative overflow-hidden">
-      <div class="testimonials-track flex gap-6 transition-transform duration-500 ease-out" id="testimonials-track">
-        {testimonials.map((t) => (
-          <article
-            class="testimonial-card flex-shrink-0 w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] p-8 border bg-white"
-            style="border-color: rgba(0,0,0,0.08)"
-            aria-label={`Testimonio de ${t.author}`}
-          >
-            <div class="text-6xl leading-none font-black mb-4" style="color: var(--color-red); font-family: var(--font-display); opacity: 0.5" aria-hidden="true">"</div>
-
-            <blockquote class="text-sm leading-relaxed mb-6" style="color: #444444">
-              {t.quote}
-            </blockquote>
-
-            <footer class="flex items-center gap-4 pt-4 border-t" style="border-color: rgba(0,0,0,0.08)">
-              <div class="w-10 h-10 flex items-center justify-center font-bold text-sm flex-shrink-0"
-                   style="background: var(--color-red); color: white; font-family: var(--font-display)">
-                {t.initial}
-              </div>
-              <div>
-                <div class="font-semibold text-sm" style="color: #0a0a0a">{t.author}</div>
-                <div class="text-xs" style="color: #888888">{t.role}</div>
-                <div class="text-xs font-medium" style="color: var(--color-red)">{t.company}</div>
-              </div>
-            </footer>
-          </article>
-        ))}
+    <!-- Testimonio destacado -->
+    <div class="tst-featured">
+      <div class="tst-feat-img" aria-hidden="true">
+        <span class="tst-feat-label">{featured.company}</span>
+      </div>
+      <div class="tst-feat-body">
+        <div class="tst-metric">
+          <span class="tst-metric-v">{featured.metric}</span>
+          <span class="tst-metric-l">{featured.metricLabel}</span>
+        </div>
+        <blockquote class="tst-feat-quote">
+          "{featured.quote}"
+        </blockquote>
+        <footer class="tst-author">
+          <div class="tst-av" aria-hidden="true">{featured.initial}</div>
+          <div>
+            <div class="tst-name">{featured.author}</div>
+            <div class="tst-role">{featured.role} · {featured.company}</div>
+          </div>
+        </footer>
       </div>
     </div>
 
-    <div class="flex justify-center gap-3 mt-10" role="tablist" aria-label="Testimonios">
-      {testimonials.map((_, i) => (
-        <button
-          class="testimonial-dot w-2 h-2 rounded-full transition-all duration-300"
-          style={i === 0
-            ? 'background: var(--color-red); width: 24px; border-radius: 4px;'
-            : 'background: rgba(0,0,0,0.15)'}
-          data-dot={i}
-          aria-label={`Testimonio ${i + 1}`}
-          role="tab"
-          aria-selected={i === 0 ? 'true' : 'false'}
-        ></button>
+    <!-- Mini testimonios -->
+    <div class="tst-more">
+      {rest.map((t) => (
+        <article class="tst-mini">
+          <blockquote class="tst-mini-quote">"{t.quote}"</blockquote>
+          <footer class="tst-author tst-author-mini">
+            <div class="tst-av tst-av-sm" aria-hidden="true">{t.initial}</div>
+            <div>
+              <div class="tst-name">{t.author}</div>
+              <div class="tst-role">{t.role} · {t.company}</div>
+            </div>
+          </footer>
+        </article>
       ))}
     </div>
+
   </div>
 </section>
+
+<style>
+  .tst-section {
+    padding-block: clamp(4rem, 8vw, 7rem);
+    background: #ECE8DF;
+  }
+
+  /* Kicker */
+  .tst-kicker {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: #0a0a0a;
+    margin-bottom: .9rem;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+  }
+  .tst-kicker::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--color-red);
+    flex-shrink: 0;
+  }
+
+  /* Lead */
+  .tst-lead {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 3rem;
+    align-items: end;
+    margin-bottom: 2.2rem;
+  }
+
+  .tst-h2 {
+    font-family: var(--font-display);
+    font-weight: 900;
+    text-transform: uppercase;
+    font-size: clamp(1.8rem, 3.8vw, 3.2rem);
+    line-height: .97;
+    color: #0a0a0a;
+    max-width: 16ch;
+  }
+  .tst-h2 em { font-style: normal; color: var(--color-red); }
+
+  .tst-sub {
+    color: #6b6b6b;
+    font-size: .95rem;
+    line-height: 1.65;
+    max-width: 36ch;
+  }
+
+  /* Featured */
+  .tst-featured {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    background: #ffffff;
+    border: 1px solid rgba(0,0,0,.08);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  .tst-feat-img {
+    min-height: 380px;
+    background:
+      repeating-linear-gradient(135deg, #d6d1c6 0 10px, #ccc7ba 10px 20px);
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    padding: 1rem;
+  }
+
+  .tst-feat-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    background: #fff;
+    color: #0a0a0a;
+    padding: .3rem .6rem;
+    border-radius: 4px;
+  }
+
+  .tst-feat-body {
+    padding: 2.2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1.4rem;
+  }
+
+  .tst-metric {
+    display: flex;
+    align-items: baseline;
+    gap: .8rem;
+  }
+  .tst-metric-v {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 4rem;
+    color: var(--color-red);
+    line-height: 1;
+  }
+  .tst-metric-l {
+    font-size: .88rem;
+    color: #6b6b6b;
+    max-width: 20ch;
+    line-height: 1.45;
+  }
+
+  .tst-feat-quote {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(1.1rem, 1.6cqw, 1.5rem);
+    line-height: 1.25;
+    text-transform: uppercase;
+    letter-spacing: .01em;
+    color: #0a0a0a;
+  }
+
+  /* Author shared */
+  .tst-author {
+    display: flex;
+    align-items: center;
+    gap: .9rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid rgba(0,0,0,.1);
+  }
+  .tst-author-mini { padding-top: .9rem; margin-top: auto; }
+
+  .tst-av {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: var(--color-red);
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+  .tst-av-sm { width: 34px; height: 34px; font-size: .9rem; }
+
+  .tst-name { font-weight: 600; font-size: .95rem; color: #0a0a0a; }
+  .tst-role { font-size: .8rem; color: #888; margin-top: .1rem; }
+
+  /* More mini cards */
+  .tst-more {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 1.2rem;
+  }
+
+  .tst-mini {
+    background: #ffffff;
+    border: 1px solid rgba(0,0,0,.08);
+    border-radius: 10px;
+    padding: 1.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: .9rem;
+  }
+
+  .tst-mini-quote {
+    font-size: .92rem;
+    line-height: 1.6;
+    color: #444;
+    flex: 1;
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .tst-lead { grid-template-columns: 1fr; gap: 1rem; }
+    .tst-featured { grid-template-columns: 1fr; }
+    .tst-feat-img { min-height: 220px; }
+    .tst-more { grid-template-columns: 1fr; }
+  }
+</style>
 
 <script>
   import gsap from 'gsap';
@@ -89,47 +280,26 @@ const testimonials = [
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (!prefersReducedMotion) {
     gsap.registerPlugin(ScrollTrigger);
-    gsap.to('.testimonials-section .gsap-fade-up', {
-      opacity: 1, y: 0, duration: 0.7, stagger: 0.15, ease: 'power3.out',
-      scrollTrigger: { trigger: '.testimonials-section', start: 'top 75%' },
-    });
-    gsap.to('.testimonial-card', {
-      opacity: 1, y: 0, duration: 0.6, stagger: 0.1, ease: 'power3.out',
-      scrollTrigger: { trigger: '.testimonials-container', start: 'top 80%' },
-    });
+
+    gsap.fromTo(
+      '.tst-lead',
+      { opacity: 0, y: 24 },
+      { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out',
+        scrollTrigger: { trigger: '.tst-section', start: 'top 78%' } },
+    );
+
+    gsap.fromTo(
+      '.tst-featured',
+      { opacity: 0, y: 32 },
+      { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out',
+        scrollTrigger: { trigger: '.tst-featured', start: 'top 82%' } },
+    );
+
+    gsap.fromTo(
+      '.tst-mini',
+      { opacity: 0, y: 20 },
+      { opacity: 1, y: 0, duration: 0.6, stagger: 0.1, ease: 'power3.out',
+        scrollTrigger: { trigger: '.tst-more', start: 'top 85%' } },
+    );
   }
-
-  const track = document.getElementById('testimonials-track')!;
-  const dots  = document.querySelectorAll<HTMLButtonElement>('.testimonial-dot');
-  const cards = document.querySelectorAll<HTMLElement>('.testimonial-card');
-  let current = 0;
-  let autoTimer: ReturnType<typeof setInterval>;
-
-  const goTo = (index: number) => {
-    current = index;
-    const cardWidth = cards[0]?.offsetWidth ?? 0;
-    track.style.transform = `translateX(${-(index * (cardWidth + 24))}px)`;
-
-    dots.forEach((dot, i) => {
-      if (i === index) {
-        dot.style.background = 'var(--color-red)';
-        dot.style.width = '24px';
-        dot.style.borderRadius = '4px';
-        dot.setAttribute('aria-selected', 'true');
-      } else {
-        dot.style.background = 'rgba(0,0,0,0.15)';
-        dot.style.width = '8px';
-        dot.style.borderRadius = '50%';
-        dot.setAttribute('aria-selected', 'false');
-      }
-    });
-  };
-
-  dots.forEach((dot, i) => {
-    dot.addEventListener('click', () => { clearInterval(autoTimer); goTo(i); });
-  });
-
-  autoTimer = setInterval(() => {
-    goTo((current + 1) % dots.length);
-  }, 5000);
 </script>

@@ -2,89 +2,313 @@
 import { projects } from '../../data/projects';
 ---
 
-<section id="proyectos" class="projects-section section-pad" style="background: #ffffff">
+<section id="proyectos" class="prj-section">
   <div class="container-site">
 
-    <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-16">
+    <!-- Encabezado -->
+    <div class="prj-head">
       <div>
-        <span class="tag mb-4 gsap-fade-up">Proyectos Realizados</span>
-        <h2 class="text-display gsap-fade-up" style="font-size: clamp(2.5rem, 6vw, 5rem); color: #0a0a0a">
-          Resultados reales.
-          <span style="color: var(--color-red)"> Impacto real.</span>
+        <p class="prj-kicker">Proyectos Realizados</p>
+        <h2 class="prj-h2">
+          Resultados reales.<br/>
+          <em>Impacto real.</em>
         </h2>
       </div>
-      <p class="max-w-sm text-sm leading-relaxed gsap-fade-up" style="color: #666666">
-        Cada proyecto en nuestro portafolio refleja nuestro compromiso con
-        la calidad técnica y la puntualidad en la entrega.
-      </p>
+      <div class="prj-filter" role="group" aria-label="Filtrar proyectos">
+        <button class="prj-chip is-active" data-filter="all">Todos</button>
+        <button class="prj-chip" data-filter="Industrial">Industrial</button>
+        <button class="prj-chip" data-filter="Comercial">Comercial</button>
+        <button class="prj-chip" data-filter="Infraestructura">Infraestructura</button>
+      </div>
     </div>
 
-    <div class="projects-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <!-- Grid de cards -->
+    <div class="prj-grid">
       {projects.map((project, i) => (
-        <article
-          class="project-card gsap-fade-up group relative overflow-hidden border bg-white cursor-default hover:shadow-xl transition-shadow duration-300"
-          style="border-color: rgba(0,0,0,0.08)"
-          data-index={i}
-        >
-          <div class="aspect-[16/10] overflow-hidden relative" style="background: #e8e8e8">
-            <img
-              src={project.image}
-              alt={`${project.title} — CENSA Proyecto`}
-              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-              width="640" height="400" loading="lazy"
-            />
-            <div class="absolute inset-0 transition-opacity duration-300"
-                 style="background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 55%)" aria-hidden="true"></div>
-            <div class="absolute top-4 left-4 tag text-xs" style="border-color: rgba(204,0,0,0.5)">
-              {project.category}
+        <article class="prj-card" data-category={project.category} data-index={i}>
+
+          <!-- Placeholder imagen -->
+          <div class="prj-img">
+            <div class="prj-img-overlay" aria-hidden="true"></div>
+            <span class="prj-badge-cat">{project.category}</span>
+            <span class="prj-badge-year">{project.year}</span>
+          </div>
+
+          <!-- Cuerpo -->
+          <div class="prj-body">
+            <div class="prj-loc">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                <path d="M6 1C3.79 1 2 2.79 2 5c0 3.25 4 6 4 6s4-2.75 4-6c0-2.21-1.79-4-4-4zm0 5.5a1.5 1.5 0 110-3 1.5 1.5 0 010 3z" fill="currentColor"/>
+              </svg>
+              {project.location}
+            </div>
+
+            <h3 class="prj-title">{project.title}</h3>
+            <p class="prj-desc">{project.description}</p>
+
+            <div class="prj-specs">
+              <div class="prj-spec">
+                <span class="prj-spec-l">Voltaje</span>
+                <span class="prj-spec-v">{project.voltage}</span>
+              </div>
+              <div class="prj-spec">
+                <span class="prj-spec-l">Capacidad</span>
+                <span class="prj-spec-v">{project.capacity}</span>
+              </div>
             </div>
           </div>
 
-          <div class="p-6">
-            <div class="flex items-center gap-4 mb-3 text-xs" style="color: #999999">
-              <span class="flex items-center gap-1.5">
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-                  <path d="M6 1C3.79 1 2 2.79 2 5c0 3.25 4 6 4 6s4-2.75 4-6c0-2.21-1.79-4-4-4zm0 5.5a1.5 1.5 0 110-3 1.5 1.5 0 010 3z" fill="#999"/>
-                </svg>
-                {project.location}
-              </span>
-              <span class="ml-auto font-mono text-xs" style="color: var(--color-red)">{project.year}</span>
-            </div>
-
-            <h3 class="text-lg font-bold uppercase tracking-wide mb-2" style="font-family: var(--font-display); color: #0a0a0a">
-              {project.title}
-            </h3>
-            <p class="text-sm leading-relaxed mb-5" style="color: #666666">
-              {project.description}
-            </p>
-
-            <div class="grid grid-cols-2 gap-3 pt-4 border-t" style="border-color: rgba(0,0,0,0.08)">
-              <div>
-                <div class="text-xs uppercase tracking-wider mb-0.5" style="color: #999999">Voltaje</div>
-                <div class="font-bold text-sm font-mono" style="color: var(--color-red)">{project.voltage}</div>
-              </div>
-              <div>
-                <div class="text-xs uppercase tracking-wider mb-0.5" style="color: #999999">Capacidad</div>
-                <div class="font-bold text-sm font-mono" style="color: var(--color-red)">{project.capacity}</div>
-              </div>
-            </div>
-
-            <div class="flex flex-wrap gap-2 mt-4">
-              {project.tags.map((tag) => (
-                <span class="text-xs px-2 py-1" style="background: #f5f5f5; border: 1px solid rgba(0,0,0,0.08); color: #666666">
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          <div class="absolute bottom-0 left-0 right-0 h-0.5 origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100"
-               style="background: var(--color-red)" aria-hidden="true"></div>
+          <!-- Barra hover roja -->
+          <div class="prj-hover-bar" aria-hidden="true"></div>
         </article>
       ))}
     </div>
+
+    <!-- CTA -->
+    <div class="prj-cta">
+      <a href="#contacto" class="btn-ghost-dark">
+        Solicitar diagnóstico para tu proyecto
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+
   </div>
 </section>
+
+<style>
+  .prj-section {
+    padding-block: clamp(4rem, 8vw, 7rem);
+    background: #ECE8DF;
+  }
+
+  /* ── Encabezado ── */
+  .prj-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 1.5rem;
+    margin-bottom: 2.8rem;
+    flex-wrap: wrap;
+  }
+
+  .prj-kicker {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: #0a0a0a;
+    margin-bottom: .9rem;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+  }
+  .prj-kicker::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--color-red);
+    flex-shrink: 0;
+  }
+
+  .prj-h2 {
+    font-family: var(--font-display);
+    font-weight: 900;
+    text-transform: uppercase;
+    font-size: clamp(2.2rem, 4.5vw, 4rem);
+    line-height: .97;
+    color: #0a0a0a;
+  }
+  .prj-h2 em { font-style: normal; color: var(--color-red); }
+
+  /* ── Filter chips ── */
+  .prj-filter {
+    display: flex;
+    gap: .4rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .prj-chip {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    padding: .5rem 1rem;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: 999px;
+    background: none;
+    color: #888;
+    cursor: pointer;
+    transition: border-color .2s, color .2s, background .2s;
+  }
+  .prj-chip:hover { border-color: rgba(0,0,0,.3); color: #0a0a0a; }
+  .prj-chip.is-active { border-color: var(--color-red); color: var(--color-red); background: rgba(204,0,0,.04); }
+
+  /* ── Grid ── */
+  .prj-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.4rem;
+  }
+
+  /* ── Card ── */
+  .prj-card {
+    background: #fff;
+    border: 1px solid rgba(0,0,0,.08);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    transition: transform .3s cubic-bezier(.2,.7,.2,1), box-shadow .3s, border-color .3s;
+  }
+  .prj-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(0,0,0,.08);
+    border-color: rgba(204,0,0,.25);
+  }
+
+  /* Image */
+  .prj-img {
+    aspect-ratio: 4/3;
+    position: relative;
+    overflow: hidden;
+    background: repeating-linear-gradient(135deg, #d6d1c6 0 10px, #ccc7ba 10px 20px);
+  }
+
+  .prj-img-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,.45) 100%);
+  }
+
+  .prj-badge-cat,
+  .prj-badge-year {
+    position: absolute;
+    top: .8rem;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    padding: .3rem .6rem;
+    border-radius: 4px;
+  }
+  .prj-badge-cat {
+    left: .8rem;
+    background: rgba(0,0,0,.65);
+    color: #fff;
+  }
+  .prj-badge-year {
+    right: .8rem;
+    background: var(--color-red);
+    color: #fff;
+  }
+
+  /* Body */
+  .prj-body { padding: 1.2rem; }
+
+  .prj-loc {
+    display: flex;
+    align-items: center;
+    gap: .4rem;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: #999;
+    margin-bottom: .6rem;
+  }
+
+  .prj-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    font-size: 1.15rem;
+    line-height: 1.1;
+    color: #0a0a0a;
+    margin-bottom: .5rem;
+  }
+
+  .prj-desc {
+    font-size: .84rem;
+    line-height: 1.6;
+    color: #666;
+    margin-bottom: 1rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .prj-specs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: .8rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(0,0,0,.08);
+  }
+  .prj-spec { display: flex; flex-direction: column; gap: .2rem; }
+  .prj-spec-l {
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: #aaa;
+  }
+  .prj-spec-v {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 1.05rem;
+    color: var(--color-red);
+    line-height: 1;
+  }
+
+  /* Barra roja inferior en hover */
+  .prj-hover-bar {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--color-red);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .35s cubic-bezier(.2,.7,.2,1);
+  }
+  .prj-card:hover .prj-hover-bar { transform: scaleX(1); }
+
+  /* ── CTA ── */
+  .prj-cta {
+    margin-top: 3rem;
+    display: flex;
+    justify-content: center;
+  }
+
+  .btn-ghost-dark {
+    display: inline-flex;
+    align-items: center;
+    gap: .55rem;
+    padding: .85rem 1.6rem;
+    border: 1px solid rgba(0,0,0,.2);
+    border-radius: 6px;
+    font-family: var(--font-display);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    font-size: .9rem;
+    color: #0a0a0a;
+    text-decoration: none;
+    transition: border-color .2s, color .2s, gap .2s;
+  }
+  .btn-ghost-dark:hover { border-color: var(--color-red); color: var(--color-red); gap: .85rem; }
+
+  /* ── Responsive ── */
+  @media (max-width: 1024px) { .prj-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 640px)  { .prj-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 600px)  { .prj-head { flex-direction: column; align-items: flex-start; } }
+
+  @media (prefers-reduced-motion: reduce) {
+    .prj-card, .prj-img-el, .prj-hover-bar { transition: none; }
+  }
+</style>
 
 <script>
   import gsap from 'gsap';
@@ -93,13 +317,35 @@ import { projects } from '../../data/projects';
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (!prefersReducedMotion) {
     gsap.registerPlugin(ScrollTrigger);
-    gsap.to('.projects-section .gsap-fade-up', {
-      opacity: 1, y: 0, duration: 0.7, stagger: 0.12, ease: 'power3.out',
-      scrollTrigger: { trigger: '.projects-section', start: 'top 75%' },
-    });
-    gsap.to('.project-card', {
-      opacity: 1, y: 0, duration: 0.6, stagger: 0.12, ease: 'power3.out',
-      scrollTrigger: { trigger: '.projects-grid', start: 'top 80%' },
-    });
+
+    gsap.fromTo(
+      '.prj-head',
+      { opacity: 0, y: 24 },
+      { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out',
+        scrollTrigger: { trigger: '.prj-section', start: 'top 78%' } },
+    );
+
+    gsap.fromTo(
+      '.prj-card',
+      { opacity: 0, y: 28 },
+      { opacity: 1, y: 0, duration: 0.65, stagger: 0.1, ease: 'power3.out',
+        scrollTrigger: { trigger: '.prj-grid', start: 'top 82%' } },
+    );
   }
+
+  /* ── Filter chips ── */
+  const chips = document.querySelectorAll<HTMLButtonElement>('.prj-chip');
+  const cards = document.querySelectorAll<HTMLElement>('.prj-card');
+
+  chips.forEach((chip) => {
+    chip.addEventListener('click', () => {
+      chips.forEach((c) => c.classList.remove('is-active'));
+      chip.classList.add('is-active');
+      const filter = chip.dataset.filter!;
+      cards.forEach((card) => {
+        const match = filter === 'all' || card.dataset.category === filter;
+        card.style.display = match ? '' : 'none';
+      });
+    });
+  });
 </script>

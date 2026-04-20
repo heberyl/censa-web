@@ -4,76 +4,80 @@ const steps = [
     number: '01',
     title: 'Evaluación y Diagnóstico',
     description: 'Visitamos el sitio, analizamos las condiciones eléctricas actuales, los requerimientos de carga y las normativas aplicables. Emitimos un diagnóstico técnico detallado.',
+    image: '/assets/images/service-inspeccion.webp',
   },
   {
     number: '02',
     title: 'Ingeniería y Planeación',
     description: 'Nuestros ingenieros diseñan la solución óptima: planos constructivos, memoria de cálculo, gestión de permisos CFE y planeación de recursos para ejecución sin contratiempos.',
+    image: '/assets/images/service-ingenieria.webp',
   },
   {
     number: '03',
     title: 'Ejecución Certificada',
     description: 'Personal certificado ejecuta los trabajos con protocolos de seguridad de clase mundial, equipamiento especializado y supervisión técnica en cada etapa del proceso.',
+    image: '/assets/images/service-instalacion.webp',
   },
   {
     number: '04',
     title: 'Entrega y Garantía',
     description: 'Realizamos pruebas de puesta en servicio, entregamos toda la documentación técnica, planos as-built y garantía de trabajo. Tu infraestructura queda lista y certificada.',
+    image: '/assets/images/service-subestaciones.webp',
   },
 ];
 ---
 
-<section id="proceso" class="process-section section-pad" style="background: #F5F5F5">
-  <div class="container-site">
+<section id="proceso" class="process-section">
 
-    <div class="text-center mb-20 max-w-2xl mx-auto">
-      <span class="tag mb-4 gsap-fade-up">Cómo trabajamos</span>
-      <h2 class="text-display gsap-fade-up" style="font-size: clamp(2.5rem, 6vw, 5rem); color: #0a0a0a">
+  <!-- Header: scrollea naturalmente -->
+  <div class="process-header-area container-site">
+    <div class="flex items-center gap-5">
+      <svg width="36" height="36" viewBox="0 0 48 48" fill="none" aria-hidden="true" style="flex-shrink:0;">
+        <path d="M32.3535 32.3536L15.3535 15.3536" stroke="#CC0000" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M32.3535 14.3535V32.3535H14.3535" stroke="#CC0000" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <h2 class="text-display" style="font-size: clamp(2.2rem, 4vw, 4rem); color: #0a0a0a;">
         Proceso de trabajo
-        <span style="color: var(--color-red)"> probado</span>
       </h2>
-      <p class="mt-4 text-base gsap-fade-up" style="color: #666666">
-        Cada proyecto sigue nuestra metodología de cuatro pasos para garantizar
-        calidad, seguridad y cumplimiento normativo.
-      </p>
     </div>
+  </div>
 
-    <div class="process-steps relative">
+  <!-- Zona de scroll: 400vh — el display es sticky dentro -->
+  <div class="process-scroll-zone">
+    <div class="process-display-sticky container-site">
 
-      <!-- Connecting line (desktop) -->
-      <div class="progress-track hidden lg:block absolute top-16 left-0 right-0 h-px" style="background: rgba(0,0,0,0.1)" aria-hidden="true">
-        <div class="progress-fill h-full origin-left" style="background: var(--color-red); transform: scaleX(0); width: 100%;"></div>
-      </div>
+      <!-- Grid: izquierda | derecha (la línea central es un pseudo-elemento) -->
+      <div class="process-display">
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6">
-        {steps.map((step, i) => (
-          <article class="step-card gsap-fade-up relative" data-step={i}>
-            <div class="step-number relative mb-8 w-12 h-12 flex items-center justify-center border-2 z-10 bg-white"
-                 style="border-color: var(--color-red)">
-              <span class="font-black text-sm" style="font-family: var(--font-display); color: var(--color-red)">
-                {step.number}
-              </span>
-              <div class="absolute inset-0 opacity-0 step-glow" style="box-shadow: 0 0 20px rgba(204,0,0,0.4)" aria-hidden="true"></div>
+        <!-- Columna izquierda: número + imagen -->
+        <div class="process-left">
+          {steps.map((step, i) => (
+            <div class="step-panel step-left-panel" data-step={i}>
+              <span class="step-number-label">{step.number}</span>
+              <div class="process-img-box"></div>
             </div>
+          ))}
+        </div>
 
-            <h3 class="text-xl font-bold uppercase tracking-wide mb-3" style="font-family: var(--font-display); color: #0a0a0a">
-              {step.title}
-            </h3>
-            <p class="text-sm leading-relaxed" style="color: #666666">
-              {step.description}
-            </p>
+        <!-- Columna derecha: título + descripción -->
+        <div class="process-right">
+          {steps.map((step, i) => (
+            <div class="step-panel step-right-panel" data-step={i}>
+              <h3 class="step-title">{step.title}</h3>
+              <p class="step-desc">{step.description}</p>
+            </div>
+          ))}
+        </div>
 
-            {i < steps.length - 1 && (
-              <div class="lg:hidden absolute left-6 top-full w-px h-8" style="background: rgba(204,0,0,0.25)" aria-hidden="true"></div>
-            )}
-          </article>
-        ))}
       </div>
-    </div>
 
-    <!-- CTA strip -->
-    <div class="mt-20 p-8 flex flex-col sm:flex-row items-center justify-between gap-6 border gsap-fade-up bg-white"
-         style="border-color: rgba(204,0,0,0.15)">
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="container-site process-cta-wrap">
+    <div class="process-cta flex flex-col sm:flex-row items-center justify-between gap-6 border bg-white"
+         style="border-color: rgba(204,0,0,0.15); border-radius: 12px;">
       <div>
         <p class="font-bold text-lg uppercase tracking-wide" style="font-family: var(--font-display); color: #0a0a0a">
           ¿Listo para iniciar tu proyecto?
@@ -87,42 +91,231 @@ const steps = [
       </a>
     </div>
   </div>
+
 </section>
+
+<style>
+  .process-section {
+    background: #ECE8DF;
+  }
+
+  /* Header que scrollea antes de que el display se pegue */
+  .process-header-area {
+    padding-top: clamp(3rem, 6vw, 5rem);
+    padding-bottom: 2.5rem;
+  }
+
+  /* Zona de scroll: el alto determina cuánto tiempo está pegado el display */
+  .process-scroll-zone {
+    height: 400vh;
+    position: relative;
+  }
+
+  /* Display sticky */
+  .process-display-sticky {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    background: #ECE8DF;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  /* Línea central punteada — cubre todo el 100vh del sticky */
+  .process-display-sticky::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    border-left: 2px dashed var(--color-red);
+    pointer-events: none;
+  }
+
+  /* Grid 2 columnas iguales — ocupa los 100vh completos */
+  .process-display {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 4rem;
+    align-items: center;
+    height: 100%;
+  }
+
+  /* Columna izquierda: altura fija, centrada verticalmente por el grid */
+  .process-left {
+    position: relative;
+    height: clamp(340px, 58vh, 500px);
+  }
+
+  /* Columna derecha: altura total de la pantalla */
+  .process-right {
+    position: relative;
+    height: 100%;
+    align-self: stretch;
+    overflow: hidden;
+  }
+
+  /* Paneles apilados */
+  .step-panel {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  /* Izquierda: crossfade CSS */
+  .step-left-panel {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+  }
+  .step-left-panel.visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Derecha: siempre opaco, posición controlada por scroll via GSAP yPercent */
+  .step-right-panel {
+    opacity: 1;
+    pointer-events: none;
+    will-change: transform;
+  }
+  .step-right-panel.visible {
+    pointer-events: auto;
+  }
+
+  /* Número grande decorativo */
+  .step-number-label {
+    display: block;
+    font-family: var(--font-display);
+    font-size: clamp(3.5rem, 7vw, 6rem);
+    font-weight: 900;
+    color: var(--color-red);
+    letter-spacing: 0.04em;
+    line-height: 1;
+    margin-bottom: 1.25rem;
+  }
+
+  /* Imagen más pequeña */
+  .process-img-box {
+    border-radius: 12px;
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+    max-width: 78%;
+    background: repeating-linear-gradient(135deg, #d6d1c6 0 10px, #ccc7ba 10px 20px);
+  }
+
+  /* Texto derecha — más grande */
+  .step-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.9rem, 3.2vw, 2.8rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #0a0a0a;
+    margin-bottom: 0.3rem;
+  }
+  .step-desc {
+    font-size: clamp(1rem, 1.3vw, 1.2rem);
+    line-height: 1.5;
+    color: #666666;
+    max-width: 40ch;
+  }
+
+  /* CTA */
+  .process-cta-wrap {
+    padding-block: clamp(3rem, 5vw, 4rem);
+  }
+  .process-cta {
+    padding: 2rem;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .process-scroll-zone { height: 500vh; }
+    .process-display {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    .process-display-sticky::before { display: none; }
+    .process-left { height: 220px; }
+    .process-right { height: 180px; }
+    .step-number-label { font-size: clamp(2.5rem, 10vw, 4rem); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .step-panel { transition: none; }
+    .process-scroll-zone { height: auto; }
+    .process-display-sticky { position: static; height: auto; overflow: visible; }
+    .step-panel { position: static; opacity: 1; }
+  }
+</style>
 
 <script>
   import gsap from 'gsap';
   import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
+  const STEPS = 4;
+  let currentLeftStep = -1;
+
+  const leftPanels  = document.querySelectorAll<HTMLElement>('.step-left-panel');
+  const rightPanels = document.querySelectorAll<HTMLElement>('.step-right-panel');
+
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (!prefersReducedMotion) {
+
+  // Izquierda: crossfade discreto por paso
+  const goToLeftStep = (index: number) => {
+    if (index === currentLeftStep) return;
+    currentLeftStep = index;
+    leftPanels.forEach((el, i) => {
+      el.classList.toggle('visible', i === index);
+      el.setAttribute('aria-hidden', String(i !== index));
+    });
+  };
+
+  if (prefersReducedMotion) {
+    // Sin animación: mostrar todo apilado
+    leftPanels[0]?.classList.add('visible');
+    rightPanels.forEach((el, i) => {
+      gsap.set(el, { yPercent: 0, opacity: i === 0 ? 1 : 0 });
+    });
+  } else {
     gsap.registerPlugin(ScrollTrigger);
 
-    gsap.to('.process-section .gsap-fade-up', {
-      opacity: 1, y: 0, duration: 0.7, stagger: 0.12, ease: 'power3.out',
-      scrollTrigger: { trigger: '.process-section', start: 'top 75%' },
+    // Estado inicial: paneles derechos apilados verticalmente (0 visible, 1 abajo, 2 más abajo…)
+    rightPanels.forEach((el, i) => {
+      gsap.set(el, { yPercent: i * 100 });
     });
+    goToLeftStep(0);
+    rightPanels[0].classList.add('visible');
 
-    const progressFill = document.querySelector<HTMLElement>('.progress-fill');
-    if (progressFill) {
-      gsap.to(progressFill, {
-        scaleX: 1, ease: 'none',
-        scrollTrigger: { trigger: '.process-steps', start: 'top 70%', end: 'bottom 70%', scrub: 0.8 },
-      });
-    }
+    ScrollTrigger.create({
+      trigger: '.process-scroll-zone',
+      start: 'top top',
+      end: 'bottom bottom',
+      onUpdate: (self) => {
+        // scrollPos va de 0 a STEPS (0 → 4)
+        const scrollPos = self.progress * STEPS;
 
-    gsap.to('.step-card', {
-      opacity: 1, y: 0, duration: 0.6, stagger: 0.15, ease: 'power3.out',
-      scrollTrigger: { trigger: '.process-steps', start: 'top 75%' },
-    });
+        // Derecha: scroll continuo, pero el último panel se detiene en yPercent 0
+        const clampedPos = Math.min(scrollPos, STEPS - 1);
+        rightPanels.forEach((el, i) => {
+          gsap.set(el, { yPercent: (i - clampedPos) * 100 });
+        });
 
-    document.querySelectorAll('.step-card').forEach((card) => {
-      ScrollTrigger.create({
-        trigger: card, start: 'top 60%',
-        onEnter: () => {
-          const glow = card.querySelector<HTMLElement>('.step-glow');
-          if (glow) gsap.to(glow, { opacity: 1, duration: 0.4 });
-        },
-      });
+        // pointer-events solo en el panel activo
+        // Math.round → el izquierdo cambia cuando el texto derecho lleva 50% de su entrada
+        const activeStep = Math.min(Math.round(scrollPos), STEPS - 1);
+        rightPanels.forEach((el, i) => {
+          el.classList.toggle('visible', i === activeStep);
+        });
+
+        // Izquierda: crossfade al cambiar de paso
+        goToLeftStep(activeStep);
+      },
     });
   }
 </script>
