@@ -4,19 +4,60 @@ import Hero from '../components/home/Hero.astro';
 import Services from '../components/home/Services.astro';
 import Projects from '../components/home/Projects.astro';
 import Process from '../components/home/Process.astro';
+import FAQ from '../components/home/FAQ.astro';
 import CTA from '../components/home/CTA.astro';
 import Industries from '../components/home/Industries.astro';
+
+const faqItems = [
+  {
+    q: '¿Qué es la media tensión y cuándo la necesita mi empresa?',
+    a: 'La media tensión (MT) es el rango de voltaje entre 1 kV y 35 kV utilizado para distribuir energía en instalaciones industriales. Tu empresa la necesita cuando la demanda supera los 100 kW o cuando la CFE requiere conexión directa a la red de distribución primaria.',
+  },
+  {
+    q: '¿Cuánto tiempo tarda la instalación de una subestación eléctrica?',
+    a: 'Una subestación industrial de media tensión tarda entre 8 y 16 semanas desde el inicio del diseño hasta la puesta en marcha, dependiendo de la capacidad y la disponibilidad de equipos. Incluye ingeniería básica, tramitación ante CFE, suministro e instalación.',
+  },
+  {
+    q: '¿Cada cuánto tiempo se debe dar mantenimiento a una instalación de media tensión?',
+    a: 'La NOM-001-SEDE y las recomendaciones de la CFE establecen mantenimiento preventivo anual para instalaciones de media tensión. En ambientes industriales severos recomendamos revisiones semestrales con termografía infrarroja, limpieza de aisladores y pruebas dieléctricas.',
+  },
+  {
+    q: '¿CENSA está certificado para trabajar con la CFE en Nuevo León?',
+    a: 'Sí. CENSA cuenta con homologación vigente ante la CFE y cumplimiento certificado con la NOM-001-SEDE. Nuestros ingenieros tienen cédula profesional vigente y el personal técnico cuenta con licencia de electricista emitida por la STPS.',
+  },
+  {
+    q: '¿En qué municipios de Nuevo León atienden proyectos y emergencias?',
+    a: 'Atendemos toda el área metropolitana de Monterrey: Monterrey, San Nicolás de los Garza, Apodaca, Santa Catarina, Escobedo, García, San Pedro Garza García, Guadalupe y municipios circunvecinos. Para emergencias garantizamos presencia en menos de 2 horas.',
+  },
+  {
+    q: '¿La cotización de un proyecto eléctrico tiene algún costo?',
+    a: 'No. Ofrecemos evaluación técnica en sitio y cotización sin costo ni compromiso. Preparamos una propuesta técnica y económica en un plazo máximo de 48 horas hábiles.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqItems.map(({ q, a }) => ({
+    '@type': 'Question',
+    name: q,
+    acceptedAnswer: { '@type': 'Answer', text: a },
+  })),
+};
 ---
 
 <Layout
   title="CENSA"
   description="Contratista eléctrico certificado CFE en Nuevo León. Instalación de redes MT, subestaciones industriales, mantenimiento preventivo y emergencias 24/7. +15 años | +198 proyectos."
   heroImage="/images/hero.jpg"
+  ogImageAlt="Torres de transmisión eléctrica al atardecer en Nuevo León — CENSA"
+  pageSchema={faqSchema}
 >
   <Hero />
   <Services />
   <Projects />
   <Industries />
   <Process />
+  <FAQ />
   <CTA />
 </Layout>

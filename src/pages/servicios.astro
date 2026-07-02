@@ -61,6 +61,7 @@ const services = [
   description="Instalación de redes MT, subestaciones eléctricas industriales, mantenimiento preventivo, emergencias 24/7 e ingeniería eléctrica en Nuevo León. Contratista homologado CFE y NOM-001-SEDE."
   image="/images/hero-servicios.jpg"
   heroImage="/images/hero-servicios.jpg"
+  ogImageAlt="Instalación de redes eléctricas de media tensión en zona industrial"
   breadcrumbs={[{ name: 'Servicios', url: '/servicios' }]}
   pageSchema={{
     '@context': 'https://schema.org',
@@ -135,15 +136,20 @@ const services = [
                 ))}
               </ul>
 
-              <a
-                href="/contacto"
-                class="mt-8 inline-flex items-center gap-2 rounded-full bg-[#E10600] px-6 py-3 text-sm font-semibold text-white shadow-[0_8px_24px_-8px_rgba(225,6,0,0.5)] transition-all hover:bg-[#B30500] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E10600] focus-visible:ring-offset-2"
-              >
-                Solicitar cotización
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
-                </svg>
-              </a>
+              <div class="mt-8 flex flex-wrap items-center gap-4">
+                <a
+                  href="/contacto"
+                  class="inline-flex items-center gap-2 rounded-full bg-[#E10600] px-6 py-3 text-sm font-semibold text-white shadow-[0_8px_24px_-8px_rgba(225,6,0,0.5)] transition-all hover:bg-[#B30500] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E10600] focus-visible:ring-offset-2"
+                >
+                  Solicitar cotización
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+                  </svg>
+                </a>
+                <a href="/proyectos" class="text-sm font-semibold text-[#6D6D6D] hover:text-[#E10600] transition-colors">
+                  Ver proyectos realizados →
+                </a>
+              </div>
             </div>
 
             <div class:list={[i % 2 !== 0 ? 'md:[direction:ltr]' : '']}>

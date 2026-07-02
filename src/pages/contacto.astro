@@ -7,6 +7,7 @@ import SectionLabel from '../components/ui/SectionLabel.astro';
   title="Solicitar Cotización"
   description="Solicita cotización de servicios eléctricos MT en Nuevo León. Propuesta técnica sin costo en 48 horas. Emergencias disponibles 24/7. Contratista CFE homologado."
   image="/images/hero.jpg"
+  ogImageAlt="Oficinas CENSA — Contratistas eléctricos en San Nicolás de los Garza, N.L."
   breadcrumbs={[{ name: 'Contacto', url: '/contacto' }]}
   pageSchema={{
     '@context': 'https://schema.org',
@@ -101,8 +102,22 @@ import SectionLabel from '../components/ui/SectionLabel.astro';
             </div>
           </div>
 
+          <!-- Google Maps embed -->
+          <div class="mt-8 overflow-hidden rounded-2xl border border-[#D8D2CC]/60">
+            <iframe
+              src="https://www.google.com/maps?q=25.7448,-100.2920&output=embed&z=16"
+              width="100%"
+              height="240"
+              style="border:0; display:block;"
+              allowfullscreen=""
+              loading="lazy"
+              title="Ubicación CENSA — San Nicolás de los Garza, N.L."
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+
           <!-- Emergency callout -->
-          <div class="mt-10 rounded-2xl bg-[#E10600] p-6 text-white">
+          <div class="mt-6 rounded-2xl bg-[#E10600] p-6 text-white">
             <div class="flex items-center gap-3 mb-2">
               <span class="h-2 w-2 rounded-full bg-white shadow-[0_0_8px_white] animate-pulse"></span>
               <span class="text-xs font-semibold uppercase tracking-[0.18em] text-white/80">Emergencias</span>
