@@ -3,74 +3,210 @@
 
 <section
   id="inicio"
-  class="relative w-full overflow-hidden min-h-[600px] md:h-[760px]"
+  class="relative w-full overflow-hidden"
   aria-label="Portada principal"
 >
-  <!-- Hero image -->
+  <!-- Hero image — LCP: eager + high priority, correct dimensions -->
   <img
     src="/images/hero.jpg"
     alt="Torres de transmisión eléctrica de media tensión al atardecer en Nuevo León"
-    width="1920"
-    height="1080"
+    width="1600"
+    height="900"
     class="absolute inset-0 h-full w-full object-cover"
     loading="eager"
-    decoding="async"
+    fetchpriority="high"
   />
 
   <!-- Overlays -->
-  <div class="absolute inset-0 bg-gradient-to-r from-black/85 via-black/60 to-black/30"></div>
-  <div class="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/50"></div>
+  <div class="absolute inset-0 bg-gradient-to-r from-black/85 via-black/55 to-black/25"></div>
+  <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/65"></div>
 
   <!-- Content -->
-  <div class="relative z-10 mx-auto flex h-full max-w-[1400px] flex-col justify-center px-6 py-20 md:px-10">
+  <div class="hero-content relative z-10 mx-auto flex max-w-[1400px] flex-col justify-center px-6 py-16 pb-32 min-[480px]:py-20 min-[480px]:pb-36 md:px-10 md:pt-16 md:pb-24">
     <div class="max-w-3xl">
 
       <!-- Badge -->
-      <div class="mb-6 inline-flex items-center gap-3 rounded-full border border-white/25 bg-white/5 px-5 py-2 backdrop-blur md:mb-8">
-        <span class="h-2 w-2 rounded-full bg-[#E10600] shadow-[0_0_12px_#E10600]"></span>
+      <div class="hero-in mb-6 inline-flex items-center gap-3 rounded-full border border-white/25 bg-white/5 px-5 py-2 backdrop-blur md:mb-8" style="animation-delay:0ms">
+        <span class="h-2 w-2 shrink-0 rounded-full bg-[#E10600] shadow-[0_0_12px_#E10600]"></span>
         <span class="text-[10px] font-medium uppercase tracking-[0.18em] text-white/90 md:text-xs">
           Especialistas en Media Tensión — Nuevo León, México
         </span>
       </div>
 
-      <!-- Headline -->
-      <h1 class="font-sans font-black text-4xl leading-[0.92] tracking-[-0.03em] text-white md:text-6xl lg:text-[104px]">
+      <!-- Headline — Bebas Neue (font-display) para consistencia con identidad de marca -->
+      <h1
+        class="hero-in font-display text-5xl leading-none tracking-[0.03em] text-white md:text-7xl xl:text-[82px]"
+        style="animation-delay:150ms"
+      >
         INFRAESTRUCTURA<br />
-        ELÉCTRICA QUE<br />
-        NO <span class="text-[#E10600]">FALLA</span>
+        ELÉCTRICA QUE NO <span class="text-[#E10600]">FALLA</span>
       </h1>
 
       <!-- Subtext -->
-      <p class="mt-6 max-w-xl text-base leading-relaxed text-white/80 md:mt-8 md:text-lg">
+      <p class="hero-in mt-6 max-w-xl text-base leading-relaxed text-white/80 md:mt-8 md:text-lg" style="animation-delay:300ms">
         Más de 15 años construyendo la infraestructura eléctrica que impulsa a la industria de Nuevo León.
         Certificados por <strong class="font-semibold text-white">CFE</strong> y{' '}
         <strong class="font-semibold text-white">NOM-001-SEDE</strong>.
       </p>
 
-      <!-- CTAs -->
-      <div class="mt-8 flex flex-wrap gap-3 md:mt-10 md:gap-4">
+      <!-- CTAs — Cotizar primario (conversión), Ver Servicios secundario -->
+      <div class="hero-in mt-8 flex flex-wrap gap-3 md:mt-10 md:gap-4" style="animation-delay:450ms">
         <a
-          href="#servicios"
-          class="group inline-flex items-center gap-2 rounded-full bg-[#E10600] px-6 py-3 text-sm font-semibold text-white shadow-[0_12px_32px_-8px_rgba(225,6,0,0.7)] transition-all hover:bg-[#B30500] md:px-8 md:py-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+          href="/contacto"
+          class="group inline-flex items-center gap-2 rounded-full bg-[#E10600] px-6 py-3 text-sm font-semibold text-white shadow-[0_12px_32px_-8px_rgba(225,6,0,0.7)] transition-all hover:bg-[#B30500] hover:shadow-[0_16px_36px_-8px_rgba(225,6,0,0.75)] md:px-8 md:py-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
         >
-          Ver Servicios
+          Solicitar Cotización
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform group-hover:translate-x-1" aria-hidden="true">
             <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
           </svg>
         </a>
         <a
-          href="/contacto"
-          class="inline-flex items-center gap-2 rounded-full border border-white/40 bg-white/5 px-6 py-3 text-sm font-semibold text-white backdrop-blur transition-all hover:bg-white hover:text-[#111] md:px-8 md:py-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+          href="#servicios"
+          class="inline-flex items-center gap-2 rounded-full border border-white/40 bg-white/5 px-6 py-3 text-sm font-semibold text-white backdrop-blur transition-all hover:bg-white/15 md:px-8 md:py-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
         >
-          Solicitar Cotización
+          Ver Servicios
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="m6 9 6 6 6-6"/>
+          </svg>
         </a>
       </div>
+
     </div>
   </div>
 
-  <!-- Scroll indicator -->
-  <div class="absolute bottom-8 right-10 z-10 hidden items-center gap-3 text-xs uppercase tracking-[0.3em] text-white/60 lg:flex" aria-hidden="true">
-    <span class="h-px w-12 bg-white/40"></span>
-    Scroll
+  <!-- Scroll indicator — todos los breakpoints, centrado -->
+  <div
+    class="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 flex flex-col items-center gap-1.5 md:bottom-[104px]"
+    aria-hidden="true"
+  >
+    <span class="text-[9px] font-medium uppercase tracking-[0.25em] text-white/45">Scroll</span>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="scroll-bounce text-white/35"
+      aria-hidden="true"
+    >
+      <path d="m6 9 6 6 6-6"/>
+    </svg>
+  </div>
+
+  <!-- Stats bar — desktop md+ -->
+  <div
+    id="hero-stats-bar"
+    class="absolute bottom-0 left-0 right-0 z-10 hidden border-t border-white/10 bg-black/45 backdrop-blur-sm md:block"
+  >
+    <div class="mx-auto grid max-w-[1400px] grid-cols-4 divide-x divide-white/10 px-10">
+
+      <div class="stat-cell group/stat relative flex flex-col items-center gap-0.5 py-5 transition-[transform,background] duration-200 ease-out hover:-translate-y-1 hover:bg-white/5 cursor-default">
+        <span class="absolute top-0 left-1/2 h-[2px] w-0 -translate-x-1/2 rounded-full bg-[#E10600] transition-[width] duration-300 ease-out group-hover/stat:w-10" aria-hidden="true"></span>
+        <span class="font-display text-2xl tracking-wider text-white transition-colors duration-200 group-hover/stat:text-[#E10600]" data-count-up="15" data-prefix="+">+15</span>
+        <span class="text-[10px] uppercase tracking-[0.12em] text-white/50 transition-colors duration-200 group-hover/stat:text-white/80">Años de experiencia</span>
+      </div>
+
+      <div class="stat-cell group/stat relative flex flex-col items-center gap-0.5 py-5 transition-[transform,background] duration-200 ease-out hover:-translate-y-1 hover:bg-white/5 cursor-default">
+        <span class="absolute top-0 left-1/2 h-[2px] w-0 -translate-x-1/2 rounded-full bg-[#E10600] transition-[width] duration-300 ease-out group-hover/stat:w-10" aria-hidden="true"></span>
+        <span class="font-display text-2xl tracking-wider text-white transition-colors duration-200 group-hover/stat:text-[#E10600]" data-count-up="198" data-prefix="+">+198</span>
+        <span class="text-[10px] uppercase tracking-[0.12em] text-white/50 transition-colors duration-200 group-hover/stat:text-white/80">Proyectos completados</span>
+      </div>
+
+      <div class="stat-cell group/stat relative flex flex-col items-center gap-0.5 py-5 transition-[transform,background] duration-200 ease-out hover:-translate-y-1 hover:bg-white/5 cursor-default">
+        <span class="absolute top-0 left-1/2 h-[2px] w-0 -translate-x-1/2 rounded-full bg-[#E10600] transition-[width] duration-300 ease-out group-hover/stat:w-10" aria-hidden="true"></span>
+        <span class="font-display text-2xl tracking-wider text-white transition-colors duration-200 group-hover/stat:text-[#E10600]" data-count-up="99" data-suffix="%">99%</span>
+        <span class="text-[10px] uppercase tracking-[0.12em] text-white/50 transition-colors duration-200 group-hover/stat:text-white/80">Cumplimiento Normativo</span>
+      </div>
+
+      <div class="stat-cell group/stat relative flex flex-col items-center gap-0.5 py-5 transition-[transform,background] duration-200 ease-out hover:-translate-y-1 hover:bg-white/5 cursor-default">
+        <span class="absolute top-0 left-1/2 h-[2px] w-0 -translate-x-1/2 rounded-full bg-[#E10600] transition-[width] duration-300 ease-out group-hover/stat:w-10" aria-hidden="true"></span>
+        <span class="font-display text-2xl tracking-wider text-white transition-colors duration-200 group-hover/stat:text-[#E10600]">24/7</span>
+        <span class="text-[10px] uppercase tracking-[0.12em] text-white/50 transition-colors duration-200 group-hover/stat:text-white/80">Atención emergencias</span>
+      </div>
+
+    </div>
   </div>
 </section>
+
+<style>
+  /*
+   * Hero height — descuenta la altura del header sticky.
+   * Mobile:  header h-20 = 80px
+   * md+:     header h-24 = 96px
+   * calc() standalone se preserva por Lightning CSS (no es una math expression
+   * dentro de max/min, por lo que no se optimiza).
+   */
+  #inicio,
+  .hero-content {
+    min-height: calc(100svh - 64px); /* h-16 mobile header */
+  }
+  @media (min-width: 768px) {
+    #inicio,
+    .hero-content {
+      min-height: calc(100svh - 80px); /* h-20 desktop header */
+    }
+  }
+
+  /* Hero entrance animation */
+  @keyframes heroIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0);    }
+  }
+  .hero-in {
+    animation: heroIn 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  /* Scroll chevron bounce */
+  @keyframes scrollBounce {
+    0%, 100% { transform: translateY(0);   opacity: 0.35; }
+    50%       { transform: translateY(5px); opacity: 0.65; }
+  }
+  .scroll-bounce {
+    animation: scrollBounce 1.8s ease-in-out infinite;
+  }
+</style>
+
+<script>
+  const bar = document.getElementById('hero-stats-bar');
+  if (bar) {
+    const counters = bar.querySelectorAll<HTMLElement>('[data-count-up]');
+
+    function runCountUp() {
+      const DURATION = 1600;
+      counters.forEach((el) => {
+        const target = parseInt(el.dataset.countUp!);
+        const prefix = el.dataset.prefix ?? '';
+        const suffix = el.dataset.suffix ?? '';
+        let startTime: number | null = null;
+
+        function tick(ts: number) {
+          if (!startTime) startTime = ts;
+          const elapsed = ts - startTime;
+          const progress = Math.min(elapsed / DURATION, 1);
+          // ease-out cubic
+          const eased = 1 - Math.pow(1 - progress, 3);
+          el.textContent = prefix + Math.round(eased * target) + suffix;
+          if (progress < 1) requestAnimationFrame(tick);
+          else el.textContent = prefix + target + suffix;
+        }
+
+        requestAnimationFrame(tick);
+      });
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          runCountUp();
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.6 }
+    );
+    observer.observe(bar);
+  }
+</script>

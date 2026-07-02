@@ -50,26 +50,26 @@ const services = [
 ];
 ---
 
-<section id="servicios" class="bg-[#F3EFEA] py-20 md:py-32" aria-labelledby="servicios-heading">
+<section id="servicios" class="bg-[#F3EFEA] py-16 md:py-20 scroll-mt-16 md:scroll-mt-20" aria-labelledby="servicios-heading">
   <div class="mx-auto max-w-[1400px] px-6 md:px-10">
 
     <!-- Header -->
-    <div class="grid grid-cols-1 gap-8 md:grid-cols-12 md:gap-12">
-      <div class="md:col-span-5">
+    <div class="grid grid-cols-1 gap-8 md:grid-cols-12 md:gap-12 md:items-end">
+      <div class="md:col-span-5 lg:col-span-7 xl:col-span-5">
         <SectionLabel label="Nuestros Servicios" />
-        <h2 id="servicios-heading" class="mt-6 font-sans font-black text-4xl leading-[0.95] tracking-[-0.02em] text-[#111] md:text-5xl lg:text-6xl">
-          SOLUCIONES<br />
+        <h2 id="servicios-heading" class="mt-6 font-sans font-black text-4xl leading-[0.95] tracking-[-0.02em] text-[#111] md:text-5xl lg:text-[2.25rem] xl:text-4xl 2xl:text-5xl">
+          SOLUCIONES<span class="hidden lg:inline 2xl:hidden"> </span><br class="lg:hidden 2xl:block" />
           <span class="text-[#E10600]">ELÉCTRICAS</span><br />
           INTEGRALES
         </h2>
       </div>
-      <p class="text-base leading-relaxed text-[#6D6D6D] md:col-span-6 md:col-start-7 md:self-end md:text-lg">
+      <p class="text-base leading-relaxed text-[#6D6D6D] md:col-span-6 md:col-start-7 lg:col-span-5 lg:col-start-8 xl:col-span-6 xl:col-start-7 md:self-end md:text-lg">
         Servicio completo de ingeniería, instalación y mantenimiento de infraestructura eléctrica de media tensión para la industria del noreste de México.
       </p>
     </div>
 
     <!-- Scroll hint -->
-    <div class="mt-12 mb-4 flex items-center gap-2 text-[10px] uppercase tracking-[0.18em] text-[#6D6D6D] md:mt-16 md:mb-6 md:text-xs" aria-hidden="true">
+    <div class="services-hint mt-10 mb-4 flex items-center gap-2 text-[10px] uppercase tracking-[0.18em] text-[#6D6D6D] md:mt-12 md:mb-5 md:text-xs" aria-hidden="true">
       <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="rotate-90 text-[#E10600]">
         <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
       </svg>
@@ -78,8 +78,7 @@ const services = [
 
     <!-- Scroll snap container -->
     <div
-      class="snap-y snap-mandatory overflow-y-auto rounded-2xl border border-[#D8D2CC]/60 bg-white shadow-[0_2px_24px_-16px_rgba(0,0,0,0.15)] [scrollbar-color:#E10600_#D8D2CC] [scrollbar-width:thin]"
-      style="height:min(520px, 72vh)"
+      class="services-snap snap-y snap-mandatory overflow-y-auto rounded-2xl border border-[#D8D2CC]/60 bg-white shadow-[0_2px_24px_-16px_rgba(0,0,0,0.15)] [scrollbar-color:#E10600_#D8D2CC] [scrollbar-width:thin]"
       role="list"
       aria-label="Lista de servicios"
     >
@@ -107,7 +106,7 @@ const services = [
           </div>
 
           <!-- Content -->
-          <div class="flex flex-col justify-center gap-3 overflow-y-auto p-6 md:gap-5 md:p-12">
+          <div class="services-card-content flex flex-col justify-center gap-3 overflow-hidden p-6 md:gap-4 md:p-6">
             <div class="flex items-center gap-3">
               <div class="grid h-10 w-10 place-items-center rounded-xl bg-[#E10600] text-white md:h-12 md:w-12" aria-hidden="true">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" set:html={icon} />
@@ -116,7 +115,7 @@ const services = [
                 Servicio {num} / 0{services.length}
               </div>
             </div>
-            <h3 class="font-sans font-black text-2xl leading-[1.05] tracking-tight text-[#111] md:text-3xl lg:text-4xl">
+            <h3 class="font-sans font-black text-2xl leading-[1.05] tracking-tight text-[#111] md:text-3xl">
               {title}
             </h3>
             <p class="text-xs font-semibold uppercase tracking-wider text-[#6D6D6D] md:text-sm">
@@ -153,3 +152,26 @@ const services = [
     </div>
   </div>
 </section>
+
+<style>
+  /* Altura base del snap container */
+  .services-snap { height: min(72vw, 66vh); }
+  @media (min-width: 768px)  { .services-snap { height: min(460px, 62vh); } }
+  @media (min-width: 1280px) { .services-snap { height: min(500px, 62vh); } }
+  @media (min-width: 1536px) { .services-snap { height: min(540px, 60vh); } }
+
+  /* lg ONLY (1024–1279px) */
+  @media (min-width: 1024px) and (max-width: 1279px) {
+    #servicios     { padding-top: 1.5rem; padding-bottom: 1.5rem; }
+    .services-snap { height: min(360px, 47vh); }
+    .services-hint { margin-top: 1rem; margin-bottom: 0.5rem; }
+  }
+
+  /* Pantallas cortas (≤800px de alto) — cubre laptops 1490×747, 1280×800, etc. */
+  @media (min-width: 768px) and (max-height: 800px) {
+    #servicios              { padding-top: 1rem; padding-bottom: 1rem; }
+    .services-snap          { height: min(380px, 51vh); }
+    .services-hint          { margin-top: 0.75rem; margin-bottom: 0.375rem; }
+    .services-card-content  { padding: 1.25rem; gap: 0.75rem; }
+  }
+</style>

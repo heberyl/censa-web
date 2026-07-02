@@ -79,6 +79,7 @@
   .reveal-stagger.is-visible > *:nth-child(3) { opacity: 1; transform: none; transition-delay: 0.2s; }
   .reveal-stagger.is-visible > *:nth-child(4) { opacity: 1; transform: none; transition-delay: 0.3s; }
   .reveal-stagger.is-visible > *:nth-child(5) { opacity: 1; transform: none; transition-delay: 0.4s; }
+  .reveal-stagger.is-visible > *:nth-child(6) { opacity: 1; transform: none; transition-delay: 0.5s; }
 
   .site-container {
     max-width: var(--max-w-site);
