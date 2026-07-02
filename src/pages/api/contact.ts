@@ -36,7 +36,7 @@ export const POST: APIRoute = async ({ request }) => {
   }
 
   const resend = new Resend(apiKey);
-  const contactEmail = import.meta.env.CONTACT_EMAIL || 'contacto@censa.com.mx';
+  const contactEmail = import.meta.env.CONTACT_EMAIL || 'admon@censa.mx';
 
   try {
     await resend.emails.send({
@@ -82,11 +82,11 @@ export const POST: APIRoute = async ({ request }) => {
           <div style="padding: 32px; background: #F3EFEA;">
             <p>Hola <strong>${name}</strong>,</p>
             <p>Recibimos tu solicitud de cotización para <strong>${service}</strong>. Nuestro equipo técnico la revisará y te contactará en menos de <strong>48 horas hábiles</strong>.</p>
-            <p>Para emergencias, llámanos directamente: <a href="tel:+528100000000" style="color: #E10600; font-weight: 600;">+52 81 0000-0000</a> (24/7)</p>
+            <p>Para emergencias, llámanos directamente: <a href="tel:+528122358545" style="color: #E10600; font-weight: 600;">+52 81 2235-8545</a> (24/7)</p>
             <p style="margin-top: 24px;">Gracias por confiar en CENSA.<br><strong>El equipo CENSA</strong></p>
           </div>
           <div style="padding: 16px 32px; background: #111; color: #6D6D6D; font-size: 11px; text-align: center;">
-            CENSA — Infraestructura Eléctrica de Media Tensión · Monterrey, Nuevo León
+            CENSA — Infraestructura Eléctrica de Media Tensión · San Nicolás de los Garza, Nuevo León
           </div>
         </div>
       `,

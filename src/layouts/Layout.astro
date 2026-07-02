@@ -38,10 +38,10 @@ const fullTitle = isHome
 
 // NAP unificado (usado en JSON-LD y footer, siempre este formato)
 const NAP = {
-  phone: '+52 81 0000-0000',
-  phoneTel: '+528100000000',
-  email: 'contacto@censa.com.mx',
-  address: 'Monterrey, Nuevo León, México',
+  phone: '+52 81 2235-8545',
+  phoneTel: '+528122358545',
+  email: 'admon@censa.mx',
+  address: 'San Isaac 1201, Residencial San Cristobal 3er Sector, San Nicolás de los Garza, Nuevo León',
 };
 
 // Preload image: priorizar heroImage prop, luego image, siempre sólo una imagen real
@@ -59,15 +59,16 @@ const localBusinessSchema = {
   email: NAP.email,
   address: {
     '@type': 'PostalAddress',
-    addressLocality: 'Monterrey',
+    streetAddress: 'San Isaac 1201, Residencial San Cristobal 3er Sector',
+    addressLocality: 'San Nicolás de los Garza',
     addressRegion: 'Nuevo León',
-    postalCode: '64000',
+    postalCode: '66478',
     addressCountry: 'MX',
   },
   geo: {
     '@type': 'GeoCoordinates',
-    latitude: 25.6866,
-    longitude: -100.3161,
+    latitude: 25.7448,
+    longitude: -100.2920,
   },
   areaServed: [
     { '@type': 'City', name: 'Monterrey' },
