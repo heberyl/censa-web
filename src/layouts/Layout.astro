@@ -2,12 +2,19 @@
 import '../styles/global.css';
 import Header from '../components/layout/Header.astro';
 import Footer from '../components/layout/Footer.astro';
+import WhatsAppButton from '../components/ui/WhatsAppButton.astro';
 
 interface Props {
   title: string;
   description: string;
   image?: string;
   canonical?: string;
+  /** Schema.org JSON-LD adicional para la página (se fusiona con el global) */
+  pageSchema?: Record<string, unknown>;
+  /** Breadcrumbs para páginas interiores [{name, url}] */
+  breadcrumbs?: { name: string; url: string }[];
+  /** Imagen hero de la página para preload LCP correcto */
+  heroImage?: string;
 }
 
 const {
@@ -15,41 +22,105 @@ const {
   description,
   image = '/images/hero.jpg',
   canonical,
+  pageSchema,
+  breadcrumbs,
+  heroImage,
 } = Astro.props;
 
 const siteUrl = 'https://censa.com.mx';
 const pageUrl = canonical ?? new URL(Astro.url.pathname, siteUrl).href;
 const ogImage = new URL(image, siteUrl).href;
-const fullTitle = title === 'CENSA' ? title : `${title} | CENSA`;
+// Título SEO: si es la home, incluir tagline; si es interior, "Página | CENSA"
+const isHome = Astro.url.pathname === '/';
+const fullTitle = isHome
+  ? 'CENSA | Infraestructura Eléctrica de Media Tensión en Nuevo León'
+  : `${title} | CENSA — Nuevo León`;
 
-const jsonLd = {
+// NAP unificado (usado en JSON-LD y footer, siempre este formato)
+const NAP = {
+  phone: '+52 81 0000-0000',
+  phoneTel: '+528100000000',
+  email: 'contacto@censa.com.mx',
+  address: 'Monterrey, Nuevo León, México',
+};
+
+// Preload image: priorizar heroImage prop, luego image, siempre sólo una imagen real
+const preloadImage = heroImage ?? (isHome ? '/images/hero.jpg' : image);
+
+const localBusinessSchema = {
   '@context': 'https://schema.org',
   '@type': ['LocalBusiness', 'ElectricalContractor'],
+  '@id': `${siteUrl}/#organization`,
   name: 'CENSA',
-  description: 'Especialistas en infraestructura eléctrica de media tensión en Nuevo León, México.',
+  alternateName: 'Construcciones Eléctricas del Noreste SA de CV',
+  description: 'Especialistas en infraestructura eléctrica de media tensión en Nuevo León, México. Instalación MT, subestaciones, mantenimiento preventivo y emergencias 24/7.',
   url: siteUrl,
-  telephone: '+52-81-0000-0000',
+  telephone: NAP.phoneTel,
+  email: NAP.email,
   address: {
     '@type': 'PostalAddress',
     addressLocality: 'Monterrey',
     addressRegion: 'Nuevo León',
+    postalCode: '64000',
     addressCountry: 'MX',
   },
-  areaServed: {
-    '@type': 'State',
-    name: 'Nuevo León',
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 25.6866,
+    longitude: -100.3161,
   },
-  hasCredential: ['CFE', 'NOM-001-SEDE'],
+  areaServed: [
+    { '@type': 'City', name: 'Monterrey' },
+    { '@type': 'City', name: 'Apodaca' },
+    { '@type': 'City', name: 'Santa Catarina' },
+    { '@type': 'City', name: 'Escobedo' },
+    { '@type': 'City', name: 'García' },
+    { '@type': 'State', name: 'Nuevo León' },
+  ],
+  knowsAbout: ['Media tensión', 'Subestaciones eléctricas', 'NOM-001-SEDE', 'CFE', 'Instalación MT'],
+  hasCredential: ['Homologación CFE', 'NOM-001-SEDE', 'STPS'],
   foundingDate: '2009',
+  numberOfEmployees: { '@type': 'QuantitativeValue', minValue: 20, maxValue: 100 },
+  openingHoursSpecification: {
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+    opens: '08:00',
+    closes: '18:00',
+  },
+  image: ogImage,
+  logo: `${siteUrl}/favicon.svg`,
+  priceRange: '$$',
+  currenciesAccepted: 'MXN',
+  paymentAccepted: 'Transferencia bancaria, cheque',
+  sameAs: [
+    'https://www.linkedin.com/company/censa-mx',
+  ],
 };
+
+const breadcrumbSchema = breadcrumbs
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Inicio', item: siteUrl },
+        ...breadcrumbs.map((b, i) => ({
+          '@type': 'ListItem',
+          position: i + 2,
+          name: b.name,
+          item: new URL(b.url, siteUrl).href,
+        })),
+      ],
+    }
+  : null;
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang="es-MX">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#E10600" />
+    <meta name="robots" content="index, follow" />
 
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
@@ -61,6 +132,8 @@ const jsonLd = {
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1920" />
+    <meta property="og:image:height" content="1080" />
     <meta property="og:locale" content="es_MX" />
     <meta property="og:site_name" content="CENSA" />
 
@@ -81,14 +154,21 @@ const jsonLd = {
       rel="stylesheet"
     />
 
-    <!-- Hero image preload (LCP) -->
-    <link rel="preload" as="image" href="/images/hero.jpg" />
+    <!-- Hero image preload — por página para LCP correcto -->
+    <link rel="preload" as="image" href={preloadImage} fetchpriority="high" />
 
-    <!-- JSON-LD Structured Data -->
-    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    <!-- JSON-LD: LocalBusiness (todas las páginas) -->
+    <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
 
-    <!-- Astro View Transitions -->
-    <meta name="view-transition" content="same-origin" />
+    <!-- JSON-LD: Breadcrumbs (páginas interiores) -->
+    {breadcrumbSchema && (
+      <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    )}
+
+    <!-- JSON-LD: schema específico de la página -->
+    {pageSchema && (
+      <script type="application/ld+json" set:html={JSON.stringify(pageSchema)} />
+    )}
   </head>
   <body>
     <a href="#main-content" class="skip-to-content">Saltar al contenido principal</a>
@@ -97,6 +177,7 @@ const jsonLd = {
       <slot />
     </main>
     <Footer />
+    <WhatsAppButton />
 
     <!-- Intersection Observer para reveal de secciones -->
     <script>

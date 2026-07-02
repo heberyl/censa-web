@@ -57,9 +57,28 @@ const services = [
 ---
 
 <Layout
-  title="Servicios"
-  description="Servicios eléctricos de media tensión en Nuevo León: Instalación MT, Mantenimiento Preventivo, Subestaciones Eléctricas, Emergencias 24/7 e Ingeniería Eléctrica. Certificados CFE y NOM-001-SEDE."
+  title="Servicios Eléctricos MT"
+  description="Instalación de redes MT, subestaciones eléctricas industriales, mantenimiento preventivo, emergencias 24/7 e ingeniería eléctrica en Nuevo León. Contratista homologado CFE y NOM-001-SEDE."
   image="/images/hero-servicios.jpg"
+  heroImage="/images/hero-servicios.jpg"
+  breadcrumbs={[{ name: 'Servicios', url: '/servicios' }]}
+  pageSchema={{
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'Servicios eléctricos CENSA',
+    itemListElement: services.map((s, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      item: {
+        '@type': 'Service',
+        name: s.title,
+        description: s.description,
+        provider: { '@type': 'LocalBusiness', name: 'CENSA', '@id': 'https://censa.com.mx/#organization' },
+        areaServed: { '@type': 'State', name: 'Nuevo León' },
+        url: `https://censa.com.mx/servicios#${s.id}`,
+      },
+    })),
+  }}
 >
   <!-- Hero -->
   <section class="relative overflow-hidden min-h-[480px] md:h-[580px]" aria-label="Servicios — Portada">
@@ -130,7 +149,7 @@ const services = [
             <div class:list={[i % 2 !== 0 ? 'md:[direction:ltr]' : '']}>
               <img
                 src={image}
-                alt={title}
+                alt={`${title} — servicio eléctrico de media tensión en Nuevo León por CENSA`}
                 width="800" height="600"
                 class="rounded-2xl object-cover w-full aspect-[4/3] shadow-[0_8px_40px_-12px_rgba(0,0,0,0.2)]"
                 loading="lazy"

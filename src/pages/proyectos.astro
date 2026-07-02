@@ -63,9 +63,11 @@ const categories = ['Todos', ...new Set(projects.map(p => p.category))];
 ---
 
 <Layout
-  title="Proyectos"
-  description="Portafolio de proyectos eléctricos de media tensión en Nuevo León: instalaciones MT, subestaciones industriales, mantenimiento preventivo y atención de emergencias."
+  title="Proyectos Eléctricos Realizados"
+  description="+198 proyectos de infraestructura eléctrica MT en Nuevo León: redes de distribución, subestaciones industriales, mantenimiento y emergencias. Contratista CFE Monterrey."
   image="/images/hero-proyectos.jpg"
+  heroImage="/images/hero-proyectos.jpg"
+  breadcrumbs={[{ name: 'Proyectos', url: '/proyectos' }]}
 >
   <!-- Hero -->
   <section class="relative overflow-hidden min-h-[480px] md:h-[580px]" aria-label="Proyectos — Portada">

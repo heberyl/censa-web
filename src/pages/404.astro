@@ -1,0 +1,63 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Página no encontrada"
+  description="La página que buscas no existe. Explora los servicios eléctricos de CENSA en Nuevo León."
+>
+  <section class="bg-[#F3EFEA] min-h-[70vh] flex items-center" aria-label="Página no encontrada">
+    <div class="mx-auto max-w-[1400px] px-6 md:px-10 py-20 text-center">
+      <div class="inline-flex items-center gap-3 mb-6 justify-center">
+        <span class="h-px w-8 bg-[#E10600]"></span>
+        <span class="text-xs font-semibold uppercase tracking-[0.24em] text-[#E10600]">Error 404</span>
+        <span class="h-px w-8 bg-[#E10600]"></span>
+      </div>
+      <h1 class="font-sans font-black text-6xl leading-none tracking-[-0.03em] text-[#111] md:text-8xl">
+        4<span class="text-[#E10600]">0</span>4
+      </h1>
+      <p class="mt-6 text-xl font-semibold text-[#111]">Esta página no existe</p>
+      <p class="mt-3 text-base text-[#6D6D6D] max-w-md mx-auto leading-relaxed">
+        La URL que buscas no fue encontrada. Puede que haya sido movida o eliminada.
+      </p>
+      <div class="mt-10 flex flex-col gap-3 sm:flex-row justify-center">
+        <a
+          href="/"
+          class="inline-flex items-center justify-center gap-2 rounded-full bg-[#E10600] px-8 py-3.5 text-sm font-semibold text-white shadow-[0_8px_24px_-8px_rgba(225,6,0,0.5)] transition-all hover:bg-[#B30500] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E10600] focus-visible:ring-offset-2"
+        >
+          Ir al inicio
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+          </svg>
+        </a>
+        <a
+          href="/contacto"
+          class="inline-flex items-center justify-center gap-2 rounded-full border border-[#D8D2CC] px-8 py-3.5 text-sm font-semibold text-[#111] transition-all hover:border-[#E10600] hover:text-[#E10600] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E10600]"
+        >
+          Solicitar cotización
+        </a>
+      </div>
+      <!-- Quick links -->
+      <div class="mt-16">
+        <p class="text-xs font-semibold uppercase tracking-[0.18em] text-[#6D6D6D] mb-6">¿Qué buscabas?</p>
+        <div class="flex flex-wrap gap-3 justify-center">
+          {[
+            { label: 'Instalación MT', href: '/servicios#instalacion-mt' },
+            { label: 'Subestaciones', href: '/servicios#subestaciones' },
+            { label: 'Emergencias 24/7', href: '/servicios#emergencias' },
+            { label: 'Mantenimiento', href: '/servicios#mantenimiento' },
+            { label: 'Nosotros', href: '/nosotros' },
+            { label: 'Proyectos', href: '/proyectos' },
+          ].map(({ label, href }) => (
+            <a
+              href={href}
+              class="rounded-full border border-[#D8D2CC] px-4 py-2 text-xs font-medium text-[#6D6D6D] hover:border-[#E10600] hover:text-[#E10600] transition-colors"
+            >
+              {label}
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

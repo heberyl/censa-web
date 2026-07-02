@@ -1,0 +1,94 @@
+---
+import Layout from '../layouts/Layout.astro';
+const year = new Date().getFullYear();
+---
+
+<Layout
+  title="Aviso de Privacidad"
+  description="Aviso de privacidad de CENSA. Conoce cómo tratamos tus datos personales conforme a la Ley Federal de Protección de Datos Personales en Posesión de los Particulares."
+  breadcrumbs={[{ name: 'Aviso de Privacidad', url: '/aviso-de-privacidad' }]}
+>
+  <section class="bg-[#F3EFEA] py-20 md:py-28" aria-labelledby="privacidad-heading">
+    <div class="mx-auto max-w-[900px] px-6 md:px-10">
+
+      <!-- Header -->
+      <div class="mb-12">
+        <div class="inline-flex items-center gap-3 mb-4">
+          <span class="h-px w-8 bg-[#E10600]"></span>
+          <span class="text-xs font-semibold uppercase tracking-[0.24em] text-[#E10600]">Legal</span>
+        </div>
+        <h1 id="privacidad-heading" class="font-sans font-black text-4xl leading-tight tracking-[-0.02em] text-[#111] md:text-5xl">
+          AVISO DE<br /><span class="text-[#E10600]">PRIVACIDAD</span>
+        </h1>
+        <p class="mt-4 text-sm text-[#6D6D6D]">Última actualización: julio de {year}</p>
+      </div>
+
+      <!-- Content -->
+      <div class="rounded-2xl bg-white border border-[#D8D2CC]/60 p-8 md:p-12 space-y-8 text-[#3a3a3a]">
+
+        <div>
+          <h2 class="font-bold text-lg text-[#111] mb-3">Responsable del tratamiento</h2>
+          <p class="text-sm leading-relaxed">
+            <strong>CENSA</strong> (Construcciones Eléctricas del Noreste SA de CV), con domicilio en Monterrey, Nuevo León, México, es responsable del uso y protección de sus datos personales, en términos de lo previsto en la <em>Ley Federal de Protección de Datos Personales en Posesión de los Particulares</em> (LFPDPPP).
+          </p>
+          <p class="mt-3 text-sm leading-relaxed">Contacto para ejercicio de derechos ARCO: <a href="mailto:contacto@censa.com.mx" class="text-[#E10600] hover:underline">contacto@censa.com.mx</a></p>
+        </div>
+
+        <div>
+          <h2 class="font-bold text-lg text-[#111] mb-3">Datos personales recabados</h2>
+          <p class="text-sm leading-relaxed">A través del formulario de contacto de este sitio web recabamos los siguientes datos:</p>
+          <ul class="mt-2 space-y-1 text-sm list-disc list-inside text-[#6D6D6D]">
+            <li>Nombre completo</li>
+            <li>Correo electrónico</li>
+            <li>Número de teléfono (opcional)</li>
+            <li>Nombre de empresa (opcional)</li>
+            <li>Descripción del proyecto o consulta</li>
+          </ul>
+        </div>
+
+        <div>
+          <h2 class="font-bold text-lg text-[#111] mb-3">Finalidades del tratamiento</h2>
+          <p class="text-sm leading-relaxed"><strong>Finalidades primarias (necesarias):</strong></p>
+          <ul class="mt-2 space-y-1 text-sm list-disc list-inside text-[#6D6D6D]">
+            <li>Atender y dar seguimiento a solicitudes de cotización</li>
+            <li>Contactarte para responder a tu consulta técnica</li>
+            <li>Elaborar propuestas y presupuestos de servicios</li>
+          </ul>
+          <p class="mt-4 text-sm leading-relaxed"><strong>Finalidades secundarias (opcionales):</strong></p>
+          <ul class="mt-2 space-y-1 text-sm list-disc list-inside text-[#6D6D6D]">
+            <li>Envío de información sobre servicios y proyectos relevantes</li>
+          </ul>
+          <p class="mt-3 text-sm text-[#6D6D6D]">Para oponerte al tratamiento para finalidades secundarias, envía un correo a <a href="mailto:contacto@censa.com.mx" class="text-[#E10600] hover:underline">contacto@censa.com.mx</a> indicando "NO PUBLICIDAD".</p>
+        </div>
+
+        <div>
+          <h2 class="font-bold text-lg text-[#111] mb-3">Derechos ARCO</h2>
+          <p class="text-sm leading-relaxed">
+            Tienes derecho a <strong>Acceder, Rectificar, Cancelar u Oponerte</strong> al tratamiento de tus datos personales (derechos ARCO), enviando tu solicitud a <a href="mailto:contacto@censa.com.mx" class="text-[#E10600] hover:underline">contacto@censa.com.mx</a> con el asunto "Derechos ARCO". Responderemos en un plazo de 20 días hábiles.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="font-bold text-lg text-[#111] mb-3">Transferencia de datos</h2>
+          <p class="text-sm leading-relaxed">
+            No transferimos tus datos a terceros sin tu consentimiento, salvo en los casos previstos en el Artículo 37 de la LFPDPPP. Los datos pueden ser procesados por <strong>Resend</strong> (servicio de envío de correo electrónico) como encargado del tratamiento, bajo acuerdo de confidencialidad.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="font-bold text-lg text-[#111] mb-3">Cambios al aviso</h2>
+          <p class="text-sm leading-relaxed">
+            Cualquier modificación a este aviso de privacidad se publicará en esta misma URL. Te recomendamos revisarlo periódicamente.
+          </p>
+        </div>
+
+      </div>
+
+      <div class="mt-8 text-center">
+        <a href="/contacto" class="inline-flex items-center gap-2 text-sm font-semibold text-[#E10600] hover:text-[#B30500] transition-colors">
+          ← Regresar a inicio
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

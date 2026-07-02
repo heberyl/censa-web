@@ -4,9 +4,35 @@ import SectionLabel from '../components/ui/SectionLabel.astro';
 ---
 
 <Layout
-  title="Contacto"
-  description="Contacta a CENSA para cotizar servicios eléctricos de media tensión en Nuevo León. Respuesta en 48 horas. Emergencias 24/7."
+  title="Solicitar Cotización"
+  description="Solicita cotización de servicios eléctricos MT en Nuevo León. Propuesta técnica sin costo en 48 horas. Emergencias disponibles 24/7. Contratista CFE homologado."
   image="/images/hero.jpg"
+  breadcrumbs={[{ name: 'Contacto', url: '/contacto' }]}
+  pageSchema={{
+    '@context': 'https://schema.org',
+    '@type': 'ContactPage',
+    name: 'Contacto CENSA',
+    url: 'https://censa.com.mx/contacto',
+    mainEntity: {
+      '@type': 'Organization',
+      name: 'CENSA',
+      '@id': 'https://censa.com.mx/#organization',
+      contactPoint: {
+        '@type': 'ContactPoint',
+        telephone: '+528100000000',
+        email: 'contacto@censa.com.mx',
+        contactType: 'sales',
+        areaServed: 'MX',
+        availableLanguage: 'Spanish',
+        hoursAvailable: {
+          '@type': 'OpeningHoursSpecification',
+          dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+          opens: '00:00',
+          closes: '23:59',
+        },
+      },
+    },
+  }}
 >
   <!-- Hero -->
   <section class="bg-[#111] py-20 md:py-28" aria-label="Contacto — Portada">

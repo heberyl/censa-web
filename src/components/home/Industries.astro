@@ -1,0 +1,104 @@
+---
+const industries = [
+  {
+    name: 'Manufactura',
+    icon: `<path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7-6H4a2 2 0 0 0-2 2z"/><path d="M14 2v6h6"/><path d="M12 18v-6"/><path d="M8 18v-1"/><path d="M16 18v-3"/>`,
+    caption: 'Plantas automotrices y maquiladoras',
+  },
+  {
+    name: 'Logística',
+    icon: `<rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>`,
+    caption: 'Centros de distribución y bodegas',
+  },
+  {
+    name: 'Automotriz',
+    icon: `<path d="M19 17H5a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2z"/><path d="M7 9h10"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/>`,
+    caption: 'Tier 1 y Tier 2 de OEMs globales',
+  },
+  {
+    name: 'Alimentos',
+    icon: `<path d="M6 13.87A4 4 0 0 1 7.41 6a5.11 5.11 0 0 1 1.05-1.54 5 5 0 0 1 7.08 0A5.11 5.11 0 0 1 16.59 6 4 4 0 0 1 18 13.87V21H6Z"/><line x1="6" x2="18" y1="17" y2="17"/>`,
+    caption: 'FMCG, bebidas y procesadoras',
+  },
+  {
+    name: 'Minería',
+    icon: `<path d="m2 22 1-1h3l9-9"/><path d="M3 21v-3l9-9"/><path d="m15 6 3.4-3.4a2.1 2.1 0 1 1 3 3L18 9l.4.4a2.1 2.1 0 1 1-3 3l-3.8-3.8a2.1 2.1 0 1 1 3-3l.4.4Z"/>`,
+    caption: 'Extracción y procesamiento mineral',
+  },
+  {
+    name: 'Infraestructura',
+    icon: `<rect x="2" y="6" width="20" height="8" rx="1"/><path d="M17 14v7"/><path d="M7 14v7"/><path d="M17 3v3"/><path d="M7 3v3"/><path d="M10 14 2.3 21.3"/><path d="m14 6 7.7-7.3"/>`,
+    caption: 'Parques industriales y desarrollos',
+  },
+];
+
+const logos = [
+  'CFE Suministrador',
+  'NOM-001-SEDE',
+  'STPS Certificado',
+  'ISO 9001',
+];
+---
+
+<section class="bg-white py-16 md:py-20" aria-labelledby="industries-heading">
+  <div class="mx-auto max-w-[1400px] px-6 md:px-10">
+
+    <!-- Header -->
+    <div class="text-center mb-12 reveal">
+      <div class="inline-flex items-center gap-3 mb-4 justify-center">
+        <span class="h-px w-8 bg-[#E10600]"></span>
+        <span class="text-xs font-semibold uppercase tracking-[0.24em] text-[#E10600]">Sectores que atendemos</span>
+        <span class="h-px w-8 bg-[#E10600]"></span>
+      </div>
+      <h2 id="industries-heading" class="font-sans font-black text-3xl leading-tight tracking-[-0.02em] text-[#111] md:text-4xl">
+        INFRAESTRUCTURA ELÉCTRICA<br />
+        <span class="text-[#E10600]">PARA TODA LA INDUSTRIA</span>
+      </h2>
+      <p class="mt-4 text-base text-[#6D6D6D] max-w-xl mx-auto leading-relaxed">
+        Más de 15 años ejecutando proyectos MT en los principales sectores industriales del noreste de México.
+      </p>
+    </div>
+
+    <!-- Industries grid -->
+    <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6 reveal-stagger">
+      {industries.map(({ name, icon, caption }) => (
+        <div class="group flex flex-col items-center gap-3 rounded-2xl border border-[#D8D2CC] bg-[#F3EFEA] p-5 text-center transition-all duration-300 hover:border-[#E10600] hover:bg-white hover:shadow-[0_8px_32px_-8px_rgba(225,6,0,0.12)]">
+          <div class="grid h-12 w-12 place-items-center rounded-xl bg-white shadow-sm transition-colors group-hover:bg-[#E10600]">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.75"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="text-[#E10600] transition-colors group-hover:text-white"
+              aria-hidden="true"
+              set:html={icon}
+            />
+          </div>
+          <div>
+            <p class="text-sm font-bold text-[#111]">{name}</p>
+            <p class="mt-0.5 text-xs text-[#6D6D6D] leading-snug">{caption}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Trust bar -->
+    <div class="mt-12 flex flex-wrap items-center justify-center gap-x-8 gap-y-4 reveal">
+      <p class="text-xs font-semibold uppercase tracking-[0.2em] text-[#6D6D6D] w-full text-center sm:w-auto">
+        Certificaciones y habilitaciones:
+      </p>
+      {logos.map((logo) => (
+        <div class="flex items-center gap-2">
+          <span class="h-1.5 w-1.5 rounded-full bg-[#E10600]"></span>
+          <span class="text-sm font-semibold text-[#3a3a3a]">{logo}</span>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>

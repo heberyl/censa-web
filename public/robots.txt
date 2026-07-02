@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://censa.com.mx/sitemap-index.xml
