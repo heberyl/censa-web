@@ -92,3 +92,48 @@
     }
   }
 }
+
+/* Ken Burns — zoom lento en imágenes hero */
+@keyframes kenBurns {
+  from { transform: scale(1); }
+  to   { transform: scale(1.07); }
+}
+.hero-ken-burns {
+  animation: kenBurns 10s ease-in-out forwards;
+  will-change: transform;
+}
+
+/* Process connector line — animación scaleX al entrar en viewport */
+.process-connector {
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.process-connector.in-view {
+  transform: scaleX(1);
+}
+
+/* Carousel dots */
+.carousel-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background-color: #D8D2CC;
+  transition: background-color 0.2s, width 0.2s;
+}
+.carousel-dot.active {
+  background-color: #E10600;
+  width: 18px;
+}
+
+/* Reduced motion — respeta preferencias del sistema */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .hero-ken-burns { animation: none !important; }
+  .process-connector { transition: none !important; }
+}
