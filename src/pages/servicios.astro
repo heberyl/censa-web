@@ -1,0 +1,158 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SectionLabel from '../components/ui/SectionLabel.astro';
+
+const services = [
+  {
+    id: 'instalacion-mt',
+    num: '01',
+    title: 'Instalación MT',
+    subtitle: 'Redes de media tensión llave en mano',
+    description: 'Diseño y montaje de redes de media tensión (entre 1kV y 35kV) bajo norma CFE y NOM-001-SEDE. Realizamos tendido aéreo y subterráneo, postería metálica y de concreto, herrajes de suspensión y retención, conexiones con perno de cobre certificadas y pruebas dieléctricas de aceptación.',
+    features: ['Tendido aéreo y subterráneo', 'Postería metálica y de concreto', 'Herrajes CFE certificados', 'Pruebas dieléctricas', 'Entrega de planos as-built', 'Coordinación con CFE'],
+    image: '/images/servicio-01-instalacion-mt.jpg',
+    icon: `<path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/>`,
+  },
+  {
+    id: 'mantenimiento',
+    num: '02',
+    title: 'Mantenimiento Preventivo',
+    subtitle: 'Programas para prolongar la vida útil',
+    description: 'Programa estructurado de mantenimiento preventivo para instalaciones eléctricas de media tensión: termografía infrarroja, limpieza de aisladores y bushings, pruebas de rigidez dieléctrica, ajuste de conexiones, inspección de celdas y tableros. Entregamos reporte técnico con evidencia fotográfica y recomendaciones.',
+    features: ['Termografía infrarroja', 'Pruebas dieléctricas', 'Limpieza de aislamiento', 'Ajuste de conexiones', 'Inspección de celdas MT', 'Reporte con fotos y firmas'],
+    image: '/images/servicio-02-mantenimiento.jpg',
+    icon: `<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.106-3.105c.32-.322.863-.22.983.218a6 6 0 0 1-8.259 7.057l-7.91 7.91a1 1 0 0 1-2.999-3l7.91-7.91a6 6 0 0 1 7.057-8.259c.438.12.54.662.219.984z"/>`,
+  },
+  {
+    id: 'subestaciones',
+    num: '03',
+    title: 'Subestaciones Eléctricas',
+    subtitle: 'Diseño, construcción y puesta en marcha',
+    description: 'Proyecto integral de subestaciones eléctricas industriales: desde el diseño básico y de detalle hasta la puesta en servicio. Incluye transformadores de potencia, celdas de media tensión, protecciones de sobre-corriente y diferencial, sistemas de tierra, medición y SCADA básico.',
+    features: ['Diseño básico y de detalle', 'Transformadores de potencia', 'Celdas de media tensión', 'Sistemas de protección', 'Puesta en marcha con CFE', 'Manuales de operación'],
+    image: '/images/servicio-03-subestaciones.jpg',
+    icon: `<rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>`,
+  },
+  {
+    id: 'emergencias',
+    num: '04',
+    title: 'Emergencias 24/7',
+    subtitle: 'Respuesta en menos de 2 horas',
+    description: 'Servicio de atención de emergencias eléctricas disponible los 365 días del año. Cuadrillas certificadas con equipo de intervención rápida para fallas en redes MT, subestaciones y equipos de distribución. Nuestro objetivo: restaurar el suministro antes de que tu producción se vea afectada.',
+    features: ['Disponibilidad 24h/7d/365días', 'Respuesta < 2h en zona metropolitana', 'Diagnóstico en sitio', 'Reparación o bypass temporal', 'Coordinación con CFE', 'Informe post-emergencia'],
+    image: '/images/servicio-04-emergencias.jpg',
+    icon: `<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>`,
+  },
+  {
+    id: 'ingenieria',
+    num: '05',
+    title: 'Ingeniería Eléctrica',
+    subtitle: 'Estudios, diseño y consultoría',
+    description: 'Servicios de ingeniería especializada para sistemas eléctricos industriales: estudios de cortocircuito, coordinación de protecciones, flujos de carga y potencia, diseño de sistemas MT/BT, memorias de cálculo y peritajes. Personal con cédula profesional vigente y experiencia en proyectos de clase mundial.',
+    features: ['Estudios de cortocircuito', 'Coordinación de protecciones', 'Flujos de carga y potencia', 'Diseño de sistemas MT/BT', 'Memorias de cálculo NOM', 'Peritajes eléctricos'],
+    image: '/images/servicio-05-ingenieria.jpg',
+    icon: `<path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>`,
+  },
+];
+---
+
+<Layout
+  title="Servicios"
+  description="Servicios eléctricos de media tensión en Nuevo León: Instalación MT, Mantenimiento Preventivo, Subestaciones Eléctricas, Emergencias 24/7 e Ingeniería Eléctrica. Certificados CFE y NOM-001-SEDE."
+  image="/images/hero-servicios.jpg"
+>
+  <!-- Hero -->
+  <section class="relative overflow-hidden min-h-[480px] md:h-[580px]" aria-label="Servicios — Portada">
+    <img
+      src="/images/hero-servicios.jpg"
+      alt="Instalación de redes eléctricas de media tensión en zona industrial"
+      width="1920" height="1080"
+      class="absolute inset-0 h-full w-full object-cover"
+      loading="eager"
+    />
+    <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/55 to-black/20"></div>
+    <div class="relative z-10 mx-auto flex h-full max-w-[1400px] flex-col justify-center px-6 py-20 md:px-10">
+      <div class="inline-flex items-center gap-3 mb-6">
+        <span class="h-px w-8 bg-[#E10600]"></span>
+        <span class="text-xs font-medium uppercase tracking-[0.24em] text-white/80">Lo que hacemos</span>
+      </div>
+      <h1 class="font-sans font-black text-4xl leading-tight tracking-[-0.03em] text-white md:text-6xl lg:text-7xl max-w-2xl">
+        SERVICIOS<br /><span class="text-[#E10600]">ELÉCTRICOS</span><br />INDUSTRIALES
+      </h1>
+    </div>
+  </section>
+
+  <!-- Services list -->
+  <div class="bg-[#F3EFEA]">
+    {services.map(({ id, num, title, subtitle, description, features, image }, i) => (
+      <section
+        id={id}
+        class:list={['py-20 md:py-28', i % 2 === 0 ? 'bg-[#F3EFEA]' : 'bg-white']}
+        aria-labelledby={`service-${id}-heading`}
+      >
+        <div class="mx-auto max-w-[1400px] px-6 md:px-10">
+          <div class:list={['grid grid-cols-1 gap-12 md:grid-cols-2 md:gap-20 items-center reveal', i % 2 !== 0 ? 'md:[direction:rtl]' : '']}>
+            <div class:list={[i % 2 !== 0 ? 'md:[direction:ltr]' : '']}>
+              <div class="inline-flex items-center gap-3 mb-4">
+                <span class="h-px w-8 bg-[#E10600]"></span>
+                <span class="text-xs font-semibold uppercase tracking-[0.24em] text-[#E10600]">Servicio {num} / 05</span>
+              </div>
+              <h2 id={`service-${id}-heading`} class="font-sans font-black text-3xl leading-tight tracking-[-0.02em] text-[#111] md:text-4xl lg:text-5xl">
+                {title.toUpperCase()}
+              </h2>
+              <p class="mt-2 text-sm font-semibold uppercase tracking-wider text-[#6D6D6D]">{subtitle}</p>
+              <p class="mt-6 text-base leading-relaxed text-[#3a3a3a]">{description}</p>
+
+              <ul class="mt-6 grid grid-cols-1 gap-2 sm:grid-cols-2">
+                {features.map((feat) => (
+                  <li class="flex items-center gap-2.5 text-sm text-[#3a3a3a]">
+                    <span class="grid h-4 w-4 shrink-0 place-items-center rounded-full bg-[#E10600] text-white">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M20 6 9 17l-5-5"/>
+                      </svg>
+                    </span>
+                    {feat}
+                  </li>
+                ))}
+              </ul>
+
+              <a
+                href="/contacto"
+                class="mt-8 inline-flex items-center gap-2 rounded-full bg-[#E10600] px-6 py-3 text-sm font-semibold text-white shadow-[0_8px_24px_-8px_rgba(225,6,0,0.5)] transition-all hover:bg-[#B30500] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E10600] focus-visible:ring-offset-2"
+              >
+                Solicitar cotización
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+                </svg>
+              </a>
+            </div>
+
+            <div class:list={[i % 2 !== 0 ? 'md:[direction:ltr]' : '']}>
+              <img
+                src={image}
+                alt={title}
+                width="800" height="600"
+                class="rounded-2xl object-cover w-full aspect-[4/3] shadow-[0_8px_40px_-12px_rgba(0,0,0,0.2)]"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+    ))}
+  </div>
+
+  <!-- CTA -->
+  <section class="bg-[#E10600] py-16 md:py-20">
+    <div class="mx-auto max-w-[1400px] px-6 md:px-10 text-center">
+      <h2 class="font-sans font-black text-3xl text-white md:text-4xl">¿NECESITAS UN SERVICIO ESPECÍFICO?</h2>
+      <p class="mt-4 text-white/80 max-w-xl mx-auto">Cuéntanos tu proyecto y te preparamos una propuesta técnica sin costo en 48 horas.</p>
+      <a href="/contacto" class="mt-8 inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 text-sm font-semibold text-[#E10600] transition-all hover:bg-[#F3EFEA] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#E10600]">
+        Solicitar cotización
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+        </svg>
+      </a>
+    </div>
+  </section>
+</Layout>

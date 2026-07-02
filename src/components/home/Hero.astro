@@ -1,0 +1,76 @@
+---
+---
+
+<section
+  id="inicio"
+  class="relative w-full overflow-hidden min-h-[600px] md:h-[760px]"
+  aria-label="Portada principal"
+>
+  <!-- Hero image -->
+  <img
+    src="/images/hero.jpg"
+    alt="Torres de transmisión eléctrica de media tensión al atardecer en Nuevo León"
+    width="1920"
+    height="1080"
+    class="absolute inset-0 h-full w-full object-cover"
+    loading="eager"
+    decoding="async"
+  />
+
+  <!-- Overlays -->
+  <div class="absolute inset-0 bg-gradient-to-r from-black/85 via-black/60 to-black/30"></div>
+  <div class="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/50"></div>
+
+  <!-- Content -->
+  <div class="relative z-10 mx-auto flex h-full max-w-[1400px] flex-col justify-center px-6 py-20 md:px-10">
+    <div class="max-w-3xl">
+
+      <!-- Badge -->
+      <div class="mb-6 inline-flex items-center gap-3 rounded-full border border-white/25 bg-white/5 px-5 py-2 backdrop-blur md:mb-8">
+        <span class="h-2 w-2 rounded-full bg-[#E10600] shadow-[0_0_12px_#E10600]"></span>
+        <span class="text-[10px] font-medium uppercase tracking-[0.18em] text-white/90 md:text-xs">
+          Especialistas en Media Tensión — Nuevo León, México
+        </span>
+      </div>
+
+      <!-- Headline -->
+      <h1 class="font-sans font-black text-4xl leading-[0.92] tracking-[-0.03em] text-white md:text-6xl lg:text-[104px]">
+        INFRAESTRUCTURA<br />
+        ELÉCTRICA QUE<br />
+        NO <span class="text-[#E10600]">FALLA</span>
+      </h1>
+
+      <!-- Subtext -->
+      <p class="mt-6 max-w-xl text-base leading-relaxed text-white/80 md:mt-8 md:text-lg">
+        Más de 15 años construyendo la infraestructura eléctrica que impulsa a la industria de Nuevo León.
+        Certificados por <strong class="font-semibold text-white">CFE</strong> y{' '}
+        <strong class="font-semibold text-white">NOM-001-SEDE</strong>.
+      </p>
+
+      <!-- CTAs -->
+      <div class="mt-8 flex flex-wrap gap-3 md:mt-10 md:gap-4">
+        <a
+          href="#servicios"
+          class="group inline-flex items-center gap-2 rounded-full bg-[#E10600] px-6 py-3 text-sm font-semibold text-white shadow-[0_12px_32px_-8px_rgba(225,6,0,0.7)] transition-all hover:bg-[#B30500] md:px-8 md:py-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+        >
+          Ver Servicios
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform group-hover:translate-x-1" aria-hidden="true">
+            <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+          </svg>
+        </a>
+        <a
+          href="/contacto"
+          class="inline-flex items-center gap-2 rounded-full border border-white/40 bg-white/5 px-6 py-3 text-sm font-semibold text-white backdrop-blur transition-all hover:bg-white hover:text-[#111] md:px-8 md:py-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+        >
+          Solicitar Cotización
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-8 right-10 z-10 hidden items-center gap-3 text-xs uppercase tracking-[0.3em] text-white/60 lg:flex" aria-hidden="true">
+    <span class="h-px w-12 bg-white/40"></span>
+    Scroll
+  </div>
+</section>

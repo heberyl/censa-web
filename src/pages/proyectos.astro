@@ -1,0 +1,208 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SectionLabel from '../components/ui/SectionLabel.astro';
+
+const projects = [
+  {
+    title: 'Red de Distribución Industrial',
+    category: 'Instalación MT',
+    location: 'Apodaca, N.L.',
+    year: '2023',
+    description: 'Diseño y construcción de red MT de 23kV para parque industrial. Incluye 3.2 km de tendido subterráneo y 8 transiciones aéreo-subterráneo.',
+    image: '/images/proyecto-red-distribucion.jpg',
+    alt: 'Red de distribución eléctrica subterránea instalada en parque industrial en Apodaca',
+  },
+  {
+    title: 'Subestación Planta Industrial',
+    category: 'Subestaciones',
+    location: 'Santa Catarina, N.L.',
+    year: '2023',
+    description: 'Subestación eléctrica 23/0.48kV, 2,500 kVA. Incluye celda de llegada, transformador de potencia, tablero de distribución y sistema de tierras.',
+    image: '/images/subestacion-industrial.jpg',
+    alt: 'Subestación eléctrica industrial de 23kV instalada en Santa Catarina Nuevo León',
+  },
+  {
+    title: 'Emergencia Red de Alta Carga',
+    category: 'Emergencias 24/7',
+    location: 'Monterrey, N.L.',
+    year: '2024',
+    description: 'Atención de falla en línea MT de 13.8kV durante turno nocturno. Restauración completa del suministro en menos de 90 minutos.',
+    image: '/images/proyecto-emergencia-electrica.jpg',
+    alt: 'Atención de emergencia eléctrica nocturna en planta de manufactura en Monterrey',
+  },
+  {
+    title: 'Mantenimiento Planta Manufactura',
+    category: 'Mantenimiento Preventivo',
+    location: 'Escobedo, N.L.',
+    year: '2024',
+    description: 'Programa anual de mantenimiento preventivo para planta con 5 subestaciones activas. Termografía, pruebas dieléctricas y ajuste de protecciones.',
+    image: '/images/mantenimiento-planta.jpg',
+    alt: 'Mantenimiento preventivo de instalaciones eléctricas en planta de manufactura en Escobedo',
+  },
+  {
+    title: 'Red de Distribución MT',
+    category: 'Instalación MT',
+    location: 'García, N.L.',
+    year: '2022',
+    description: 'Construcción de línea de distribución aérea 13.8kV de 5.4km para interconectar parques industriales. Postería metálica tipo CFE.',
+    image: '/images/red-distribucion.jpg',
+    alt: 'Línea aérea de distribución de media tensión instalada entre parques industriales en García',
+  },
+  {
+    title: 'Ingeniería Sistema de Protección',
+    category: 'Ingeniería Eléctrica',
+    location: 'Monterrey, N.L.',
+    year: '2022',
+    description: 'Estudio de cortocircuito y coordinación de protecciones para sistema eléctrico de 10 subestaciones. Ajuste de relevadores y documentación completa.',
+    image: '/images/servicio-05-ingenieria.jpg',
+    alt: 'Ingenieros realizando estudio de coordinación de protecciones en sistema eléctrico industrial',
+  },
+];
+
+const categories = ['Todos', ...new Set(projects.map(p => p.category))];
+---
+
+<Layout
+  title="Proyectos"
+  description="Portafolio de proyectos eléctricos de media tensión en Nuevo León: instalaciones MT, subestaciones industriales, mantenimiento preventivo y atención de emergencias."
+  image="/images/hero-proyectos.jpg"
+>
+  <!-- Hero -->
+  <section class="relative overflow-hidden min-h-[480px] md:h-[580px]" aria-label="Proyectos — Portada">
+    <img
+      src="/images/hero-proyectos.jpg"
+      alt="Vista panorámica de infraestructura eléctrica industrial en Nuevo León"
+      width="1920" height="1080"
+      class="absolute inset-0 h-full w-full object-cover"
+      loading="eager"
+    />
+    <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/55 to-black/20"></div>
+    <div class="relative z-10 mx-auto flex h-full max-w-[1400px] flex-col justify-center px-6 py-20 md:px-10">
+      <div class="inline-flex items-center gap-3 mb-6">
+        <span class="h-px w-8 bg-[#E10600]"></span>
+        <span class="text-xs font-medium uppercase tracking-[0.24em] text-white/80">Nuestro portafolio</span>
+      </div>
+      <h1 class="font-sans font-black text-4xl leading-tight tracking-[-0.03em] text-white md:text-6xl lg:text-7xl max-w-2xl">
+        +198 PROYECTOS<br />EN <span class="text-[#E10600]">EL NORESTE</span>
+      </h1>
+    </div>
+  </section>
+
+  <!-- Projects grid -->
+  <section class="bg-[#F3EFEA] py-20 md:py-32" aria-labelledby="proyectos-grid-heading">
+    <div class="mx-auto max-w-[1400px] px-6 md:px-10">
+      <div class="mb-12 md:mb-16 reveal">
+        <SectionLabel label="Proyectos Realizados" />
+        <h2 id="proyectos-grid-heading" class="mt-6 font-sans font-black text-4xl leading-[0.95] tracking-[-0.02em] text-[#111] md:text-5xl">
+          OBRA QUE<br /><span class="text-[#E10600]">HABLA</span>
+        </h2>
+      </div>
+
+      <!-- Filter buttons -->
+      <div class="flex flex-wrap gap-2 mb-10" role="group" aria-label="Filtrar proyectos por categoría">
+        {categories.map((cat, i) => (
+          <button
+            type="button"
+            data-filter={cat}
+            class:list={[
+              'filter-btn rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-[0.12em] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E10600]',
+              i === 0
+                ? 'bg-[#E10600] text-white'
+                : 'border border-[#D8D2CC] text-[#6D6D6D] hover:border-[#E10600] hover:text-[#E10600]',
+            ]}
+            aria-pressed={i === 0}
+          >
+            {cat}
+          </button>
+        ))}
+      </div>
+
+      <!-- Grid -->
+      <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 reveal-stagger" id="projects-grid">
+        {projects.map(({ title, category, location, year, description, image, alt }) => (
+          <article
+            class="project-card group rounded-2xl overflow-hidden bg-white border border-[#D8D2CC]/60 shadow-[0_2px_16px_-8px_rgba(0,0,0,0.08)] hover:shadow-[0_8px_32px_-12px_rgba(0,0,0,0.15)] transition-all duration-300"
+            data-category={category}
+          >
+            <div class="relative h-52 overflow-hidden">
+              <img
+                src={image}
+                alt={alt}
+                width="800" height="600"
+                class="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                loading="lazy"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+              <span class="absolute top-3 left-3 rounded-full bg-[#E10600] px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.15em] text-white">
+                {category}
+              </span>
+            </div>
+            <div class="p-5 md:p-6">
+              <div class="flex items-center justify-between text-xs text-[#6D6D6D] mb-2">
+                <span class="flex items-center gap-1">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/>
+                  </svg>
+                  {location}
+                </span>
+                <span>{year}</span>
+              </div>
+              <h3 class="font-sans font-black text-lg text-[#111] tracking-tight leading-tight">{title}</h3>
+              <p class="mt-2 text-sm leading-relaxed text-[#6D6D6D] line-clamp-3">{description}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-[#111] py-16 md:py-20">
+    <div class="mx-auto max-w-[1400px] px-6 md:px-10 flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
+      <div>
+        <SectionLabel label="¿Tienes un proyecto?" />
+        <h2 class="mt-4 font-sans font-black text-3xl text-white md:text-4xl">
+          HABLEMOS DE<br /><span class="text-[#E10600]">TU PROYECTO</span>
+        </h2>
+      </div>
+      <a
+        href="/contacto"
+        class="inline-flex items-center gap-2 rounded-full bg-[#E10600] px-8 py-4 text-sm font-semibold text-white shadow-[0_8px_24px_-8px_rgba(225,6,0,0.6)] transition-all hover:bg-[#B30500] shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E10600] focus-visible:ring-offset-2 focus-visible:ring-offset-[#111]"
+      >
+        Solicitar cotización
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+        </svg>
+      </a>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  const filterBtns = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
+  const cards = document.querySelectorAll<HTMLElement>('.project-card');
+
+  filterBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const filter = btn.dataset.filter!;
+
+      filterBtns.forEach((b) => {
+        const isActive = b === btn;
+        b.setAttribute('aria-pressed', String(isActive));
+        b.className = b.className
+          .replace(/bg-\[#E10600\] text-white|border border-\[#D8D2CC\] text-\[#6D6D6D\] hover:border-\[#E10600\] hover:text-\[#E10600\]/g, '')
+          .trim();
+        b.classList.add(
+          ...(isActive
+            ? ['bg-[#E10600]', 'text-white']
+            : ['border', 'border-[#D8D2CC]', 'text-[#6D6D6D]', 'hover:border-[#E10600]', 'hover:text-[#E10600]'])
+        );
+      });
+
+      cards.forEach((card) => {
+        const match = filter === 'Todos' || card.dataset.category === filter;
+        card.style.display = match ? '' : 'none';
+      });
+    });
+  });
+</script>

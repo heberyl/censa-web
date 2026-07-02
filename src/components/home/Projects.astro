@@ -1,0 +1,89 @@
+---
+import SectionLabel from '../ui/SectionLabel.astro';
+
+const projects = [
+  {
+    title: 'Red de Distribución Industrial',
+    category: 'Instalación MT',
+    location: 'Apodaca, N.L.',
+    image: '/images/proyecto-red-distribucion.jpg',
+    alt: 'Red de distribución eléctrica industrial en Apodaca Nuevo León',
+  },
+  {
+    title: 'Emergencia Eléctrica 24h',
+    category: 'Atención de Emergencias',
+    location: 'Monterrey, N.L.',
+    image: '/images/proyecto-emergencia-electrica.jpg',
+    alt: 'Atención de emergencia eléctrica en planta industrial en Monterrey',
+  },
+  {
+    title: 'Subestación Industrial',
+    category: 'Subestaciones',
+    location: 'Santa Catarina, N.L.',
+    image: '/images/subestacion-industrial.jpg',
+    alt: 'Subestación eléctrica industrial instalada en Santa Catarina Nuevo León',
+  },
+];
+---
+
+<section class="bg-white py-20 md:py-32" aria-labelledby="proyectos-heading">
+  <div class="mx-auto max-w-[1400px] px-6 md:px-10">
+    <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between mb-12 md:mb-16">
+      <div>
+        <SectionLabel label="Proyectos Destacados" />
+        <h2 id="proyectos-heading" class="mt-6 font-sans font-black text-4xl leading-[0.95] tracking-[-0.02em] text-[#111] md:text-5xl lg:text-6xl">
+          OBRA QUE<br /><span class="text-[#E10600]">HABLA</span>
+        </h2>
+      </div>
+      <a
+        href="/proyectos"
+        class="inline-flex items-center gap-2 text-sm font-semibold text-[#111] transition-colors hover:text-[#E10600] focus-visible:outline-none focus-visible:text-[#E10600] shrink-0"
+      >
+        Ver todos los proyectos
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+        </svg>
+      </a>
+    </div>
+
+    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {projects.map(({ title, category, location, image, alt }) => (
+        <a
+          href="/proyectos"
+          class="group relative overflow-hidden rounded-2xl bg-[#111] aspect-[4/3] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E10600]"
+          aria-label={`${title} — ${category}`}
+        >
+          <img
+            src={image}
+            alt={alt}
+            width="800"
+            height="600"
+            class="absolute inset-0 h-full w-full object-cover opacity-70 transition-all duration-500 group-hover:opacity-90 group-hover:scale-105"
+            loading="lazy"
+            decoding="async"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-5 md:p-6">
+            <span class="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#E10600]">
+              {category}
+            </span>
+            <h3 class="mt-1 font-sans font-bold text-lg leading-tight text-white md:text-xl">
+              {title}
+            </h3>
+            <div class="mt-2 flex items-center gap-1.5 text-xs text-white/60">
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/>
+              </svg>
+              {location}
+            </div>
+          </div>
+          <div class="absolute top-4 right-4 grid h-8 w-8 place-items-center rounded-full bg-white/10 text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100 backdrop-blur-sm" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M7 7h10v10"/><path d="M7 17 17 7"/>
+            </svg>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

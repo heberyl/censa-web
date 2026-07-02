@@ -1,0 +1,12 @@
+name = "censa-web"
+compatibility_date = "2024-09-23"
+compatibility_flags = ["nodejs_compat"]
+
+# Deploy via Cloudflare Pages dashboard → Settings → Build
+# Build command:    pnpm build
+# Build output:     dist/client
+# Root directory:   /
+#
+# Environment variables (set in Cloudflare Pages dashboard):
+#   RESEND_API_KEY = "re_..."
+#   CONTACT_EMAIL  = "contacto@censa.com.mx"

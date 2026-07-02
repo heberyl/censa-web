@@ -1,17 +1,21 @@
 ---
-
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/home/Hero.astro';
+import Stats from '../components/home/Stats.astro';
+import Services from '../components/home/Services.astro';
+import Projects from '../components/home/Projects.astro';
+import Process from '../components/home/Process.astro';
+import CTA from '../components/home/CTA.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout
+  title="CENSA"
+  description="Especialistas en infraestructura eléctrica de media tensión en Nuevo León, México. +15 años, certificados CFE y NOM-001-SEDE. Instalación MT, subestaciones, mantenimiento y emergencias 24/7."
+>
+  <Hero />
+  <Stats />
+  <Services />
+  <Projects />
+  <Process />
+  <CTA />
+</Layout>

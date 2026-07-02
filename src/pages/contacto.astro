@@ -1,0 +1,285 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SectionLabel from '../components/ui/SectionLabel.astro';
+---
+
+<Layout
+  title="Contacto"
+  description="Contacta a CENSA para cotizar servicios eléctricos de media tensión en Nuevo León. Respuesta en 48 horas. Emergencias 24/7."
+  image="/images/hero.jpg"
+>
+  <!-- Hero -->
+  <section class="bg-[#111] py-20 md:py-28" aria-label="Contacto — Portada">
+    <div class="mx-auto max-w-[1400px] px-6 md:px-10">
+      <div class="inline-flex items-center gap-3 mb-6">
+        <span class="h-px w-8 bg-[#E10600]"></span>
+        <span class="text-xs font-medium uppercase tracking-[0.24em] text-white/60">Hablemos</span>
+      </div>
+      <h1 class="font-sans font-black text-4xl leading-tight tracking-[-0.03em] text-white md:text-6xl lg:text-7xl max-w-2xl">
+        SOLICITA TU<br /><span class="text-[#E10600]">COTIZACIÓN</span>
+      </h1>
+      <p class="mt-6 text-base text-white/60 max-w-xl leading-relaxed">
+        Cuéntanos tu proyecto. Propuesta técnica y cotización sin costo en 48 horas hábiles.
+      </p>
+    </div>
+  </section>
+
+  <!-- Form + Info -->
+  <section class="bg-[#F3EFEA] py-20 md:py-32" aria-labelledby="contacto-heading">
+    <div class="mx-auto max-w-[1400px] px-6 md:px-10">
+      <div class="grid grid-cols-1 gap-12 lg:grid-cols-5 lg:gap-20">
+
+        <!-- Contact info -->
+        <div class="lg:col-span-2 reveal">
+          <SectionLabel label="Información de contacto" />
+          <h2 id="contacto-heading" class="mt-6 font-sans font-black text-3xl leading-tight tracking-[-0.02em] text-[#111] md:text-4xl sr-only">
+            Información de contacto
+          </h2>
+
+          <div class="mt-8 space-y-6">
+            <div class="flex items-start gap-4">
+              <div class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-[#E10600] text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/>
+                </svg>
+              </div>
+              <div>
+                <p class="text-xs font-semibold uppercase tracking-[0.15em] text-[#6D6D6D]">Ubicación</p>
+                <p class="mt-1 text-[#111] font-medium">Monterrey, Nuevo León, México</p>
+                <p class="text-sm text-[#6D6D6D]">Área metropolitana y estado de N.L.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-[#E10600] text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.77 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 17z"/>
+                </svg>
+              </div>
+              <div>
+                <p class="text-xs font-semibold uppercase tracking-[0.15em] text-[#6D6D6D]">Teléfono</p>
+                <a href="tel:+528100000000" class="mt-1 block text-[#111] font-medium hover:text-[#E10600] transition-colors">+52 81 0000-0000</a>
+                <p class="text-sm text-[#6D6D6D]">Emergencias disponibles 24/7</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-[#E10600] text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                </svg>
+              </div>
+              <div>
+                <p class="text-xs font-semibold uppercase tracking-[0.15em] text-[#6D6D6D]">Email</p>
+                <a href="mailto:contacto@censa.com.mx" class="mt-1 block text-[#111] font-medium hover:text-[#E10600] transition-colors">contacto@censa.com.mx</a>
+                <p class="text-sm text-[#6D6D6D]">Respuesta en menos de 24h hábiles</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Emergency callout -->
+          <div class="mt-10 rounded-2xl bg-[#E10600] p-6 text-white">
+            <div class="flex items-center gap-3 mb-2">
+              <span class="h-2 w-2 rounded-full bg-white shadow-[0_0_8px_white] animate-pulse"></span>
+              <span class="text-xs font-semibold uppercase tracking-[0.18em] text-white/80">Emergencias</span>
+            </div>
+            <p class="font-bold text-lg">Disponibles 24 horas</p>
+            <p class="mt-1 text-sm text-white/80">Para fallas críticas en redes MT, subestaciones y distribución.</p>
+            <a href="tel:+528100000000" class="mt-4 inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-xs font-semibold text-[#E10600] hover:bg-[#F3EFEA] transition-colors">
+              Llamar ahora
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.77 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 17z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Form -->
+        <div class="lg:col-span-3 reveal">
+          <form
+            id="contact-form"
+            action="/api/contact"
+            method="POST"
+            class="rounded-2xl bg-white border border-[#D8D2CC]/60 shadow-[0_2px_24px_-16px_rgba(0,0,0,0.12)] p-8 md:p-10"
+            novalidate
+          >
+            <!-- Honeypot anti-spam (hidden) -->
+            <div class="absolute opacity-0 pointer-events-none" aria-hidden="true">
+              <label for="website">No llenar</label>
+              <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
+            </div>
+
+            <h2 class="font-sans font-black text-2xl text-[#111] tracking-tight mb-6">Formulario de cotización</h2>
+
+            <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
+              <!-- Nombre -->
+              <div class="sm:col-span-1">
+                <label for="name" class="block text-xs font-semibold uppercase tracking-[0.15em] text-[#6D6D6D] mb-2">Nombre *</label>
+                <input
+                  type="text" id="name" name="name" required
+                  autocomplete="name"
+                  placeholder="Tu nombre completo"
+                  class="w-full rounded-xl border border-[#D8D2CC] bg-[#F3EFEA] px-4 py-3 text-sm text-[#111] placeholder:text-[#6D6D6D]/60 transition-colors focus:border-[#E10600] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#E10600]/20"
+                />
+                <p class="form-error hidden mt-1.5 text-xs text-[#E10600]" id="name-error">Por favor ingresa tu nombre.</p>
+              </div>
+
+              <!-- Empresa -->
+              <div class="sm:col-span-1">
+                <label for="company" class="block text-xs font-semibold uppercase tracking-[0.15em] text-[#6D6D6D] mb-2">Empresa</label>
+                <input
+                  type="text" id="company" name="company"
+                  autocomplete="organization"
+                  placeholder="Nombre de la empresa"
+                  class="w-full rounded-xl border border-[#D8D2CC] bg-[#F3EFEA] px-4 py-3 text-sm text-[#111] placeholder:text-[#6D6D6D]/60 transition-colors focus:border-[#E10600] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#E10600]/20"
+                />
+              </div>
+
+              <!-- Email -->
+              <div class="sm:col-span-1">
+                <label for="email" class="block text-xs font-semibold uppercase tracking-[0.15em] text-[#6D6D6D] mb-2">Email *</label>
+                <input
+                  type="email" id="email" name="email" required
+                  autocomplete="email"
+                  placeholder="tu@empresa.com"
+                  class="w-full rounded-xl border border-[#D8D2CC] bg-[#F3EFEA] px-4 py-3 text-sm text-[#111] placeholder:text-[#6D6D6D]/60 transition-colors focus:border-[#E10600] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#E10600]/20"
+                />
+                <p class="form-error hidden mt-1.5 text-xs text-[#E10600]" id="email-error">Ingresa un email válido.</p>
+              </div>
+
+              <!-- Teléfono -->
+              <div class="sm:col-span-1">
+                <label for="phone" class="block text-xs font-semibold uppercase tracking-[0.15em] text-[#6D6D6D] mb-2">Teléfono</label>
+                <input
+                  type="tel" id="phone" name="phone"
+                  autocomplete="tel"
+                  placeholder="+52 81 0000-0000"
+                  class="w-full rounded-xl border border-[#D8D2CC] bg-[#F3EFEA] px-4 py-3 text-sm text-[#111] placeholder:text-[#6D6D6D]/60 transition-colors focus:border-[#E10600] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#E10600]/20"
+                />
+              </div>
+
+              <!-- Servicio -->
+              <div class="sm:col-span-2">
+                <label for="service" class="block text-xs font-semibold uppercase tracking-[0.15em] text-[#6D6D6D] mb-2">Servicio de interés *</label>
+                <select
+                  id="service" name="service" required
+                  class="w-full rounded-xl border border-[#D8D2CC] bg-[#F3EFEA] px-4 py-3 text-sm text-[#111] transition-colors focus:border-[#E10600] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#E10600]/20 appearance-none cursor-pointer"
+                >
+                  <option value="" disabled selected>Selecciona un servicio</option>
+                  <option>Instalación MT</option>
+                  <option>Mantenimiento Preventivo</option>
+                  <option>Subestaciones Eléctricas</option>
+                  <option>Emergencias 24/7</option>
+                  <option>Ingeniería Eléctrica</option>
+                  <option>Otro / Consulta general</option>
+                </select>
+                <p class="form-error hidden mt-1.5 text-xs text-[#E10600]" id="service-error">Selecciona un servicio.</p>
+              </div>
+
+              <!-- Mensaje -->
+              <div class="sm:col-span-2">
+                <label for="message" class="block text-xs font-semibold uppercase tracking-[0.15em] text-[#6D6D6D] mb-2">Describe tu proyecto *</label>
+                <textarea
+                  id="message" name="message" required rows="5"
+                  placeholder="Cuéntanos los detalles: tipo de instalación, capacidad requerida, ubicación, plazo estimado..."
+                  class="w-full rounded-xl border border-[#D8D2CC] bg-[#F3EFEA] px-4 py-3 text-sm text-[#111] placeholder:text-[#6D6D6D]/60 transition-colors focus:border-[#E10600] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#E10600]/20 resize-none"
+                ></textarea>
+                <p class="form-error hidden mt-1.5 text-xs text-[#E10600]" id="message-error">Por favor describe tu proyecto.</p>
+              </div>
+            </div>
+
+            <!-- Status messages -->
+            <div id="form-success" class="hidden mt-4 rounded-xl bg-green-50 border border-green-200 px-5 py-4 text-sm text-green-700 font-medium" role="alert" aria-live="polite">
+              ¡Mensaje enviado! Te contactaremos en menos de 48 horas hábiles.
+            </div>
+            <div id="form-error-msg" class="hidden mt-4 rounded-xl bg-red-50 border border-red-200 px-5 py-4 text-sm text-red-700 font-medium" role="alert" aria-live="polite">
+              Ocurrió un error al enviar. Por favor intenta de nuevo o llámanos directamente.
+            </div>
+
+            <!-- Submit -->
+            <div class="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <p class="text-xs text-[#6D6D6D]">* Campos requeridos — respuesta en 48h hábiles</p>
+              <button
+                type="submit"
+                id="submit-btn"
+                class="inline-flex items-center justify-center gap-2 rounded-full bg-[#E10600] px-8 py-3.5 text-sm font-semibold text-white shadow-[0_8px_24px_-8px_rgba(225,6,0,0.5)] transition-all hover:bg-[#B30500] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E10600] focus-visible:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed"
+              >
+                <span id="btn-text">Enviar solicitud</span>
+                <svg id="btn-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+                </svg>
+                <svg id="btn-spinner" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="hidden animate-spin">
+                  <path d="M21 12a9 9 0 1 1-6.219-8.56"/>
+                </svg>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+  const btnText = document.getElementById('btn-text')!;
+  const btnArrow = document.getElementById('btn-arrow')!;
+  const btnSpinner = document.getElementById('btn-spinner')!;
+  const successMsg = document.getElementById('form-success')!;
+  const errorMsg = document.getElementById('form-error-msg')!;
+
+  const fields = {
+    name: { el: document.getElementById('name') as HTMLInputElement, err: document.getElementById('name-error')! },
+    email: { el: document.getElementById('email') as HTMLInputElement, err: document.getElementById('email-error')! },
+    service: { el: document.getElementById('service') as HTMLSelectElement, err: document.getElementById('service-error')! },
+    message: { el: document.getElementById('message') as HTMLTextAreaElement, err: document.getElementById('message-error')! },
+  };
+
+  function validateField(key: keyof typeof fields) {
+    const { el, err } = fields[key];
+    const valid = el.checkValidity();
+    err.classList.toggle('hidden', valid);
+    el.classList.toggle('border-[#E10600]', !valid);
+    return valid;
+  }
+
+  Object.keys(fields).forEach((key) => {
+    const k = key as keyof typeof fields;
+    fields[k].el.addEventListener('blur', () => validateField(k));
+  });
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const allValid = Object.keys(fields).map((k) => validateField(k as keyof typeof fields));
+    if (!allValid.every(Boolean)) return;
+
+    // Set loading state
+    submitBtn.disabled = true;
+    btnText.textContent = 'Enviando...';
+    btnArrow.classList.add('hidden');
+    btnSpinner.classList.remove('hidden');
+    successMsg.classList.add('hidden');
+    errorMsg.classList.add('hidden');
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        body: new FormData(form),
+      });
+
+      if (res.ok) {
+        successMsg.classList.remove('hidden');
+        form.reset();
+      } else {
+        errorMsg.classList.remove('hidden');
+      }
+    } catch {
+      errorMsg.classList.remove('hidden');
+    } finally {
+      submitBtn.disabled = false;
+      btnText.textContent = 'Enviar solicitud';
+      btnArrow.classList.remove('hidden');
+      btnSpinner.classList.add('hidden');
+    }
+  });
+</script>

@@ -1,0 +1,152 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SectionLabel from '../components/ui/SectionLabel.astro';
+---
+
+<Layout
+  title="Nosotros"
+  description="CENSA — Más de 15 años de experiencia en infraestructura eléctrica de media tensión en Nuevo León. Conoce nuestra historia, valores y equipo certificado."
+  image="/images/hero-nosotros.jpg"
+>
+  <!-- Hero -->
+  <section class="relative overflow-hidden min-h-[480px] md:h-[580px]" aria-label="Nosotros — Portada">
+    <img
+      src="/images/hero-nosotros.jpg"
+      alt="Equipo CENSA revisando instalación eléctrica industrial en campo"
+      width="1920" height="1080"
+      class="absolute inset-0 h-full w-full object-cover"
+      loading="eager"
+    />
+    <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/55 to-black/20"></div>
+    <div class="relative z-10 mx-auto flex h-full max-w-[1400px] flex-col justify-center px-6 py-20 md:px-10">
+      <div class="inline-flex items-center gap-3 mb-6">
+        <span class="h-px w-8 bg-[#E10600]"></span>
+        <span class="text-xs font-medium uppercase tracking-[0.24em] text-white/80">Quiénes somos</span>
+      </div>
+      <h1 class="font-sans font-black text-4xl leading-tight tracking-[-0.03em] text-white md:text-6xl lg:text-7xl max-w-2xl">
+        EXPERTOS QUE<br /><span class="text-[#E10600]">CONOCEN</span><br />EL NORESTE
+      </h1>
+    </div>
+  </section>
+
+  <!-- Historia -->
+  <section class="bg-white py-20 md:py-32" aria-labelledby="historia-heading">
+    <div class="mx-auto max-w-[1400px] px-6 md:px-10">
+      <div class="grid grid-cols-1 gap-12 md:grid-cols-2 md:gap-20 items-center">
+        <div class="reveal">
+          <SectionLabel label="Nuestra Historia" />
+          <h2 id="historia-heading" class="mt-6 font-sans font-black text-3xl leading-tight tracking-[-0.02em] text-[#111] md:text-4xl lg:text-5xl">
+            MÁS DE 15 AÑOS<br />ENERGIZANDO<br /><span class="text-[#E10600]">LA INDUSTRIA</span>
+          </h2>
+          <div class="mt-8 space-y-4 text-[#6D6D6D] leading-relaxed text-base">
+            <p>
+              CENSA nació en 2009 en Monterrey con un objetivo claro: ofrecer a la industria del noreste de México servicios eléctricos de media tensión con los más altos estándares de calidad, seguridad y cumplimiento normativo.
+            </p>
+            <p>
+              A lo largo de más de 15 años hemos participado en más de 198 proyectos — desde redes de distribución en parques industriales de Apodaca y Santa Catarina, hasta subestaciones para plantas de manufactura de clase mundial en el corredor industrial de Nuevo León.
+            </p>
+            <p>
+              Contamos con homologación ante la <strong class="text-[#111] font-semibold">Comisión Federal de Electricidad (CFE)</strong> y cumplimiento certificado con la <strong class="text-[#111] font-semibold">NOM-001-SEDE</strong>, respaldado por ingenieros y técnicos con licencia vigente.
+            </p>
+          </div>
+        </div>
+        <div class="relative reveal">
+          <img
+            src="/images/nosotros-conocemos-noreste.jpg"
+            alt="Panorámica de instalaciones industriales eléctricas en el noreste de México"
+            width="800" height="600"
+            class="rounded-2xl object-cover w-full aspect-[4/3] shadow-[0_8px_40px_-12px_rgba(0,0,0,0.2)]"
+            loading="lazy"
+          />
+          <div class="absolute -bottom-6 -left-6 hidden md:block bg-[#E10600] rounded-2xl p-6 text-white shadow-xl">
+            <div class="font-display text-5xl">+198</div>
+            <div class="mt-1 text-xs font-semibold uppercase tracking-[0.15em] text-white/80">Proyectos completados</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Valores -->
+  <section class="bg-[#F3EFEA] py-20 md:py-32" aria-labelledby="valores-heading">
+    <div class="mx-auto max-w-[1400px] px-6 md:px-10">
+      <div class="mb-12 md:mb-16 reveal">
+        <SectionLabel label="Nuestros Valores" />
+        <h2 id="valores-heading" class="mt-6 font-sans font-black text-4xl leading-[0.95] tracking-[-0.02em] text-[#111] md:text-5xl">
+          LO QUE NOS<br /><span class="text-[#E10600]">DEFINE</span>
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 reveal-stagger">
+        {[
+          {
+            icon: `<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>`,
+            title: 'Seguridad primero',
+            desc: 'Protocolos NOM en cada intervención. Cero accidentes es nuestra política, no un objetivo.',
+          },
+          {
+            icon: `<circle cx="12" cy="12" r="3"/><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/>`,
+            title: 'Precisión técnica',
+            desc: 'Ingeniería de detalle y pruebas rigurosas antes de energizar cualquier sistema.',
+          },
+          {
+            icon: `<path d="M12 2v4"/><path d="m16.2 7.8 2.9-2.9"/><path d="M18 12h4"/><path d="m16.2 16.2 2.9 2.9"/><path d="M12 18v4"/><path d="m4.9 19.1 2.9-2.9"/><path d="M2 12h4"/><path d="m4.9 4.9 2.9 2.9"/>`,
+            title: 'Respuesta rápida',
+            desc: 'Disponibles 24/7/365. Atendemos emergencias en menos de 2 horas en el área metropolitana.',
+          },
+          {
+            icon: `<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>`,
+            title: 'Compromiso cliente',
+            desc: 'Entregamos documentación as-built, reportes técnicos y seguimiento post-obra sin costo adicional.',
+          },
+        ].map(({ icon, title, desc }) => (
+          <div class="rounded-2xl bg-white border border-[#D8D2CC]/60 p-6 md:p-8 shadow-[0_2px_16px_-8px_rgba(0,0,0,0.08)] hover:shadow-[0_8px_32px_-12px_rgba(225,6,0,0.15)] hover:border-[#E10600]/30 transition-all duration-300">
+            <div class="grid h-12 w-12 place-items-center rounded-xl bg-[#E10600]/10 text-[#E10600] mb-5">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" set:html={icon} aria-hidden="true" />
+            </div>
+            <h3 class="font-sans font-black text-lg text-[#111] tracking-tight">{title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-[#6D6D6D]">{desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Nosotros imagen final -->
+  <section class="bg-white py-20 md:py-32" aria-labelledby="planta-heading">
+    <div class="mx-auto max-w-[1400px] px-6 md:px-10">
+      <div class="grid grid-cols-1 gap-12 md:grid-cols-2 md:gap-20 items-center">
+        <div class="reveal order-2 md:order-1">
+          <img
+            src="/images/mantenimiento-planta.jpg"
+            alt="Técnicos CENSA realizando mantenimiento preventivo en planta industrial"
+            width="800" height="600"
+            class="rounded-2xl object-cover w-full aspect-[4/3] shadow-[0_8px_40px_-12px_rgba(0,0,0,0.2)]"
+            loading="lazy"
+          />
+        </div>
+        <div class="reveal order-1 md:order-2">
+          <SectionLabel label="Certificaciones" />
+          <h2 id="planta-heading" class="mt-6 font-sans font-black text-3xl leading-tight tracking-[-0.02em] text-[#111] md:text-4xl">
+            RESPALDADOS<br />POR LAS<br /><span class="text-[#E10600]">NORMAS</span>
+          </h2>
+          <p class="mt-6 text-base leading-relaxed text-[#6D6D6D]">
+            Nuestros proyectos cumplen con la normatividad vigente, garantizando la seguridad de las personas y la continuidad operativa de tu planta.
+          </p>
+          <ul class="mt-8 space-y-3">
+            {['Homologación CFE para contratistas', 'NOM-001-SEDE (Instalaciones eléctricas)', 'STPS — Seguridad e higiene en obra', 'Ingenieros con cédula profesional vigente', 'Personal técnico con licencia de electricista'].map((cert) => (
+              <li class="flex items-center gap-3 text-sm text-[#3a3a3a]">
+                <span class="grid h-5 w-5 shrink-0 place-items-center rounded-full bg-[#E10600] text-white">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M20 6 9 17l-5-5"/>
+                  </svg>
+                </span>
+                {cert}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

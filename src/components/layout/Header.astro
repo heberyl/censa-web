@@ -1,0 +1,166 @@
+---
+const navLinks = [
+  { href: '/', label: 'Inicio' },
+  { href: '/nosotros', label: 'Nosotros' },
+  { href: '/servicios', label: 'Servicios' },
+  { href: '/proyectos', label: 'Proyectos' },
+  { href: '/contacto', label: 'Contacto' },
+];
+
+const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
+---
+
+<header
+  id="site-header"
+  class="sticky top-0 z-50 border-b border-[#D8D2CC]/60 backdrop-blur-md transition-all duration-300 ease-out rounded-b-2xl bg-white/95 shadow-[0_2px_24px_-12px_rgba(0,0,0,0.10)]"
+>
+  <div class="mx-auto flex max-w-[1400px] items-center justify-between px-5 sm:px-6 md:px-10 h-20 md:h-24">
+    <!-- Logo -->
+    <a href="/" class="flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E10600] rounded-md" aria-label="CENSA — Inicio">
+      <span class="grid h-9 w-9 place-items-center rounded-md bg-[#E10600] text-white">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/>
+        </svg>
+      </span>
+      <span class="font-display text-3xl tracking-[0.18em] text-[#111]">CENSA</span>
+    </a>
+
+    <!-- Desktop nav -->
+    <nav aria-label="Navegación principal" class="hidden items-center gap-10 md:flex">
+      {navLinks.map(({ href, label }) => {
+        const isActive = href === '/' ? pathname === '/' : pathname.startsWith(href);
+        return (
+          <a
+            href={href}
+            aria-current={isActive ? 'page' : undefined}
+            class:list={[
+              'text-sm font-medium transition-colors hover:text-[#E10600] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E10600] rounded-sm',
+              isActive ? 'text-[#E10600]' : 'text-[#111]',
+            ]}
+          >
+            {label}
+          </a>
+        );
+      })}
+    </nav>
+
+    <div class="flex items-center gap-2">
+      <!-- CTA button -->
+      <a
+        href="/contacto"
+        class="group inline-flex items-center gap-2 rounded-full bg-[#E10600] px-4 py-2.5 text-xs font-semibold text-white shadow-[0_8px_24px_-8px_rgba(225,6,0,0.6)] transition-all hover:bg-[#B30500] hover:shadow-[0_12px_28px_-8px_rgba(225,6,0,0.7)] sm:px-5 md:px-6 md:py-3 md:text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E10600] focus-visible:ring-offset-2"
+      >
+        <span class="hidden sm:inline">Solicitar Cotización</span>
+        <span class="sm:hidden">Cotizar</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform group-hover:translate-x-0.5" aria-hidden="true">
+          <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+        </svg>
+      </a>
+
+      <!-- Mobile hamburger -->
+      <button
+        id="mobile-menu-trigger"
+        type="button"
+        aria-label="Abrir menú de navegación"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        class="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-[#D8D2CC] bg-white text-[#111] transition-colors hover:border-[#E10600] hover:text-[#E10600] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E10600] md:hidden"
+      >
+        <svg id="icon-menu" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/>
+        </svg>
+        <svg id="icon-close" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="hidden">
+          <path d="M18 6 6 18"/><path d="m6 6 12 12"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile menu drawer -->
+<div
+  id="mobile-menu"
+  role="dialog"
+  aria-label="Menú de navegación"
+  aria-modal="true"
+  class="fixed inset-0 z-40 hidden"
+>
+  <!-- Backdrop -->
+  <div id="mobile-backdrop" class="absolute inset-0 bg-black/40 backdrop-blur-sm opacity-0 transition-opacity duration-300"></div>
+
+  <!-- Drawer -->
+  <nav
+    aria-label="Navegación móvil"
+    class="absolute right-0 top-0 h-full w-72 bg-white translate-x-full transition-transform duration-300 ease-out shadow-2xl flex flex-col pt-24 px-6 gap-2"
+  >
+    {navLinks.map(({ href, label }) => {
+      const isActive = href === '/' ? pathname === '/' : pathname.startsWith(href);
+      return (
+        <a
+          href={href}
+          aria-current={isActive ? 'page' : undefined}
+          class:list={[
+            'mobile-nav-link text-lg font-semibold py-3 border-b border-[#D8D2CC]/50 transition-colors hover:text-[#E10600] focus-visible:outline-none focus-visible:text-[#E10600]',
+            isActive ? 'text-[#E10600]' : 'text-[#111]',
+          ]}
+        >
+          {label}
+        </a>
+      );
+    })}
+    <a
+      href="/contacto"
+      class="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-[#E10600] px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-[#B30500]"
+    >
+      Solicitar Cotización
+    </a>
+  </nav>
+</div>
+
+<script>
+  const trigger = document.getElementById('mobile-menu-trigger')!;
+  const menu = document.getElementById('mobile-menu')!;
+  const backdrop = document.getElementById('mobile-backdrop')!;
+  const drawer = menu.querySelector('nav')!;
+  const iconMenu = document.getElementById('icon-menu')!;
+  const iconClose = document.getElementById('icon-close')!;
+
+  let isOpen = false;
+
+  function openMenu() {
+    isOpen = true;
+    menu.classList.remove('hidden');
+    requestAnimationFrame(() => {
+      backdrop.classList.remove('opacity-0');
+      drawer.classList.remove('translate-x-full');
+    });
+    trigger.setAttribute('aria-expanded', 'true');
+    iconMenu.classList.add('hidden');
+    iconClose.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    trigger.setAttribute('aria-label', 'Cerrar menú de navegación');
+  }
+
+  function closeMenu() {
+    isOpen = false;
+    backdrop.classList.add('opacity-0');
+    drawer.classList.add('translate-x-full');
+    setTimeout(() => menu.classList.add('hidden'), 300);
+    trigger.setAttribute('aria-expanded', 'false');
+    iconMenu.classList.remove('hidden');
+    iconClose.classList.add('hidden');
+    document.body.style.overflow = '';
+    trigger.setAttribute('aria-label', 'Abrir menú de navegación');
+  }
+
+  trigger.addEventListener('click', () => (isOpen ? closeMenu() : openMenu()));
+  backdrop.addEventListener('click', closeMenu);
+
+  document.querySelectorAll('.mobile-nav-link').forEach((link) =>
+    link.addEventListener('click', closeMenu)
+  );
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && isOpen) closeMenu();
+  });
+</script>
