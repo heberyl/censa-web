@@ -85,7 +85,7 @@ const services = [
       {services.map(({ id, num, title, subtitle, description, image, icon }) => (
         <article
           id={id}
-          class="group grid h-full w-full snap-start snap-always grid-rows-[1fr_1.4fr] md:grid-cols-2 md:grid-rows-1"
+          class="group grid h-full w-full snap-start snap-always grid-rows-[160px_1fr] md:grid-cols-2 md:grid-rows-1"
           role="listitem"
         >
           <!-- Image -->
@@ -100,13 +100,13 @@ const services = [
               decoding="async"
             />
             <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent"></div>
-            <span class="absolute left-4 top-4 font-display text-4xl text-white/90 drop-shadow md:left-6 md:top-6 md:text-5xl" aria-hidden="true">
+            <span class="absolute left-3 top-3 font-display text-3xl text-white/90 drop-shadow md:left-6 md:top-6 md:text-5xl" aria-hidden="true">
               {num}
             </span>
           </div>
 
           <!-- Content -->
-          <div class="services-card-content flex flex-col justify-center gap-3 overflow-hidden p-6 md:gap-4 md:p-6">
+          <div class="services-card-content flex flex-col justify-center gap-2 overflow-hidden p-4 md:gap-4 md:p-6">
             <div class="flex items-center gap-3">
               <div class="grid h-10 w-10 place-items-center rounded-xl bg-[#E10600] text-white md:h-12 md:w-12" aria-hidden="true">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" set:html={icon} />
@@ -155,7 +155,7 @@ const services = [
 
 <style>
   /* Altura base del snap container */
-  .services-snap { height: min(72vw, 66vh); }
+  .services-snap { height: min(80vh, 440px); }
   @media (min-width: 768px)  { .services-snap { height: min(460px, 62vh); } }
   @media (min-width: 1280px) { .services-snap { height: min(500px, 62vh); } }
   @media (min-width: 1536px) { .services-snap { height: min(540px, 60vh); } }
