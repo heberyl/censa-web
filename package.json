@@ -2,9 +2,8 @@
   "name": "censa-web",
   "type": "module",
   "version": "0.0.1",
-  "packageManager": "pnpm@10.33.2",
   "engines": {
-    "node": ">=22.12.0"
+    "node": ">=18"
   },
   "scripts": {
     "dev": "astro dev",
