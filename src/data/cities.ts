@@ -15,7 +15,7 @@ export const cities: City[] = [
     slug: 'monterrey',
     name: 'Monterrey',
     state: 'Nuevo León',
-    titleSeo: 'Servicios Eléctricos de Media Tensión en Monterrey | CENSA',
+    titleSeo: 'Servicios Eléctricos de Media Tensión en Monterrey',
     metaDescription:
       'Contratista eléctrico MT en Monterrey, N.L. Instalación de redes, subestaciones industriales, mantenimiento preventivo y emergencias 24/7. Homologado CFE y NOM-001-SEDE.',
     intro:
@@ -29,7 +29,7 @@ export const cities: City[] = [
     slug: 'apodaca',
     name: 'Apodaca',
     state: 'Nuevo León',
-    titleSeo: 'Contratista Eléctrico MT en Apodaca, Nuevo León | CENSA',
+    titleSeo: 'Contratista Eléctrico MT en Apodaca, Nuevo León',
     metaDescription:
       'Servicios eléctricos de media tensión en Apodaca, N.L. Instalación MT, subestaciones, mantenimiento preventivo y emergencias en parques industriales. Contratista certificado CFE.',
     intro:
@@ -43,7 +43,7 @@ export const cities: City[] = [
     slug: 'san-nicolas-de-los-garza',
     name: 'San Nicolás de los Garza',
     state: 'Nuevo León',
-    titleSeo: 'Instalación Media Tensión San Nicolás de los Garza | CENSA',
+    titleSeo: 'Instalación Media Tensión San Nicolás de los Garza',
     metaDescription:
       'Instalación de redes de media tensión en San Nicolás de los Garza, N.L. Subestaciones eléctricas industriales, mantenimiento y emergencias 24/7. CENSA — sede en San Nicolás.',
     intro:
@@ -57,7 +57,7 @@ export const cities: City[] = [
     slug: 'santa-catarina',
     name: 'Santa Catarina',
     state: 'Nuevo León',
-    titleSeo: 'Subestaciones Eléctricas en Santa Catarina, N.L. | CENSA',
+    titleSeo: 'Subestaciones Eléctricas en Santa Catarina, N.L.',
     metaDescription:
       'Construcción y mantenimiento de subestaciones eléctricas en Santa Catarina, Nuevo León. Instalación MT llave en mano, emergencias 24/7. Contratista homologado CFE.',
     intro:
@@ -71,7 +71,7 @@ export const cities: City[] = [
     slug: 'escobedo',
     name: 'General Escobedo',
     state: 'Nuevo León',
-    titleSeo: 'Mantenimiento Eléctrico Industrial en Escobedo, N.L. | CENSA',
+    titleSeo: 'Mantenimiento Eléctrico Industrial en Escobedo, N.L.',
     metaDescription:
       'Mantenimiento preventivo de instalaciones eléctricas MT en General Escobedo, Nuevo León. Termografía, pruebas dieléctricas, emergencias. Contratista certificado CFE.',
     intro:
