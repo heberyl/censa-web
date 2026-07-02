@@ -12,7 +12,9 @@ export default defineConfig({
   }),
   site: 'https://censa.com.mx',
   integrations: [
-    sitemap(),
+    sitemap({
+      filter: (page) => !page.includes('/aviso-de-privacidad'),
+    }),
   ],
   vite: {
     plugins: [tailwindcss()],

@@ -1,63 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import SectionLabel from '../components/ui/SectionLabel.astro';
-
-const services = [
-  {
-    id: 'instalacion-mt',
-    num: '01',
-    title: 'Instalación MT',
-    subtitle: 'Redes de media tensión llave en mano',
-    description: 'Diseño y montaje de redes de media tensión (entre 1kV y 35kV) bajo norma CFE y NOM-001-SEDE. Realizamos tendido aéreo y subterráneo, postería metálica y de concreto, herrajes de suspensión y retención, conexiones con perno de cobre certificadas y pruebas dieléctricas de aceptación.',
-    features: ['Tendido aéreo y subterráneo', 'Postería metálica y de concreto', 'Herrajes CFE certificados', 'Pruebas dieléctricas', 'Entrega de planos as-built', 'Coordinación con CFE'],
-    image: '/images/servicio-01-instalacion-mt.jpg',
-    icon: `<path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/>`,
-  },
-  {
-    id: 'mantenimiento',
-    num: '02',
-    title: 'Mantenimiento Preventivo',
-    subtitle: 'Programas para prolongar la vida útil',
-    description: 'Programa estructurado de mantenimiento preventivo para instalaciones eléctricas de media tensión: termografía infrarroja, limpieza de aisladores y bushings, pruebas de rigidez dieléctrica, ajuste de conexiones, inspección de celdas y tableros. Entregamos reporte técnico con evidencia fotográfica y recomendaciones.',
-    features: ['Termografía infrarroja', 'Pruebas dieléctricas', 'Limpieza de aislamiento', 'Ajuste de conexiones', 'Inspección de celdas MT', 'Reporte con fotos y firmas'],
-    image: '/images/servicio-02-mantenimiento.jpg',
-    icon: `<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.106-3.105c.32-.322.863-.22.983.218a6 6 0 0 1-8.259 7.057l-7.91 7.91a1 1 0 0 1-2.999-3l7.91-7.91a6 6 0 0 1 7.057-8.259c.438.12.54.662.219.984z"/>`,
-  },
-  {
-    id: 'subestaciones',
-    num: '03',
-    title: 'Subestaciones Eléctricas',
-    subtitle: 'Diseño, construcción y puesta en marcha',
-    description: 'Proyecto integral de subestaciones eléctricas industriales: desde el diseño básico y de detalle hasta la puesta en servicio. Incluye transformadores de potencia, celdas de media tensión, protecciones de sobre-corriente y diferencial, sistemas de tierra, medición y SCADA básico.',
-    features: ['Diseño básico y de detalle', 'Transformadores de potencia', 'Celdas de media tensión', 'Sistemas de protección', 'Puesta en marcha con CFE', 'Manuales de operación'],
-    image: '/images/servicio-03-subestaciones.jpg',
-    icon: `<rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>`,
-  },
-  {
-    id: 'emergencias',
-    num: '04',
-    title: 'Emergencias 24/7',
-    subtitle: 'Respuesta en menos de 2 horas',
-    description: 'Servicio de atención de emergencias eléctricas disponible los 365 días del año. Cuadrillas certificadas con equipo de intervención rápida para fallas en redes MT, subestaciones y equipos de distribución. Nuestro objetivo: restaurar el suministro antes de que tu producción se vea afectada.',
-    features: ['Disponibilidad 24h/7d/365días', 'Respuesta < 2h en zona metropolitana', 'Diagnóstico en sitio', 'Reparación o bypass temporal', 'Coordinación con CFE', 'Informe post-emergencia'],
-    image: '/images/servicio-04-emergencias.jpg',
-    icon: `<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>`,
-  },
-  {
-    id: 'ingenieria',
-    num: '05',
-    title: 'Ingeniería Eléctrica',
-    subtitle: 'Estudios, diseño y consultoría',
-    description: 'Servicios de ingeniería especializada para sistemas eléctricos industriales: estudios de cortocircuito, coordinación de protecciones, flujos de carga y potencia, diseño de sistemas MT/BT, memorias de cálculo y peritajes. Personal con cédula profesional vigente y experiencia en proyectos de clase mundial.',
-    features: ['Estudios de cortocircuito', 'Coordinación de protecciones', 'Flujos de carga y potencia', 'Diseño de sistemas MT/BT', 'Memorias de cálculo NOM', 'Peritajes eléctricos'],
-    image: '/images/servicio-05-ingenieria.jpg',
-    icon: `<path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>`,
-  },
-];
+import { services } from '../data/services';
 ---
 
 <Layout
-  title="Servicios Eléctricos MT"
+  title="Servicios Eléctricos de Media Tensión en Nuevo León | CENSA"
   description="Instalación de redes MT, subestaciones eléctricas industriales, mantenimiento preventivo, emergencias 24/7 e ingeniería eléctrica en Nuevo León. Contratista homologado CFE y NOM-001-SEDE."
   image="/images/hero-servicios.jpg"
   heroImage="/images/hero-servicios.jpg"
@@ -76,7 +23,7 @@ const services = [
         description: s.description,
         provider: { '@type': 'LocalBusiness', name: 'CENSA', '@id': 'https://censa.com.mx/#organization' },
         areaServed: { '@type': 'State', name: 'Nuevo León' },
-        url: `https://censa.com.mx/servicios#${s.id}`,
+        url: `https://censa.com.mx/servicios/${s.slug}`,
       },
     })),
   }}
@@ -104,7 +51,7 @@ const services = [
 
   <!-- Services list -->
   <div class="bg-[#F3EFEA]">
-    {services.map(({ id, num, title, subtitle, description, features, image }, i) => (
+    {services.map(({ id, slug, num, title, subtitle, description, features, image }, i) => (
       <section
         id={id}
         class:list={['py-12 md:py-20', i % 2 === 0 ? 'bg-[#F3EFEA]' : 'bg-white']}
@@ -146,8 +93,8 @@ const services = [
                     <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
                   </svg>
                 </a>
-                <a href="/proyectos" class="text-sm font-semibold text-[#6D6D6D] hover:text-[#E10600] transition-colors">
-                  Ver proyectos realizados →
+                <a href={`/servicios/${slug}`} class="text-sm font-semibold text-[#6D6D6D] hover:text-[#E10600] transition-colors">
+                  Ver página completa →
                 </a>
               </div>
             </div>

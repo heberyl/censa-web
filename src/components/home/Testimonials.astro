@@ -1,0 +1,74 @@
+---
+const testimonials = [
+  {
+    quote:
+      'CENSA ejecutó la ampliación de nuestra subestación de 2 MVA en tiempo récord sin interrumpir la producción. Coordinación impecable con CFE y entrega de planos as-built el mismo día de la energización.',
+    name: 'Roberto Garza M.',
+    role: 'Director de Operaciones',
+    company: 'Planta automotriz Tier 1, Apodaca',
+    rating: 5,
+  },
+  {
+    quote:
+      'Llevamos 3 años con CENSA en nuestro programa de mantenimiento preventivo semestral. El reporte termográfico que entregan ha evitado dos fallas mayores. El nivel técnico de su equipo es notablemente superior.',
+    name: 'Ing. Laura Treviño',
+    role: 'Gerente de Mantenimiento',
+    company: 'Manufactura de precisión, Santa Catarina',
+    rating: 5,
+  },
+  {
+    quote:
+      'Tuvimos una falla en nuestra celda de 13.2 kV a las 2 a.m. CENSA llegó en 90 minutos, diagnosticaron la causa raíz y tuvimos suministro restaurado antes del turno matutino. Servicio de emergencia real, no solo promesa.',
+    name: 'Carlos Hernández V.',
+    role: 'Jefe de Planta',
+    company: 'Parque industrial, General Escobedo',
+    rating: 5,
+  },
+];
+---
+
+<section class="bg-white py-14 md:py-20" aria-labelledby="testimonials-heading">
+  <div class="mx-auto max-w-[1400px] px-6 md:px-10">
+    <div class="mb-10">
+      <div class="inline-flex items-center gap-3 mb-4">
+        <span class="h-px w-8 bg-[#E10600]"></span>
+        <span class="text-xs font-semibold uppercase tracking-[0.24em] text-[#E10600]">Lo que dicen nuestros clientes</span>
+      </div>
+      <h2 id="testimonials-heading" class="font-sans font-black text-3xl leading-tight tracking-[-0.02em] text-[#111] md:text-4xl">
+        CLIENTES QUE <span class="text-[#E10600]">CONFÍAN EN NOSOTROS</span>
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
+      {testimonials.map(({ quote, name, role, company, rating }) => (
+        <article class="flex flex-col gap-5 rounded-2xl border border-[#D8D2CC]/60 bg-[#F3EFEA] p-7">
+          <!-- Stars -->
+          <div class="flex items-center gap-0.5" aria-label={`${rating} de 5 estrellas`}>
+            {Array.from({ length: rating }).map(() => (
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#E10600" aria-hidden="true">
+                <path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.123 2.123 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/>
+              </svg>
+            ))}
+          </div>
+
+          <!-- Quote -->
+          <blockquote class="relative">
+            <span class="absolute -top-2 -left-1 font-display text-6xl leading-none text-[#E10600]/20 select-none" aria-hidden="true">"</span>
+            <p class="relative text-sm leading-relaxed text-[#3a3a3a] md:text-base">{quote}</p>
+          </blockquote>
+
+          <!-- Author -->
+          <footer class="mt-auto flex items-center gap-3 pt-4 border-t border-[#D8D2CC]/60">
+            <div class="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-[#E10600] text-white font-bold text-sm select-none" aria-hidden="true">
+              {name.charAt(0)}
+            </div>
+            <div>
+              <p class="text-sm font-bold text-[#111]">{name}</p>
+              <p class="text-xs text-[#6D6D6D]">{role} · {company}</p>
+            </div>
+          </footer>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

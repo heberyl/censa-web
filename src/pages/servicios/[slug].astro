@@ -1,0 +1,248 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { services } from '../../data/services';
+
+export function getStaticPaths() {
+  return services.map((s) => ({
+    params: { slug: s.slug },
+    props: { service: s },
+  }));
+}
+
+const { service } = Astro.props;
+const others = services.filter((s) => s.slug !== service.slug);
+
+const pageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: service.faqItems.map(({ q, a }) => ({
+    '@type': 'Question',
+    name: q,
+    acceptedAnswer: { '@type': 'Answer', text: a },
+  })),
+};
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: service.titleSeo,
+  description: service.descriptionLong,
+  provider: {
+    '@type': 'LocalBusiness',
+    '@id': 'https://censa.com.mx/#organization',
+    name: 'CENSA',
+  },
+  areaServed: { '@type': 'State', name: 'Nuevo León' },
+  url: `https://censa.com.mx/servicios/${service.slug}`,
+};
+---
+
+<Layout
+  title={service.titleSeo}
+  description={service.metaDescription}
+  image={service.image}
+  heroImage={service.image}
+  ogImageAlt={service.imageAlt}
+  breadcrumbs={[
+    { name: 'Servicios', url: '/servicios' },
+    { name: service.title, url: `/servicios/${service.slug}` },
+  ]}
+  pageSchema={pageSchema}
+>
+  <!-- Service schema adicional -->
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+
+  <!-- Hero -->
+  <section class="relative overflow-hidden min-h-[400px] md:h-[480px]" aria-label={`${service.title} — Portada`}>
+    <img
+      src={service.image}
+      alt={service.imageAlt}
+      width="1920" height="1080"
+      class="absolute inset-0 h-full w-full object-cover"
+      loading="eager"
+      fetchpriority="high"
+    />
+    <div class="absolute inset-0 bg-gradient-to-r from-black/85 via-black/60 to-black/25"></div>
+    <div class="relative z-10 mx-auto flex h-full max-w-[1400px] flex-col justify-center px-6 py-14 md:py-20 md:px-10">
+      <!-- Breadcrumb visible -->
+      <nav aria-label="Breadcrumb" class="mb-6">
+        <ol class="flex items-center gap-2 text-xs text-white/50">
+          <li><a href="/" class="hover:text-white transition-colors">Inicio</a></li>
+          <li aria-hidden="true"><span>/</span></li>
+          <li><a href="/servicios" class="hover:text-white transition-colors">Servicios</a></li>
+          <li aria-hidden="true"><span>/</span></li>
+          <li class="text-white/80">{service.title}</li>
+        </ol>
+      </nav>
+      <div class="inline-flex items-center gap-3 mb-4">
+        <span class="h-px w-8 bg-[#E10600]"></span>
+        <span class="text-xs font-medium uppercase tracking-[0.24em] text-white/70">Servicio {service.num} / 05</span>
+      </div>
+      <h1 class="font-sans font-black text-4xl leading-tight tracking-[-0.03em] text-white md:text-5xl lg:text-6xl max-w-3xl">
+        {service.titleSeo.toUpperCase()}
+      </h1>
+      <p class="mt-4 text-base text-white/75 max-w-xl leading-relaxed">
+        {service.subtitle}
+      </p>
+    </div>
+  </section>
+
+  <!-- Contenido principal -->
+  <section class="bg-[#F3EFEA] py-14 md:py-20">
+    <div class="mx-auto max-w-[1400px] px-6 md:px-10">
+      <div class="grid grid-cols-1 gap-10 md:grid-cols-2 md:gap-16 lg:gap-24 items-start">
+
+        <!-- Texto + features -->
+        <div>
+          <div class="inline-flex items-center gap-3 mb-4">
+            <div class="grid h-11 w-11 place-items-center rounded-xl bg-[#E10600] text-white" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" set:html={service.icon} />
+            </div>
+            <span class="text-xs font-semibold uppercase tracking-[0.2em] text-[#E10600]">{service.title}</span>
+          </div>
+          <h2 class="font-sans font-black text-3xl leading-tight tracking-[-0.02em] text-[#111] md:text-4xl">
+            ¿QUÉ INCLUYE<br /><span class="text-[#E10600]">ESTE SERVICIO?</span>
+          </h2>
+          <p class="mt-6 text-base leading-relaxed text-[#3a3a3a]">
+            {service.descriptionLong}
+          </p>
+
+          <ul class="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
+            {service.features.map((feat) => (
+              <li class="flex items-center gap-3 text-sm text-[#3a3a3a]">
+                <span class="grid h-5 w-5 shrink-0 place-items-center rounded-full bg-[#E10600] text-white">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M20 6 9 17l-5-5"/>
+                  </svg>
+                </span>
+                {feat}
+              </li>
+            ))}
+          </ul>
+
+          <div class="mt-10 flex flex-wrap gap-4">
+            <a
+              href="/contacto"
+              class="inline-flex items-center gap-2 rounded-full bg-[#E10600] px-6 py-3 text-sm font-semibold text-white shadow-[0_8px_24px_-8px_rgba(225,6,0,0.5)] transition-all hover:bg-[#B30500] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E10600] focus-visible:ring-offset-2"
+            >
+              Solicitar cotización
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+              </svg>
+            </a>
+            <a href="tel:+528122358545" class="inline-flex items-center gap-2 rounded-full border border-[#D8D2CC] px-6 py-3 text-sm font-semibold text-[#111] transition-all hover:border-[#E10600] hover:text-[#E10600] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E10600]">
+              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.77 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 17z"/>
+              </svg>
+              Llamar ahora
+            </a>
+          </div>
+        </div>
+
+        <!-- Imagen -->
+        <div class="relative">
+          <img
+            src={service.image}
+            alt={service.imageAlt}
+            width="800" height="600"
+            class="rounded-2xl object-cover w-full aspect-[4/3] shadow-[0_8px_40px_-12px_rgba(0,0,0,0.2)]"
+            loading="lazy"
+          />
+          <div class="absolute -bottom-4 -right-4 hidden md:flex items-center gap-3 rounded-2xl bg-[#E10600] px-5 py-4 shadow-xl">
+            <span class="font-display text-3xl text-white">+15</span>
+            <span class="text-xs font-semibold text-white/80 uppercase tracking-wider leading-tight">Años<br />experiencia</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ específico del servicio -->
+  <section class="bg-white py-14 md:py-20" aria-labelledby={`faq-${service.slug}-heading`}>
+    <div class="mx-auto max-w-[1400px] px-6 md:px-10">
+      <div class="mb-10">
+        <div class="inline-flex items-center gap-3 mb-4">
+          <span class="h-px w-8 bg-[#E10600]"></span>
+          <span class="text-xs font-semibold uppercase tracking-[0.24em] text-[#E10600]">Preguntas frecuentes</span>
+        </div>
+        <h2 id={`faq-${service.slug}-heading`} class="font-sans font-black text-3xl leading-tight tracking-[-0.02em] text-[#111] md:text-4xl">
+          DUDAS SOBRE<br /><span class="text-[#E10600]">{service.title.toUpperCase()}</span>
+        </h2>
+      </div>
+      <div class="max-w-3xl flex flex-col gap-3">
+        {service.faqItems.map(({ q, a }) => (
+          <details class="group rounded-2xl border border-[#D8D2CC]/70 bg-[#F3EFEA] open:bg-white open:border-[#E10600]/30 open:shadow-[0_4px_24px_-8px_rgba(225,6,0,0.1)] transition-all duration-200">
+            <summary class="flex cursor-pointer list-none items-start justify-between gap-4 px-6 py-5 select-none">
+              <span class="text-sm font-bold leading-snug text-[#111] md:text-base">{q}</span>
+              <span class="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full border border-[#D8D2CC] bg-white text-[#6D6D6D] transition-all group-open:border-[#E10600] group-open:bg-[#E10600] group-open:text-white" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="transition-transform group-open:rotate-180">
+                  <path d="m6 9 6 6 6-6"/>
+                </svg>
+              </span>
+            </summary>
+            <p class="px-6 pb-5 text-sm leading-relaxed text-[#6D6D6D] md:text-base">{a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Otros servicios -->
+  <section class="bg-[#F3EFEA] py-14 md:py-20">
+    <div class="mx-auto max-w-[1400px] px-6 md:px-10">
+      <div class="mb-8">
+        <div class="inline-flex items-center gap-3 mb-4">
+          <span class="h-px w-8 bg-[#E10600]"></span>
+          <span class="text-xs font-semibold uppercase tracking-[0.24em] text-[#E10600]">Catálogo completo</span>
+        </div>
+        <h2 class="font-sans font-black text-3xl leading-tight tracking-[-0.02em] text-[#111] md:text-4xl">
+          OTROS <span class="text-[#E10600]">SERVICIOS</span>
+        </h2>
+      </div>
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {others.map((s) => (
+          <a
+            href={`/servicios/${s.slug}`}
+            class="group flex flex-col gap-3 rounded-2xl border border-[#D8D2CC]/60 bg-white p-5 transition-all hover:border-[#E10600]/40 hover:shadow-[0_4px_20px_-8px_rgba(225,6,0,0.15)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E10600]"
+          >
+            <div class="grid h-10 w-10 place-items-center rounded-xl bg-[#E10600]/10 text-[#E10600] transition-colors group-hover:bg-[#E10600] group-hover:text-white">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" set:html={s.icon} aria-hidden="true" />
+            </div>
+            <div>
+              <p class="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#E10600]">Servicio {s.num}</p>
+              <h3 class="mt-0.5 text-sm font-bold text-[#111] group-hover:text-[#E10600] transition-colors">{s.title}</h3>
+              <p class="mt-1 text-xs text-[#6D6D6D] leading-snug">{s.subtitle}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-[#E10600] py-14 md:py-20">
+    <div class="mx-auto max-w-[1400px] px-6 md:px-10 text-center">
+      <h2 class="font-sans font-black text-3xl text-white md:text-4xl">
+        ¿NECESITAS {service.title.toUpperCase()}?
+      </h2>
+      <p class="mt-4 text-white/80 max-w-xl mx-auto text-base">
+        Evaluación técnica sin costo y propuesta en 48 horas hábiles.
+      </p>
+      <div class="mt-8 flex flex-col gap-3 sm:flex-row justify-center">
+        <a href="/contacto" class="inline-flex items-center justify-center gap-2 rounded-full bg-white px-8 py-4 text-sm font-semibold text-[#E10600] transition-all hover:bg-[#F3EFEA] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#E10600]">
+          Solicitar cotización
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+          </svg>
+        </a>
+        <a href="/servicios" class="inline-flex items-center justify-center gap-2 rounded-full border border-white/40 px-8 py-4 text-sm font-semibold text-white transition-all hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
+          Ver todos los servicios
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  details > summary::-webkit-details-marker { display: none; }
+</style>
