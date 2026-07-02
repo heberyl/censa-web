@@ -26,9 +26,9 @@ const stats = [
 <section class="bg-white" aria-label="Indicadores de desempeño">
   <div class="mx-auto grid max-w-[1400px] grid-cols-2 gap-px bg-[#D8D2CC]/50 md:grid-cols-4">
     {stats.map(({ value, label, detail }) => (
-      <div class="group h-48 bg-white [perspective:1200px] md:h-64">
+      <div class="group stat-flip h-48 bg-white [perspective:1200px] md:h-64 cursor-pointer select-none">
         <div
-          class="relative h-full w-full transition-transform duration-700 ease-out [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]"
+          class="stat-inner relative h-full w-full transition-transform duration-700 ease-out [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]"
         >
           <!-- Front -->
           <div class="absolute inset-0 flex flex-col items-center justify-center bg-white px-4 py-10 text-center [backface-visibility:hidden] md:px-6 md:py-14">
@@ -56,3 +56,17 @@ const stats = [
     ))}
   </div>
 </section>
+
+<style>
+  .stat-flip.is-flipped .stat-inner {
+    transform: rotateY(180deg);
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>('.stat-flip').forEach((card) => {
+    card.addEventListener('click', () => {
+      card.classList.toggle('is-flipped');
+    });
+  });
+</script>
