@@ -34,4 +34,10 @@ for (const file of extras) {
 // entry.mjs → _worker.js  (CF Pages Advanced Mode entry point)
 copyFileSync(join(server, 'entry.mjs'), join(client, '_worker.js'));
 
+// Remove the auto-generated wrangler.json from dist/server so wrangler 4.x
+// doesn't redirect away from our root wrangler.toml (which has nodejs_compat).
+import { rmSync } from 'node:fs';
+const autoConfig = join(server, 'wrangler.json');
+if (existsSync(autoConfig)) rmSync(autoConfig);
+
 console.log('✓ Worker files copied to dist/client/ for CF Pages deployment');
