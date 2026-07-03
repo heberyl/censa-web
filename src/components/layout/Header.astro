@@ -198,59 +198,83 @@ const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
 </style>
 
 <script>
-  const trigger = document.getElementById('mobile-menu-trigger')!;
-  const closeBtn = document.getElementById('mobile-menu-close')!;
-  const menu = document.getElementById('mobile-menu')!;
-  const backdrop = document.getElementById('mobile-backdrop')!;
-  const drawer = menu.querySelector('nav')!;
-  const iconMenu = document.getElementById('icon-menu')!;
-  const iconClose = document.getElementById('icon-close')!;
+  // Limpiadores de listeners a nivel document/window que sobreviven al swap del DOM.
+  // Se actualizan en cada initHeader() para evitar acumulación entre navegaciones.
+  let cleanScrollHandler: (() => void) | null = null;
+  let cleanKeyHandler: (() => void) | null = null;
 
-  let isOpen = false;
+  function initHeader() {
+    // 1. Limpiar listeners document/window de la página anterior
+    cleanScrollHandler?.();
+    cleanKeyHandler?.();
 
-  function openMenu() {
-    isOpen = true;
-    menu.classList.remove('hidden');
-    requestAnimationFrame(() => {
-      backdrop.classList.remove('opacity-0');
-      drawer.classList.remove('translate-x-full');
-    });
-    trigger.setAttribute('aria-expanded', 'true');
-    iconMenu.classList.add('hidden');
-    iconClose.classList.remove('hidden');
-    document.body.style.overflow = 'hidden';
-    trigger.setAttribute('aria-label', 'Cerrar menú de navegación');
-  }
-
-  function closeMenu() {
-    isOpen = false;
-    backdrop.classList.add('opacity-0');
-    drawer.classList.add('translate-x-full');
-    setTimeout(() => menu.classList.add('hidden'), 300);
-    trigger.setAttribute('aria-expanded', 'false');
-    iconMenu.classList.remove('hidden');
-    iconClose.classList.add('hidden');
+    // 2. Resetear overflow por si el menú estaba abierto al navegar
     document.body.style.overflow = '';
-    trigger.setAttribute('aria-label', 'Abrir menú de navegación');
+
+    // 3. Referencias frescas al DOM de la nueva página
+    const trigger = document.getElementById('mobile-menu-trigger');
+    const closeBtn = document.getElementById('mobile-menu-close');
+    const menu = document.getElementById('mobile-menu');
+    const backdrop = document.getElementById('mobile-backdrop');
+    const drawer = menu?.querySelector('nav');
+    const iconMenu = document.getElementById('icon-menu');
+    const iconClose = document.getElementById('icon-close');
+    const header = document.getElementById('site-header');
+
+    if (!trigger || !closeBtn || !menu || !backdrop || !drawer || !iconMenu || !iconClose) return;
+
+    let isOpen = false;
+
+    function openMenu() {
+      isOpen = true;
+      menu.classList.remove('hidden');
+      requestAnimationFrame(() => {
+        backdrop.classList.remove('opacity-0');
+        drawer.classList.remove('translate-x-full');
+      });
+      trigger.setAttribute('aria-expanded', 'true');
+      iconMenu.classList.add('hidden');
+      iconClose.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+      trigger.setAttribute('aria-label', 'Cerrar menú de navegación');
+    }
+
+    function closeMenu() {
+      isOpen = false;
+      backdrop.classList.add('opacity-0');
+      drawer.classList.add('translate-x-full');
+      setTimeout(() => menu.classList.add('hidden'), 300);
+      trigger.setAttribute('aria-expanded', 'false');
+      iconMenu.classList.remove('hidden');
+      iconClose.classList.add('hidden');
+      document.body.style.overflow = '';
+      trigger.setAttribute('aria-label', 'Abrir menú de navegación');
+    }
+
+    // Listeners en elementos del DOM (se recrea el DOM en cada nav → no hay acumulación)
+    trigger.addEventListener('click', () => (isOpen ? closeMenu() : openMenu()));
+    closeBtn.addEventListener('click', closeMenu);
+    backdrop.addEventListener('click', closeMenu);
+    document.querySelectorAll('.mobile-nav-link').forEach((link) =>
+      link.addEventListener('click', closeMenu)
+    );
+
+    // ESC — listener en document, necesita limpieza explícita
+    const keydownHandler = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isOpen) closeMenu();
+    };
+    document.addEventListener('keydown', keydownHandler);
+    cleanKeyHandler = () => document.removeEventListener('keydown', keydownHandler);
+
+    // Scroll-aware header — listener en window, necesita limpieza explícita
+    if (header) {
+      const scrollHandler = () => header.toggleAttribute('data-scrolled', window.scrollY > 30);
+      window.addEventListener('scroll', scrollHandler, { passive: true });
+      cleanScrollHandler = () => window.removeEventListener('scroll', scrollHandler);
+      scrollHandler(); // ejecutar inmediatamente si la página ya tiene scroll
+    }
   }
 
-  trigger.addEventListener('click', () => (isOpen ? closeMenu() : openMenu()));
-  closeBtn.addEventListener('click', closeMenu);
-  backdrop.addEventListener('click', closeMenu);
-
-  document.querySelectorAll('.mobile-nav-link').forEach((link) =>
-    link.addEventListener('click', closeMenu)
-  );
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && isOpen) closeMenu();
-  });
-
-  // Scroll-aware header
-  const header = document.getElementById('site-header')!;
-  const onScroll = () => {
-    header.toggleAttribute('data-scrolled', window.scrollY > 30);
-  };
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll(); // run on mount in case page loads mid-scroll
+  // Corre en carga inicial Y después de cada View Transition
+  document.addEventListener('astro:page-load', initHeader);
 </script>
